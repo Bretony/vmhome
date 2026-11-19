@@ -449,76 +449,97 @@ line-height: 1.5em;
 }
 
 /* ==========================================================================
-   ADAPTARE PENTRU TELEFON (ECRANE SUB 750PX) - TOUCH FRIENDLY
+   REPARAȚIE COMPLETĂ PENTRU TELEFON (ECRANE SUB 750PX)
    ========================================================================== */
 @media (max-width: 750px) {
-    /* Mărim puțin spațiul din banda YouTube ca să încapă toate elementele aerisit */
+    /* 1. Facem banda YouTube suficient de înaltă ca să încapă totul aerisit */
     .ListaLinkuri > .ListaItem:nth-child(5) {
-        min-height: 140px;
-        padding-bottom: 10px;
+        min-height: 150px;
+        position: relative;
     }
 
-    /* Sigla canalului YouTube din dreapta devine mai compactă pe mobil */
+    /* 2. Sigla canalului YouTube (dreapta-sus în bandă) */
     .BtnCanal {
-        right: 0.75rem;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        z-index: 20;
     }
 
     .AccesCanal {
-        width: 110px;
-        height: 75px;
+        width: 95px;
+        height: 65px;
+        padding: 4px;
     }
 
     .containers {
-        width: 85px;
-        height: 55px;
+        width: 75px;
+        height: 48px;
+        padding: 4px;
     }
 
     .triunghi {
-        margin: 15px auto;
-        border-left: 18px solid #ffffff;
-        border-right: 18px solid transparent;
-        border-bottom: 36px solid red;
+        margin: 10px auto;
+        border-left: 15px solid #ffffff;
+        border-right: 15px solid transparent;
+        border-bottom: 30px solid red;
     }
 
-    /* Butonul tău de Play/Stop se așază chiar lângă sigla din dreapta, ușor de atins */
+    /* 3. Butonul tău geometric de Play/Stop (exact în stânga siglei YouTube) */
     .PozonaVideo {
-        position: static;
+        position: static !important;
     }
 
     #toggleYoutube {
-        position: absolute;
-        top: 50%;
-        right: 130px;
-        transform: translateY(-50%) scale(0.55);
-        z-index: 25;
+        position: absolute !important;
+        top: 50% !important;
+        right: 115px !important; /* Stă fix la 10px în stânga siglei YouTube */
+        transform: translateY(-50%) scale(0.48) !important;
+        transform-origin: center center !important;
+        z-index: 30 !important;
+        display: flex !important;
     }
 
-    /* Fereastra video YouTube apare jos pe ecran ca un mini-player fix, clar și ușor de controlat */
-    .PlayerInBanda.activ {
+    /* 4. Fereastra video YouTube (apare clar jos pe ecran când pornești caseta) */
+    #zonaVideoYoutube.activ {
         display: block !important;
-        position: fixed;
-        bottom: 15px;
-        left: 50%;
-        top: auto;
-        right: auto;
-        transform: translateX(-50%);
-        width: 92vw;
-        max-width: 360px;
-        height: 202px;
-        z-index: 9999;
-        border: 2px solid #ffffff;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95);
+        position: fixed !important;
+        bottom: 16px !important;
+        left: 50% !important;
+        top: auto !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        width: 92vw !important;
+        max-width: 360px !important;
+        height: 202px !important;
+        z-index: 9999 !important;
+        background-color: #000000 !important;
+        border: 2px solid #ffffff !important;
+        border-radius: 12px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95) !important;
     }
 
-    /* Căsuța de introducere link se adaptează la lățimea telefonului */
+    /* 5. Zona de text din stânga ("You Tube / LINK") și căsuța de introducere */
+    .zonaInfoYoutube {
+        max-width: calc(100% - 175px); /* Nu intră peste butonul de Play */
+    }
+
     #panouInputYoutube {
-        width: 100%;
-        max-width: 260px;
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 90vw !important;
+        max-width: 340px !important;
+        z-index: 10000 !important;
+        background-color: rgba(15, 15, 25, 0.98) !important;
+        padding: 12px !important;
+        border: 2px solid #ffffff !important;
     }
 
     #inputLinkNou {
-        width: 100%;
-        font-size: 16px; /* Previne zoom-ul automat enervant pe iPhone când atingi căsuța */
+        width: 100% !important;
+        font-size: 16px !important; /* Previne zoom-ul forțat pe iPhone/Android */
     }
 }
