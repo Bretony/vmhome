@@ -449,67 +449,63 @@ line-height: 1.5em;
 }
 
 /* ==========================================================================
-   ALINIERE CURATĂ PE TELEFON (SUB 750PX)
+   DIMENSIONARE GENEROASĂ ȘI CASETĂ COMPACTĂ PE TELEFON (SUB 750PX)
    ========================================================================== */
 @media (max-width: 750px) {
-    /* 1. Organizăm întreaga bandă YouTube pe 3 coloane curate (Text | Buton Bară | Siglă YouTube) */
+    /* 1. Mărim considerabil înălțimea locului YouTube pe telefon */
     .ListaLinkuri > .ListaItem:nth-child(5) {
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
-        padding: 10px 8px !important;
-        min-height: 110px !important;
-        gap: 6px !important;
+        min-height: 175px !important;
+        padding: 16px 10px !important;
+        gap: 8px !important;
     }
 
     /* 2. Textul din stânga ("You Tube / LINK") */
     .zonaInfoYoutube {
         flex: 1 !important;
         min-width: 0 !important;
-        max-width: none !important;
+        height: auto !important;
     }
 
-    /* 3. Butonul tău stil bară (#toggleYoutube) - îl aducem la mijloc, fără să fugă în sus */
+    /* 3. Butonul tău stil bară (#toggleYoutube) - încadrat perfect pe înălțimea nouă */
     .PozonaVideo {
         position: static !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         width: 55px !important;
-        height: 80px !important;
+        height: 110px !important;
+        flex-shrink: 0 !important;
     }
 
     #toggleYoutube {
         position: static !important;
-        transform: scale(0.45) !important;
+        transform: scale(0.55) !important;
         transform-origin: center center !important;
         margin: 0 !important;
-        top: auto !important;
-        right: auto !important;
     }
 
-    /* 4. Sigla canalului YouTube din dreapta - păstrăm triunghiul intact, fără trapez */
+    /* 4. Sigla canalului YouTube din dreapta (triunghi curat, fără trapez) */
     .BtnCanal {
         position: static !important;
         transform: none !important;
-        top: auto !important;
-        right: auto !important;
         flex-shrink: 0 !important;
     }
 
     .AccesCanal {
-        width: 90px !important;
-        height: 65px !important;
+        width: 92px !important;
+        height: 68px !important;
         padding: 4px !important;
     }
 
     .containers {
-        width: 74px !important;
-        height: 50px !important;
+        width: 76px !important;
+        height: 52px !important;
         padding: 0 !important;
     }
 
-    /* Păstrăm proporția exactă a triunghiului ca să nu se facă trapez */
     .triunghi {
         margin: 0 auto !important;
         width: 0 !important;
@@ -519,11 +515,39 @@ line-height: 1.5em;
         border-bottom: 28px solid red !important;
     }
 
-    /* 5. Fereastra video YouTube apare jos, mare și clară când apeși pe buton */
+    /* 5. Caseta de introducere melodii - compactă și integrată discret în stânga */
+    #panouInputYoutube {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 185px !important;
+        padding: 4px 6px !important;
+        gap: 4px !important;
+        border-radius: 6px !important;
+        z-index: 50 !important;
+    }
+
+    #inputLinkNou {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 5px 6px !important;
+        font-size: 16px !important; /* Păstrăm 16px ca să nu facă iPhone zoom automat */
+        border-width: 1px !important;
+    }
+
+    #btnInchideInput {
+        padding: 5px 7px !important;
+        font-size: 0.75rem !important;
+        border-width: 1px !important;
+    }
+
+    /* 6. Fereastra video YouTube (jos pe ecran când pornești muzica) */
     #zonaVideoYoutube.activ {
         display: block !important;
         position: fixed !important;
-        bottom: 15px !important;
+        bottom: 16px !important;
         left: 50% !important;
         top: auto !important;
         right: auto !important;
@@ -536,24 +560,5 @@ line-height: 1.5em;
         border: 2px solid #ffffff !important;
         border-radius: 12px !important;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95) !important;
-    }
-
-    /* 6. Căsuța de introducere melodii (centrată pe telefon) */
-    #panouInputYoutube {
-        position: fixed !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        width: 90vw !important;
-        max-width: 340px !important;
-        z-index: 10000 !important;
-        background-color: rgba(15, 15, 25, 0.98) !important;
-        padding: 12px !important;
-        border: 2px solid #ffffff !important;
-    }
-
-    #inputLinkNou {
-        width: 100% !important;
-        font-size: 16px !important;
     }
 }
