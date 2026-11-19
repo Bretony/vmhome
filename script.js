@@ -238,6 +238,10 @@ async function comutaPlaylistInBanda() {
     if (!zonaVideo || !buton) return;
 
     if (!casetaPornita) {
+       if (window.innerWidth <= 750) {
+            document.body.appendChild(zonaVideo);
+        }
+        zonaVideo.classList.add('activ');
         zonaVideo.classList.add('activ');
         buton.classList.add('pornit');
         casetaPornita = true;
