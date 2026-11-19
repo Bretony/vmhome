@@ -449,35 +449,67 @@ line-height: 1.5em;
 }
 
 /* ==========================================================================
-   DIMENSIONARE GENEROASĂ ȘI CASETĂ COMPACTĂ PE TELEFON (SUB 750PX)
+   ORGANIZARE PE DOUĂ ETAJE PE TELEFON (SUB 750PX)
+   Etajul 1 (locul Newsletter): You Tube / LINK + Căutare Melodii
+   Etajul 2: Butonul Bară + Sigla Roșie YouTube
    ========================================================================== */
 @media (max-width: 750px) {
-    /* 1. Mărim considerabil înălțimea locului YouTube pe telefon */
+    /* 1. Ascundem Newsletter DOAR pe telefon ca să îi preluăm spațiul */
+    .ListaLinkuri > .ListaItem:nth-child(4) {
+        display: none !important;
+    }
+
+    /* 2. Banda YouTube preia ambele etaje (înălțime dublă, aerisită) */
     .ListaLinkuri > .ListaItem:nth-child(5) {
-        display: flex !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: auto auto !important;
         align-items: center !important;
-        justify-content: space-between !important;
-        min-height: 175px !important;
-        padding: 16px 10px !important;
-        gap: 8px !important;
+        padding: 12px 10px !important;
+        gap: 12px !important;
     }
 
-    /* 2. Textul din stânga ("You Tube / LINK") */
+    /* 3. ETAJUL DE SUS (pe toată lățimea): Textul You Tube / LINK și Caseta de introducere */
     .zonaInfoYoutube {
-        flex: 1 !important;
-        min-width: 0 !important;
-        height: auto !important;
+        grid-column: 1 / -1 !important; /* Ocupă tot rândul de sus */
+        grid-row: 1 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-bottom: 10px !important;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.35) !important; /* Delimitare fină între etaje */
     }
 
-    /* 3. Butonul tău stil bară (#toggleYoutube) - încadrat perfect pe înălțimea nouă */
+    /* Caseta de introducere se întinde frumos pe tot etajul de sus */
+    #panouInputYoutube {
+        position: static !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 6px 8px !important;
+        gap: 6px !important;
+    }
+
+    #inputLinkNou {
+        width: 100% !important;
+        font-size: 16px !important; /* Fără zoom automat pe iPhone */
+        padding: 8px 10px !important;
+    }
+
+    #btnInchideInput {
+        padding: 8px 12px !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* 4. ETAJUL DE JOS (Stânga): Butonul tău Bară (#toggleYoutube) */
     .PozonaVideo {
+        grid-column: 1 !important;
+        grid-row: 2 !important;
         position: static !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        width: 55px !important;
-        height: 110px !important;
-        flex-shrink: 0 !important;
+        width: 100% !important;
+        height: 95px !important;
     }
 
     #toggleYoutube {
@@ -487,22 +519,26 @@ line-height: 1.5em;
         margin: 0 !important;
     }
 
-    /* 4. Sigla canalului YouTube din dreapta (triunghi curat, fără trapez) */
+    /* 5. ETAJUL DE JOS (Dreapta): Sigla canalului YouTube (triunghi curat, fără trapez) */
     .BtnCanal {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
         position: static !important;
         transform: none !important;
-        flex-shrink: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
     }
 
     .AccesCanal {
-        width: 92px !important;
-        height: 68px !important;
+        width: 120px !important;
+        height: 78px !important;
         padding: 4px !important;
     }
 
     .containers {
-        width: 76px !important;
-        height: 52px !important;
+        width: 96px !important;
+        height: 60px !important;
         padding: 0 !important;
     }
 
@@ -510,51 +546,23 @@ line-height: 1.5em;
         margin: 0 auto !important;
         width: 0 !important;
         height: 0 !important;
-        border-left: 14px solid #ffffff !important;
-        border-right: 14px solid transparent !important;
-        border-bottom: 28px solid red !important;
-    }
-
-    /* 5. Caseta de introducere melodii - compactă și integrată discret în stânga */
-    #panouInputYoutube {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        transform: none !important;
-        width: 100% !important;
-        max-width: 185px !important;
-        padding: 4px 6px !important;
-        gap: 4px !important;
-        border-radius: 6px !important;
-        z-index: 50 !important;
-    }
-
-    #inputLinkNou {
-        width: 100% !important;
-        min-width: 0 !important;
-        padding: 5px 6px !important;
-        font-size: 16px !important; /* Păstrăm 16px ca să nu facă iPhone zoom automat */
-        border-width: 1px !important;
-    }
-
-    #btnInchideInput {
-        padding: 5px 7px !important;
-        font-size: 0.75rem !important;
-        border-width: 1px !important;
+        border-left: 16px solid #ffffff !important;
+        border-right: 16px solid transparent !important;
+        border-bottom: 32px solid red !important;
     }
 
     /* 6. Fereastra video YouTube (jos pe ecran când pornești muzica) */
     #zonaVideoYoutube.activ {
         display: block !important;
         position: fixed !important;
-        bottom: 16px !important;
+        bottom: 14px !important;
         left: 50% !important;
         top: auto !important;
         right: auto !important;
         transform: translateX(-50%) !important;
-        width: 92vw !important;
-        max-width: 360px !important;
-        height: 202px !important;
+        width: 94vw !important;
+        max-width: 380px !important;
+        height: 214px !important;
         z-index: 9999 !important;
         background-color: #000000 !important;
         border: 2px solid #ffffff !important;
