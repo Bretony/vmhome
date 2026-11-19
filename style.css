@@ -449,7 +449,7 @@ line-height: 1.5em;
 }
 
 /* ==========================================================================
-   ORGANIZARE CURATĂ PE TELEFON (VERTICALĂ & LANDSCAPE - SUB 750PX)
+   REGLAJE FINE PE TELEFON (PORTRET & LANDSCAPE - SUB 750PX)
    ========================================================================== */
 @media (max-width: 750px) {
     /* 1. Ascundem Newsletter DOAR pe telefon ca să îi preluăm spațiul */
@@ -463,11 +463,11 @@ line-height: 1.5em;
         grid-template-columns: 1fr 1fr !important;
         grid-template-rows: auto auto !important;
         align-items: center !important;
-        padding: 12px 10px !important;
-        gap: 12px !important;
+        padding: 12px 8px !important;
+        gap: 10px !important;
     }
 
-    /* 3. ETAJUL DE SUS: Textul You Tube / LINK și Caseta de introducere */
+    /* 3. ETAJUL DE SUS: Textul You Tube / LINK și Caseta întinsă pe orizontală */
     .zonaInfoYoutube {
         grid-column: 1 / -1 !important;
         grid-row: 1 !important;
@@ -480,19 +480,25 @@ line-height: 1.5em;
     #panouInputYoutube {
         position: static !important;
         transform: none !important;
+        display: flex !important;
+        align-items: center !important;
         width: 100% !important;
-        max-width: 100% !important;
-        padding: 6px 8px !important;
+        max-width: none !important;
+        padding: 6px !important;
         gap: 6px !important;
+        box-sizing: border-box !important;
     }
 
     #inputLinkNou {
+        flex: 1 !important; /* Ocupă tot spațiul disponibil pe orizontală */
         width: 100% !important;
+        min-width: 0 !important;
         font-size: 16px !important;
         padding: 8px 10px !important;
     }
 
     #btnInchideInput {
+        flex-shrink: 0 !important;
         padding: 8px 12px !important;
         font-size: 0.9rem !important;
     }
@@ -517,23 +523,28 @@ line-height: 1.5em;
         z-index: 50 !important;
     }
 
-    /* 5. ETAJUL DE JOS (Dreapta): Păstrăm design-ul complet al butonului de canal YouTube */
+    /* 5. ETAJUL DE JOS (Dreapta): Readucem vizibil butonul design al canalului YouTube */
     .BtnCanal {
         grid-column: 2 !important;
         grid-row: 2 !important;
-        position: static !important;
-        transform: scale(0.75) !important; /* Îl micșorăm proporțional fără să îi stricăm designul */
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+        transform: scale(0.72) !important;
         transform-origin: center center !important;
-        display: flex !important;
-        justify-content: center !important;
-        width: 100% !important;
+        display: block !important;
+        margin: 0 auto !important;
+        width: 200px !important;
+        height: 120px !important;
+        z-index: 25 !important;
     }
 
-    /* 6. Fereastra video YouTube apare SUS pe ecran, lăsând butonul de oprire 100% liber jos */
+    /* 6. Fereastra video YouTube coborâtă cu 10px mai jos (top: 22px) */
     #zonaVideoYoutube.activ {
         display: block !important;
         position: fixed !important;
-        top: 12px !important;
+        top: 22px !important;
         bottom: auto !important;
         left: 50% !important;
         right: auto !important;
