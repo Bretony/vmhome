@@ -449,7 +449,9 @@ line-height: 1.5em;
 }
 
 /* ==========================================================================
-   REGLAJE FINE PE TELEFON (PORTRET & LANDSCAPE - SUB 750PX)
+   TELEFON (PORTRET & LANDSCAPE - SUB 750PX)
+   1. Rândul de sus: You Tube / LINK în stânga + Caseta în dreapta (ROW)
+   2. Rândul de jos: Butonul Bară + Sigla YouTube vizibilă 100%
    ========================================================================== */
 @media (max-width: 750px) {
     /* 1. Ascundem Newsletter DOAR pe telefon ca să îi preluăm spațiul */
@@ -457,7 +459,7 @@ line-height: 1.5em;
         display: none !important;
     }
 
-    /* 2. Banda YouTube pe două etaje aerisite */
+    /* 2. Banda YouTube pe două etaje */
     .ListaLinkuri > .ListaItem:nth-child(5) {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
@@ -467,40 +469,55 @@ line-height: 1.5em;
         gap: 10px !important;
     }
 
-    /* 3. ETAJUL DE SUS: Textul You Tube / LINK și Caseta întinsă pe orizontală */
+    /* 3. ETAJUL DE SUS (ROW): Textul în stânga + Caseta de lipit în dreapta pe același rând */
     .zonaInfoYoutube {
         grid-column: 1 / -1 !important;
         grid-row: 1 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
         width: 100% !important;
-        max-width: 100% !important;
         padding-bottom: 10px !important;
         border-bottom: 1px dashed rgba(255, 255, 255, 0.35) !important;
+    }
+
+    /* Păstrăm textul You Tube / LINK vizibil în stânga și când se deschide caseta pe mobil */
+    #textOriginalYoutube.ascuns {
+        display: block !important;
+        flex-shrink: 0 !important;
     }
 
     #panouInputYoutube {
         position: static !important;
         transform: none !important;
+        flex: 1 !important;
         display: flex !important;
         align-items: center !important;
         width: 100% !important;
         max-width: none !important;
-        padding: 6px !important;
-        gap: 6px !important;
-        box-sizing: border-box !important;
+        padding: 4px 6px !important;
+        gap: 4px !important;
+    }
+
+    /* Când caseta e închisă, rămâne ascunsă */
+    #panouInputYoutube.ascuns {
+        display: none !important;
     }
 
     #inputLinkNou {
-        flex: 1 !important; /* Ocupă tot spațiul disponibil pe orizontală */
+        flex: 1 !important;
         width: 100% !important;
         min-width: 0 !important;
         font-size: 16px !important;
-        padding: 8px 10px !important;
+        padding: 6px 8px !important;
     }
 
     #btnInchideInput {
         flex-shrink: 0 !important;
-        padding: 8px 12px !important;
-        font-size: 0.9rem !important;
+        padding: 6px 10px !important;
+        font-size: 0.85rem !important;
     }
 
     /* 4. ETAJUL DE JOS (Stânga): Butonul tău Bară (#toggleYoutube) */
@@ -512,7 +529,7 @@ line-height: 1.5em;
         align-items: center !important;
         justify-content: center !important;
         width: 100% !important;
-        height: 95px !important;
+        height: 90px !important;
     }
 
     #toggleYoutube {
@@ -523,24 +540,52 @@ line-height: 1.5em;
         z-index: 50 !important;
     }
 
-    /* 5. ETAJUL DE JOS (Dreapta): Readucem vizibil butonul design al canalului YouTube */
+    /* 5. ETAJUL DE JOS (Dreapta): Sigla canalului YouTube (vizibilă 100%, fără să dispară) */
     .BtnCanal {
         grid-column: 2 !important;
         grid-row: 2 !important;
-        position: relative !important;
-        top: auto !important;
-        right: auto !important;
-        left: auto !important;
-        transform: scale(0.72) !important;
-        transform-origin: center center !important;
-        display: block !important;
-        margin: 0 auto !important;
-        width: 200px !important;
-        height: 120px !important;
-        z-index: 25 !important;
+        position: static !important;
+        transform: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 90px !important;
+        z-index: 30 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
-    /* 6. Fereastra video YouTube coborâtă cu 10px mai jos (top: 22px) */
+    .AccesCanal {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 130px !important;
+        height: 80px !important;
+        padding: 6px !important;
+        background-color: rgba(0, 0, 255, 0.5) !important;
+        border-radius: 0.5rem !important;
+    }
+
+    .containers {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 105px !important;
+        height: 60px !important;
+        padding: 0 !important;
+    }
+
+    .triunghi {
+        margin: 0 auto !important;
+        width: 0 !important;
+        height: 0 !important;
+        border-left: 16px solid #ffffff !important;
+        border-right: 16px solid transparent !important;
+        border-bottom: 32px solid red !important;
+    }
+
+    /* 6. Fereastra video YouTube coborâtă la top: 22px */
     #zonaVideoYoutube.activ {
         display: block !important;
         position: fixed !important;
