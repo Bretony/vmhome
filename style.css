@@ -543,8 +543,8 @@ line-height: 1.5em;
         mask-image: radial-gradient(circle at center, transparent 5px, black 6px) !important;
     }
 
-   /* 3. ETAJUL DE SUS: Pe același rând (ROW) - Text compact în stânga + Casetă în dreapta */
-    .zonaInfoYoutube {
+  /* 3. ETAJUL DE SUS: Pe același rând (ROW) - Text compact în stânga + Casetă în dreapta */
+    #zonaControlLista.zonaInfoYoutube {
         grid-column: 1 / -1 !important;
         grid-row: 1 !important;
         display: flex !important;
@@ -552,54 +552,56 @@ line-height: 1.5em;
         flex-wrap: nowrap !important;
         align-items: center !important;
         justify-content: space-between !important;
-        gap: 6px !important;
+        gap: 8px !important;
         width: 100% !important;
         padding: 4px 0 10px 0 !important;
         border-bottom: 1px dashed rgba(255, 255, 255, 0.35) !important;
     }
 
-    #textOriginalYoutube,
-    #textOriginalYoutube.ascuns {
+    #zonaControlLista #textOriginalYoutube,
+    #zonaControlLista #textOriginalYoutube.ascuns {
         display: flex !important;
         flex-direction: column !important;
-        flex-shrink: 0 !important;
-        font-size: 0.85em !important; /* Puțin mai compact ca să lase loc casetei în dreapta */
+        flex: 0 0 auto !important;
+        white-space: nowrap !important;
+        font-size: 0.85em !important;
         line-height: 1.2 !important;
     }
 
-    #panouInputYoutube {
+    #zonaControlLista #panouInputYoutube {
         position: static !important;
         transform: none !important;
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         align-items: center !important;
-        flex: 1 1 auto !important;
+        flex: 1 1 0% !important;
         min-width: 0 !important;
         width: auto !important;
-        padding: 3px 5px !important;
+        padding: 4px 6px !important;
         gap: 4px !important;
+        margin: 0 !important;
     }
 
-    #panouInputYoutube.ascuns {
+    #zonaControlLista #panouInputYoutube.ascuns {
         display: none !important;
     }
 
-    #inputLinkNou {
-        flex: 1 1 auto !important;
-        width: 100% !important;
+    #zonaControlLista #inputLinkNou {
+        flex: 1 1 0% !important;
+        width: 0 !important;
         min-width: 0 !important;
         font-size: 16px !important;
-        padding: 5px 6px !important;
+        padding: 6px 8px !important;
     }
 
-    #btnInchideInput {
-        flex-shrink: 0 !important;
-        padding: 5px 8px !important;
+    #zonaControlLista #btnInchideInput {
+        flex: 0 0 auto !important;
+        padding: 6px 9px !important;
         font-size: 0.85rem !important;
     }
 
-    /* 6. Fereastra video la dimensiunea perfectă dinainte, centrată și fixă sus */
+    /* 6. Fereastra video la dimensiunea perfectă, centrată și fixă sus */
     #zonaVideoYoutube.activ {
         display: block !important;
         position: fixed !important;
