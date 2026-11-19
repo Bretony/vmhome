@@ -4,6 +4,7 @@ const assets = [
   'index.html',
   'style.css',
   'script.js',
+  'playlist.json',
   'manifest.json',
   '768.jpg',
   'background.jpg',
