@@ -1,4 +1,4 @@
-const cacheName = 'sparky-vmhome-v2';;
+const cacheName = 'sparky-vmhome-v10';;
 const assets = [
   './',
   'index.html',
