@@ -452,7 +452,7 @@ line-height: 1.5em;
    ========================================================================== */
 .ListaLinkuri > .ListaItem:nth-child(5),
 #zonaControlLista {
-    transition: background-color 0.8s ease, color 0.8s ease !important;
+    transition: background-color 2.4s ease, color 2.4s ease !important;
 }
 
 .ListaLinkuri > .ListaItem:nth-child(5):has(#panouInputYoutube:not(.ascuns)),
