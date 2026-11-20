@@ -66,25 +66,25 @@
             </li>
             <li class="ListaItem">
     <div class="Directie">
-        <div class="ListaLink zonaInfoYoutube" id="zonaControlLista" onclick="deschideCasutaYoutube()" title="Click pentru a adăuga o melodie">
-            
-            <!-- Stânga: Textul You Tube / LINK -->
-            <div id="textOriginalYoutube">
-                <h2 class="ListaTitlu">You Tube</h2>
-                <p id="statusMelodie">LINK</p>
-            </div>
-
-            <!-- Mijloc: Caseta de input -->
-            <div id="panouInputYoutube" class="ascuns">
-                <input type="text" id="inputLinkNou" placeholder="Lipește link YouTube + Enter" autocomplete="off" onclick="event.stopPropagation()" onkeydown="verificaEnterLink(event)"/>
-                <button type="button" id="btnInchideInput" onclick="event.stopPropagation(); inchideCasutaYoutube();" title="Închide">✕</button>
-            </div>
-
-            <!-- Dreapta: Săgețica de închidere/restrângere studio -->
-            <button type="button" id="btnInchideStudio" onclick="event.stopPropagation(); inchideStudioYoutube();" title="Restrânge consola">↙&#xFE0E;</button>
-
+    <div class="ListaLink zonaInfoYoutube" id="zonaControlLista" onclick="gestioneazaClickYoutube()" title="Click pentru a deschide consola">
+        
+        <!-- Stânga: Click aici când consola e deschisă activează inputul -->
+        <div id="textOriginalYoutube" onclick="event.stopPropagation(); deschideInputInConsola();">
+            <h2 class="ListaTitlu">You Tube</h2>
+            <p id="statusMelodie">LINK</p>
         </div>
+
+        <!-- Mijloc: Caseta de input (ascunsă inițial) -->
+        <div id="panouInputYoutube" class="ascuns">
+            <input type="text" id="inputLinkNou" placeholder="Lipește link YouTube + Enter" autocomplete="off" onclick="event.stopPropagation()" onkeydown="verificaEnterLink(event)"/>
+            <button type="button" id="btnInchideInput" onclick="event.stopPropagation(); inchideCasutaYoutube();" title="Închide">✕</button>
+        </div>
+
+        <!-- Dreapta: Săgețica de închidere consolă -->
+        <button type="button" id="btnInchideStudio" onclick="event.stopPropagation(); inchideStudioYoutube();" title="Restrânge consola">↙&#xFE0E;</button>
+
     </div>
+</div>
 
     <!-- Etajul 2: Butonul Bară + Sigla YouTube + Ecranul Video -->
     <div class="PozonaVideo">
