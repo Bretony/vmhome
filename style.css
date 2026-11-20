@@ -513,7 +513,7 @@ line-height: 1.5em;
         width: 136px !important;
         height: 84px !important;
         padding: 0 !important;
-        background-color: rgba(0, 0, 255, 0.5) !important;
+        background-color: rgba(0, 0, 255, 0.5);
         border-radius: 0.5rem !important;
         overflow: visible !important;
     }
@@ -579,11 +579,12 @@ line-height: 1.5em;
     #panouInputYoutube {
         position: absolute;
         display: flex;
-        width: 200px;
+        width: 230px;
         /* padding: 4px 6px; */
         gap: 4px;
         margin-left: 70px;
-        padding-bottom: -200px;
+        padding-bottom: -170px;
+        background-color: rgba(0, 0, 255, 0.5);
         opacity: 0.4;
     }
 
