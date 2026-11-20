@@ -630,7 +630,7 @@ line-height: 1.5em;
         right: 0 !important;
         margin: 0 0 10px 0 !important;
         transform: none !important;
-        width: 100% !important;       /* Exact aceeași lățime ca liniile albe */
+        width: -90% !important;       /* Exact aceeași lățime ca liniile albe */
         aspect-ratio: 16 / 9 !important;
         height: auto !important;
         z-index: 99999 !important;
@@ -860,7 +860,6 @@ border-radius: 0 !important;   / Fără niciun radius */
 z-index: 99999 !important;
 background-color: #000000 !important;
 border: 1px solid #ffffff !important;
-box-shadow: 0 6px 20px rgba(0, 0, 0, 0.9) !important;
 box-sizing: border-box !important;
 }
 }
