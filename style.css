@@ -560,7 +560,7 @@ line-height: 1.5em;
         height: 100% !important;
     }
 
-    #zonaControlLista.zonaInfoYoutube {
+    #zonaControlLista {
         display: flex !important;
         flex-direction: row !important;
         justify-content: space-between !important;
