@@ -238,10 +238,8 @@ async function comutaPlaylistInBanda() {
     if (!zonaVideo || !buton) return;
 
     if (!casetaPornita) {
-       if (window.innerWidth <= 750) {
-            document.body.appendChild(zonaVideo);
-        }
-        zonaVideo.classList.add('activ');
+        // Am eliminat document.body.appendChild(zonaVideo) ca să NU îi mai schimbe poziția!
+        zonaVideo.style.display = 'block';
         zonaVideo.classList.add('activ');
         buton.classList.add('pornit');
         casetaPornita = true;
@@ -252,44 +250,47 @@ async function comutaPlaylistInBanda() {
         indexPiesa = Math.floor(Math.random() * casetaYoutube.length);
         pornestePiesaCuAPI(indexPiesa);
     } else {
+        casetaPornita = false;
         if (ytPlayer && typeof ytPlayer.destroy === 'function') {
-            ytPlayer.destroy();
+            try {
+                ytPlayer.destroy();
+            } catch (e) {}
             ytPlayer = null;
         }
         zonaVideo.innerHTML = '';
         zonaVideo.classList.remove('activ');
+        zonaVideo.style.display = '';
         buton.classList.remove('pornit');
-        casetaPornita = false;
         actualizeazaTextStatus('LINK');
     }
 }
 
-// 8. Motorul oficial YT.Player (cu Auto-Next și Auto-Skip la erori)
+// 8. Motorul oficial YT.Player (cu ID unic la fiecare pornire ca să meargă de 100 de ori la rând)
 function pornestePiesaCuAPI(index) {
     const zonaVideo = document.getElementById('zonaVideoYoutube');
     const piesa = casetaYoutube[index];
     if (!zonaVideo || !piesa || !casetaPornita) return;
-
-    // actualizeazaTextStatus(piesa.titlu);
 
     if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
         ytPlayer.loadVideoById(piesa.id);
         return;
     }
 
-    zonaVideo.innerHTML = '<div id="ytPlayerBox"></div>';
+    // Generăm un ID unic de fiecare dată ca YT.Player să nu se blocheze după destroy()
+    const idUnicBox = 'ytPlayerBox_' + Date.now();
+    zonaVideo.innerHTML = '<div id="' + idUnicBox + '"></div>';
 
     if (window.YT && window.YT.Player) {
-        creeazaInstantaPlayer(piesa.id);
+        creeazaInstantaPlayer(piesa.id, idUnicBox);
     } else {
         window.onYouTubeIframeAPIReady = () => {
-            if (casetaPornita) creeazaInstantaPlayer(piesa.id);
+            if (casetaPornita) creeazaInstantaPlayer(piesa.id, idUnicBox);
         };
     }
 }
 
-function creeazaInstantaPlayer(videoId) {
-    ytPlayer = new YT.Player('ytPlayerBox', {
+function creeazaInstantaPlayer(videoId, containerId) {
+    ytPlayer = new YT.Player(containerId, {
         height: '100%',
         width: '100%',
         videoId: videoId,
@@ -303,7 +304,9 @@ function creeazaInstantaPlayer(videoId) {
         },
         events: {
             onReady: (event) => {
-                event.target.playVideo();
+                if (casetaPornita) {
+                    event.target.playVideo();
+                }
             },
             onStateChange: (event) => {
                 if (event.data === 0) {
@@ -315,10 +318,4 @@ function creeazaInstantaPlayer(videoId) {
             }
         }
     });
-}
-
-function sariLaUrmatoarea() {
-    if (!casetaPornita || casetaYoutube.length === 0) return;
-    indexPiesa = (indexPiesa + 1) % casetaYoutube.length;
-    pornestePiesaCuAPI(indexPiesa);
 }
