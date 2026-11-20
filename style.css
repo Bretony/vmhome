@@ -568,12 +568,13 @@ line-height: 1.5em;
 
     #zonaControlLista #textOriginalYoutube,
     #zonaControlLista #textOriginalYoutube.ascuns {
-        display: flex !important;
-        flex-direction: column !important;
-        flex: 0 0 auto !important;
-        white-space: nowrap !important;
-        font-size: 0.85em !important;
-        line-height: 1.2 !important;
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 auto;
+        width: 50px;
+        white-space: nowrap;
+        font-size: 0.85em;
+        line-height: 1.2;
     }
 
     #panouInputYoutube {
