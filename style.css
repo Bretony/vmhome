@@ -471,7 +471,33 @@ line-height: 1.5em;
     .ListaLinkuri > .ListaItem:nth-child(4) {
         display: none !important;
     }
+     /* Când NU este extins: ascundem butoanele mari de jos și săgețica, ca banda să arate normal (4em) */
+    .ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(5) .PozonaVideo,
+    .ListaLinkuri:not(.studio-extins) #btnInchideStudio {
+        display: none !important;
+    }
 
+    .ListaLinkuri:not(.studio-extins) #zonaControlLista {
+        border-bottom: none !important;
+        padding: 0.5em !important;
+    }
+
+    /* Când ESTE extins (.studio-extins): ascundem Newsletter și mărim You Tube la 8em */
+    .ListaLinkuri.studio-extins > .ListaItem:nth-child(4) {
+        display: none !important;
+    }
+
+    .ListaLinkuri.studio-extins > .ListaItem:nth-child(5) {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) !important;
+        height: 8em !important;
+        box-sizing: border-box !important;
+        align-items: center !important;
+        padding: 0 !important;
+        gap: 0 !important;
+        overflow: hidden !important;
+    }
     /* Punem position: relative pe lista de linkuri ca să ancorăm ecranul video la lățimea liniilor albe */
     .ListaLinkuri {
         position: relative !important;
@@ -718,7 +744,41 @@ line-height: 1.5em;
         grid-auto-rows: 4em !important;
         position: relative !important;
     }
+     /* Când NU este extins: ascundem butoanele mari de jos și săgețica */
+    .ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(5) .PozonaVideo,
+    .ListaLinkuri:not(.studio-extins) #btnInchideStudio {
+        display: none !important;
+    }
 
+    .ListaLinkuri:not(.studio-extins) #zonaControlLista {
+        border-bottom: none !important;
+        padding: 0.5em !important;
+    }
+
+    /* Când ESTE extins (.studio-extins): ascundem Tik Tok și întindem You Tube pe 2 rânduri (8em) */
+    .ListaLinkuri.studio-extins > .ListaItem:nth-child(3) {
+        display: none !important;
+    }
+
+    .ListaLinkuri.studio-extins > .ListaItem:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .ListaLinkuri.studio-extins > .ListaItem:nth-child(2) { grid-column: 2; grid-row: 1; }
+    .ListaLinkuri.studio-extins > .ListaItem:nth-child(4) { grid-column: 2; grid-row: 2; }
+    .ListaLinkuri.studio-extins > .ListaItem:nth-child(6) { grid-column: 2; grid-row: 3; }
+
+    .ListaLinkuri.studio-extins > .ListaItem:nth-child(5) {
+        grid-column: 1 !important;
+        grid-row: 2 / 4 !important;
+        height: 8em !important;
+        position: relative !important;
+        overflow: visible !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) !important;
+        box-sizing: border-box !important;
+        align-items: center !important;
+        padding: 0 8px !important;
+        gap: 0 !important;
+    }
     /* Ascundem Tik Tok (al 3-lea element) */
     .ListaLinkuri > .ListaItem:nth-child(3) {
         display: none !important;
