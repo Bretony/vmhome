@@ -458,18 +458,19 @@ line-height: 1.5em;
     .ListaLinkuri > .ListaItem:nth-child(4) {
         display: none !important;
     }
-
-    /* 2. Banda YouTube = EXACT 2 poziții (4em + 4em = 8em) */
+   /* 2. Banda YouTube = EXACT 2 poziții (8em), fără ca rândurile să se întindă peste linie */
     .ListaLinkuri > .ListaItem:nth-child(5) {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        grid-template-rows: 1fr 1fr !important; /* Etajul 1 = 4em, Etajul 2 = 4em */
+        grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) !important;
         height: 8em !important;
         box-sizing: border-box !important;
         align-items: center !important;
         padding: 0 8px !important;
         gap: 0 !important;
+        overflow: hidden !important; /* Ține totul strict între liniile albe */
     }
+  
 
     /* 3. ETAJUL DE SUS (4em): Text în stânga + Casetă în dreapta */
     .Directie {
@@ -531,7 +532,7 @@ line-height: 1.5em;
         font-size: 0.85rem !important;
     }
 
-    /* 4. ETAJUL DE JOS (4em): Butonul Bară + Sigla YouTube */
+    /* 4. ETAJUL DE JOS (4em): Butonul Bară + Sigla YouTube centrate în spațiul disponibil */
     .PozonaVideo {
         grid-column: 1 / -1 !important;
         grid-row: 2 !important;
@@ -541,17 +542,20 @@ line-height: 1.5em;
         justify-content: space-around !important;
         width: 100% !important;
         height: 100% !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
     }
 
     #toggleYoutube {
         position: static !important;
-        transform: scale(0.45) !important; /* Ajustat ușor să încapă perfect în cei 4em de jos */
+        transform: scale(0.32) !important; /* 161px * 0.32 = ~51px (încape perfect în 4em) */
         transform-origin: center center !important;
         margin: 0 !important;
         z-index: 50 !important;
+        flex-shrink: 0 !important;
     }
 
-    /* 5. Sigla canalului YouTube COMPLETĂ */
+    /* 5. Sigla canalului YouTube COMPLETĂ (încadrată în înălțimea etajului de jos) */
     .BtnCanal {
         position: static !important;
         transform: none !important;
@@ -567,8 +571,8 @@ line-height: 1.5em;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        width: 120px !important;
-        height: 68px !important;
+        width: 104px !important;
+        height: 52px !important; /* Redus de la 68px la 52px ca să stea deasupra liniei */
         padding: 0 !important;
         background-color: rgba(0, 0, 255, 0.5);
         border-radius: 0.5rem !important;
@@ -580,8 +584,8 @@ line-height: 1.5em;
         align-items: center !important;
         justify-content: center !important;
         flex-wrap: nowrap !important;
-        width: 96px !important;
-        height: 54px !important;
+        width: 84px !important;
+        height: 42px !important;
         padding: 0 !important;
         margin: 0 !important;
         overflow: hidden !important;
@@ -597,15 +601,13 @@ line-height: 1.5em;
         margin: 0 !important;
         width: 0 !important;
         height: 0 !important;
-        border-left: 14px solid #ffffff !important;
-        border-right: 14px solid transparent !important;
-        border-bottom: 28px solid red !important;
+        border-left: 11px solid #ffffff !important;
+        border-right: 11px solid transparent !important;
+        border-bottom: 22px solid red !important;
         rotate: 45deg !important;
-        -webkit-mask-image: radial-gradient(circle at center, transparent 4px, black 5px) !important;
-        mask-image: radial-gradient(circle at center, transparent 4px, black 5px) !important;
+        -webkit-mask-image: radial-gradient(circle at center, transparent 3px, black 4px) !important;
+        mask-image: radial-gradient(circle at center, transparent 3px, black 4px) !important;
     }
-}
-
     /* 6. Fereastra video */
     #zonaVideoYoutube.activ {
         position: fixed !important;
