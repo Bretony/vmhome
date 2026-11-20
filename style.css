@@ -612,10 +612,9 @@ line-height: 1.5em;
 
     /* 6. Fereastra video la dimensiunea perfectă, centrată și fixă sus */
     #zonaVideoYoutube.activ {
-        display: block !important;
+        
         position: fixed !important;
         top: 14px !important;
-        bottom: auto !important;
         left: 50% !important;
         right: auto !important;
         transform: translateX(-50%) !important;
