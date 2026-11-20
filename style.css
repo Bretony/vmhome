@@ -447,7 +447,22 @@ line-height: 1.5em;
 #inputLinkNou {
     width: 210px;
 }
+/* ==========================================================================
+   ESTOMPARE LINĂ DIN ALB ÎN TRANSPARENT LA ACTIVAREA INPUTULUI
+   ========================================================================== */
+.ListaLinkuri > .ListaItem:nth-child(5),
+#zonaControlLista {
+    transition: background-color 0.8s ease, color 0.8s ease !important;
+}
 
+.ListaLinkuri > .ListaItem:nth-child(5):has(#panouInputYoutube:not(.ascuns)),
+.ListaLinkuri > .ListaItem:nth-child(5):has(#panouInputYoutube:not(.ascuns)):hover,
+.ListaLinkuri > .ListaItem:nth-child(5):has(#panouInputYoutube:not(.ascuns)) #zonaControlLista,
+.ListaLinkuri > .ListaItem:nth-child(5):has(#panouInputYoutube:not(.ascuns)):hover #zonaControlLista {
+    background-color: rgba(255, 255, 255, 0) !important;
+    background: rgba(255, 255, 255, 0) !important;
+    color: antiquewhite !important;
+}
 /* ==========================================================================
    1. PORTRET (TELEFON VERTICAL)
    ========================================================================== */
@@ -620,17 +635,17 @@ line-height: 1.5em;
         mask-image: radial-gradient(circle at center, transparent 3px, black 4px) !important;
     }
 
-    /* ECRANUL VIDEO PORTRET: exact cât lungimea liniilor albe (width: 100% din .ListaLinkuri) */
+      /* 1. Ecranul video pe Portret: lățimea liniilor albe, coborât mai jos (deasupra zonei YouTube) */
     #zonaVideoYoutube.activ {
         display: block !important;
         position: absolute !important;
-        bottom: 100% !important;      /* Stă exact deasupra listei de linkuri (nu acoperă inputul!) */
-        top: auto !important;
+        top: 6em !important;            /* Îl coboară din zona de sus -> mărește la 7em sau 8em dacă îl vrei și mai jos */
+        bottom: auto !important;
         left: 0 !important;
         right: 0 !important;
-        margin: 0 0 10px 0 !important;
+        margin: 0 !important;
         transform: none !important;
-        width: -90% !important;       /* Exact aceeași lățime ca liniile albe */
+        width: 100% !important;         /* Exact lungimea liniilor albe */
         aspect-ratio: 16 / 9 !important;
         height: auto !important;
         z-index: 99999 !important;
