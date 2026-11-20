@@ -471,6 +471,23 @@ line-height: 1.5em;
     .ListaLinkuri > .ListaItem:nth-child(4) {
         display: none !important;
     }
+
+      /* Readuce Newsletter-ul (toate cele 6 etaje) când consola este închisă */
+    .ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(4) {
+        display: block !important;
+    }
+
+    /* Aliniază cuvintele "You Tube" și "LINK" la milimetru cu restul etajelor */
+    .ListaLinkuri:not(.studio-extins) #zonaControlLista {
+        padding: 0.5em !important;
+        border-bottom: none !important;
+    }
+
+    .ListaLinkuri:not(.studio-extins) #textOriginalYoutube {
+        font-size: 1em !important;
+        line-height: 1.5em !important;
+        padding-left: 0 !important;
+    }
      /* Când NU este extins: ascundem butoanele mari de jos și săgețica, ca banda să arate normal (4em) */
     .ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(5) .PozonaVideo,
     .ListaLinkuri:not(.studio-extins) #btnInchideStudio {
