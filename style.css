@@ -516,6 +516,7 @@ line-height: 1.5em;
 
     #zonaControlLista #panouInputYoutube.ascuns {
         display: none !important;
+                border-bottom: 1px dashed rgba(255, 255, 255, 0.35)
     }
 
     #zonaControlLista #inputLinkNou {
@@ -625,7 +626,7 @@ line-height: 1.5em;
     /* 6. Fereastra video */
     #zonaVideoYoutube.activ {
         position: fixed !important;
-        top: 290px !important;
+        top: 305px !important;
         left: 50% !important;
         right: auto !important;
         transform: translateX(-50%) !important;
