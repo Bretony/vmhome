@@ -148,33 +148,45 @@ function actualizeazaTextStatus(text) {
 // 6. Ascultăm tasta Enter în fereastra de introducere
 // 6. Comutare la click (dispare textul -> apare căsuța) + salvare la Enter
 // 6. Funcții directe pentru căsuța de introducere melodii
+// 1. La click pe banda You Tube: deschide caseta + extinde consola pe mobil
 function deschideCasutaYoutube() {
     const textOriginal = document.getElementById('textOriginalYoutube');
     const panouInput = document.getElementById('panouInputYoutube');
     const inputLink = document.getElementById('inputLinkNou');
+    const zonaControl = document.getElementById('zonaControlLista');
+    const lista = document.querySelector('.ListaLinkuri');
+  document.querySelector('.ListaLinkuri')?.classList.add('studio-extins');
 
     if (!textOriginal || !panouInput || !inputLink) return;
 
+    if (lista) lista.classList.add('studio-extins'); // <-- Extinde consola pe 2 etaje
+
     textOriginal.classList.add('ascuns');
     panouInput.classList.remove('ascuns');
+    if (zonaControl) zonaControl.classList.add('input-activ');
     inputLink.focus();
 }
+
 
 function inchideCasutaYoutube(mesajTemporar) {
     const textOriginal = document.getElementById('textOriginalYoutube');
     const panouInput = document.getElementById('panouInputYoutube');
+    const zonaControl = document.getElementById('zonaControlLista');
 
     if (!textOriginal || !panouInput) return;
 
     panouInput.classList.add('ascuns');
     textOriginal.classList.remove('ascuns');
-
+    if (zonaControl) zonaControl.classList.remove('input-activ');
     if (mesajTemporar) {
         actualizeazaTextStatus(mesajTemporar);
         setTimeout(() => actualizeazaTextStatus('LINK'), 1800);
     }
 }
-
+function inchideStudioYoutube() {
+    document.querySelector('.ListaLinkuri')?.classList.remove('studio-extins');
+    inchideCasutaYoutube();
+}
 async function verificaEnterLink(e) {
     const inputLink = e.target;
 
