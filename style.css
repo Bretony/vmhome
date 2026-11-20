@@ -630,7 +630,7 @@ line-height: 1.5em;
     #zonaVideoYoutube.activ {
         position: fixed !important;
         top: 305px !important;
-        margin-left: -40px;
+        margin-left: 10px;
         right: auto !important;
         transform: translateX(-40%) !important;
         width: 92vw !important;
