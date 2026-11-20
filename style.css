@@ -630,7 +630,7 @@ line-height: 1.5em;
     #zonaVideoYoutube.activ {
         position: fixed !important;
         top: 305px !important;
-        left: calc(50% - 4px) !important; /* Mută fereastra exact 4px spre stânga */
+        left: calc(50% - 10px) !important; /* Mută fereastra exact 4px spre stânga */
         right: auto !important;
         transform: translateX(-50%) !important;
         width: 92vw !important;
