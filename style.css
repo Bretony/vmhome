@@ -864,14 +864,14 @@ mask-image: radial-gradient(circle at center, transparent 3px, black 4px) !impor
 display: block !important;
 position: absolute !important;
 top: 0 !important;
-left: 100% !important;        / Lipit exact de dreapta consolei YouTube /
+left: 100% !important;        
 bottom: auto !important;
 right: auto !important;
 transform: none !important;
 margin: 0 !important;
-height: 8em !important;        / Exact cât două etaje /
-width: 14.22em !important;     / Proporție 16:9 exactă pentru 8em /
-border-radius: 0 !important;   / Fără niciun radius */
+height: 8em !important;        
+width: 14.22em !important;     
+border-radius: 0 !important;   
 z-index: 99999 !important;
 background-color: #000000 !important;
 border: 1px solid #ffffff !important;
