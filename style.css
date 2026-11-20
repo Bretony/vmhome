@@ -483,6 +483,23 @@ line-height: 1.5em;
     }
 
     /* Când ESTE extins (.studio-extins): ascundem Newsletter și mărim You Tube la 8em */
+     /* Când NU este extins: banda YouTube are înălțime normală (4em) și ascunde butoanele + săgețica */
+    .ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(5) {
+        display: block !important;
+        height: 4em !important;
+    }
+
+    .ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(5) .PozonaVideo,
+    .ListaLinkuri:not(.studio-extins) #btnInchideStudio {
+        display: none !important;
+    }
+
+    .ListaLinkuri:not(.studio-extins) #zonaControlLista {
+        border-bottom: none !important;
+        padding: 0.5em !important;
+    }
+
+    /* DOAR când ESTE extins (.studio-extins): ascundem Newsletter și mărim You Tube la 8em */
     .ListaLinkuri.studio-extins > .ListaItem:nth-child(4) {
         display: none !important;
     }
@@ -744,7 +761,12 @@ line-height: 1.5em;
         grid-auto-rows: 4em !important;
         position: relative !important;
     }
-     /* Când NU este extins: ascundem butoanele mari de jos și săgețica */
+     /* Când NU este extins: toate cele 6 benzi stau normal pe 2 coloane (câte 3 pe coloană) */
+    .ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(5) {
+        display: block !important;
+        height: 4em !important;
+    }
+
     .ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(5) .PozonaVideo,
     .ListaLinkuri:not(.studio-extins) #btnInchideStudio {
         display: none !important;
@@ -755,7 +777,7 @@ line-height: 1.5em;
         padding: 0.5em !important;
     }
 
-    /* Când ESTE extins (.studio-extins): ascundem Tik Tok și întindem You Tube pe 2 rânduri (8em) */
+    /* DOAR când ESTE extins (.studio-extins): ascundem Tik Tok și întindem You Tube pe 2 rânduri (8em) */
     .ListaLinkuri.studio-extins > .ListaItem:nth-child(3) {
         display: none !important;
     }
@@ -771,31 +793,6 @@ line-height: 1.5em;
         height: 8em !important;
         position: relative !important;
         overflow: visible !important;
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) !important;
-        box-sizing: border-box !important;
-        align-items: center !important;
-        padding: 0 8px !important;
-        gap: 0 !important;
-    }
-    /* Ascundem Tik Tok (al 3-lea element) */
-    .ListaLinkuri > .ListaItem:nth-child(3) {
-        display: none !important;
-    }
-
-    .ListaLinkuri > .ListaItem:nth-child(1) { grid-column: 1; grid-row: 1; }
-    .ListaLinkuri > .ListaItem:nth-child(2) { grid-column: 2; grid-row: 1; }
-    .ListaLinkuri > .ListaItem:nth-child(4) { grid-column: 2; grid-row: 2; }
-    .ListaLinkuri > .ListaItem:nth-child(6) { grid-column: 2; grid-row: 3; }
-
-    /* Banda You Tube în stânga (2 etaje = 8em) */
-    .ListaLinkuri > .ListaItem:nth-child(5) {
-        grid-column: 1 !important;
-        grid-row: 2 / 4 !important;
-        height: 8em !important;
-        position: relative !important;   /* Ancoră pentru ecranul video */
-        overflow: visible !important;    /* Lasă ecranul să iasă în dreapta ei */
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
         grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) !important;
