@@ -576,7 +576,10 @@ line-height: 1.5em;
         font-size: 0.85em;
         line-height: 1.2;
     }
-
+    .ascuns {
+        margin-left: 170px;
+        margin-top: -300px;
+        
     #panouInputYoutube {
         position: absolute;
         display: flex;
