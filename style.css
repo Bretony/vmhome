@@ -699,7 +699,7 @@ line-height: 1.5em;
     #zonaVideoYoutube.activ {
         display: block !important;
         position: absolute !important;
-        top: 4em !important;            /* Îl coboară din zona de sus -> mărește la 7em sau 8em dacă îl vrei și mai jos */
+        top: 2em !important;            /* Îl coboară din zona de sus -> mărește la 7em sau 8em dacă îl vrei și mai jos */
         bottom: auto !important;
         left: 0 !important;
         right: 0 !important;
@@ -731,6 +731,11 @@ line-height: 1.5em;
     flex-shrink: 0 !important;
     z-index: 60 !important;
 }
+      /* Aliniază la pixel cuvintele "You Tube" și "LINK" cu celelalte benzi (atât închis, cât și deschis) */
+    #zonaControlLista #textOriginalYoutube,
+    #zonaControlLista #textOriginalYoutube.ascuns {
+        padding-left: 4px !important; /* Compensează diferența de 0.85em -> 1em; poți pune 3px sau 5px la nevoie */
+    }
 }
 
 /* ==========================================================================
