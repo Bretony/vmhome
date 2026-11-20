@@ -655,6 +655,22 @@ line-height: 1.5em;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95) !important;
         box-sizing: border-box !important;
     }
+    .ListaLinkuri.studio-extins #btnInchideStudio {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-left: auto !important; /* <-- O împinge garantat în colțul din DREAPTA */
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: antiquewhite !important;
+    border: 1px solid rgba(255, 255, 255, 0.45) !important;
+    border-radius: 6px !important;
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 1rem !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+    z-index: 60 !important;
+}
 }
 
 /* ==========================================================================
