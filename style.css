@@ -452,7 +452,7 @@ line-height: 1.5em;
    ========================================================================== */
 .ListaLinkuri > .ListaItem:nth-child(5),
 #zonaControlLista {
-    transition: background-color 2.4s ease, color 2.4s ease !important;
+    transition: background-color 2.9s ease, color 2.9s ease !important;
 }
 
 .ListaLinkuri > .ListaItem:nth-child(5):has(#panouInputYoutube:not(.ascuns)),
@@ -639,7 +639,7 @@ line-height: 1.5em;
     #zonaVideoYoutube.activ {
         display: block !important;
         position: absolute !important;
-        top: 6em !important;            /* Îl coboară din zona de sus -> mărește la 7em sau 8em dacă îl vrei și mai jos */
+        top: 4em !important;            /* Îl coboară din zona de sus -> mărește la 7em sau 8em dacă îl vrei și mai jos */
         bottom: auto !important;
         left: 0 !important;
         right: 0 !important;
