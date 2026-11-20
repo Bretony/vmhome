@@ -626,13 +626,14 @@ line-height: 1.5em;
         -webkit-mask-image: radial-gradient(circle at center, transparent 3px, black 4px) !important;
         mask-image: radial-gradient(circle at center, transparent 3px, black 4px) !important;
     }
-    /* 6. Fereastra video */
+    /* 6. Fereastra video centrată matematic la milimetru pe axa OX */
     #zonaVideoYoutube.activ {
         position: fixed !important;
-        top: 305px !important;
-        left: -10px !important;
-        right: auto !important;
-        transform: translateX(-40%) !important;
+        top: 140px !important;
+        left: 0 !important;
+        right: 0 !important;
+        margin: 0 auto !important; /* Centrează perfect pe axa OX indiferent de lățimea ecranului */
+        transform: none !important;
         width: 92vw !important;
         max-width: 360px !important;
         height: 202px !important;
@@ -712,6 +713,7 @@ line-height: 1.5em;
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
         grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) !important;
+        overflow: visible !important;
         box-sizing: border-box !important;
         align-items: center !important;
         padding: 0 8px !important;
@@ -855,21 +857,23 @@ line-height: 1.5em;
         mask-image: radial-gradient(circle at center, transparent 3px, black 4px) !important;
     }
 
-    /* 4. Fereastra video compactă în colțul din dreapta-jos */
+    /* 4. Ecranul video: înalt cât 2 etaje (100% din consola YT), lipit în dreapta ei, fără radius */
     #zonaVideoYoutube.activ {
-        position: fixed !important;
-        top: auto !important;
-        bottom: 12px !important;
-        left: auto !important;
-        right: 12px !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 100% !important;       /* Exact lipit de marginea dreaptă a consolei YouTube */
+        bottom: auto !important;
+        right: auto !important;
         transform: none !important;
         margin: 0 !important;
-        width: 220px !important;
-        height: 124px !important;
+        height: 100% !important;     /* Exact cât două etaje (8em) */
+        width: auto !important;
+        aspect-ratio: 16 / 9 !important; /* Păstrează proporția corectă a videoclipului */
+        border-radius: 0 !important; /* Fără niciun radius */
         z-index: 99999 !important;
         background-color: #000000 !important;
-        border: 2px solid #ffffff !important;
-        border-radius: 10px !important;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.9) !important;
+        border: 1px solid #ffffff !important;
+        box-sizing: border-box !important;
     }
+}
 }
