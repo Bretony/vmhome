@@ -512,6 +512,8 @@ line-height: 1.5em;
         flex: 1 !important;
         max-width: 220px !important;
         gap: 4px !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+        transition: box-shadow 2.6s ease, color 0s ease !important;
     }
 
     #zonaControlLista #panouInputYoutube.ascuns {
@@ -535,7 +537,7 @@ line-height: 1.5em;
    /* 1. Pregătim tranziția lină pe banda YouTube și pe div-ul interior */
 .ListaLinkuri > .ListaItem:nth-child(5),
 #zonaControlLista.zonaInfoYoutube {
-    transition: background-color 2.2s ease, color 0s ease !important;
+    transition: background-color 2.2s ease, color 2.6s ease !important;
 }
 
 /* 2. Când panoul de input este activ (nu mai are clasa .ascuns), fundalul devine transparent lin */
@@ -627,7 +629,7 @@ line-height: 1.5em;
     #zonaVideoYoutube.activ {
         position: fixed !important;
         top: 305px !important;
-        left: 50% !important;
+        left: calc(50% - 4px) !important; /* Mută fereastra exact 4px spre stânga */
         right: auto !important;
         transform: translateX(-50%) !important;
         width: 92vw !important;
