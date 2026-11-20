@@ -580,12 +580,11 @@ line-height: 1.5em;
         position: absolute;
         transform: none;
         display: flex;
-        align-items: center;
-        min-width: 0;
-        width: 300px;
+        width: 250px;
         padding: 4px 6px;
         gap: 4px;
-        margin: 0;
+        margin-left: 40px;
+        margin-bottom: 80px;
         opacity: 0.4;
     }
 
