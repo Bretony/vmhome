@@ -580,10 +580,10 @@ line-height: 1.5em;
         position: absolute;
         display: flex;
         width: 250px;
-        padding: 4px 6px;
+        /* padding: 4px 6px; */
         gap: 4px;
         margin-left: 70px;
-        margin-top: -60px;
+        padding-top: -60px;
         opacity: 0.4;
     }
 
