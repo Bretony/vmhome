@@ -449,16 +449,20 @@ line-height: 1.5em;
 }
 
 /* ==========================================================================
-   TELEFON (PORTRET & LANDSCAPE - SUB 750PX)
-   1. Rândul de sus: You Tube / LINK în stânga + Caseta în dreapta (ROW)
-   2. Rândul de jos: Butonul Bară + Sigla YouTube vizibilă 100%
+   1. PORTRET (TELEFON VERTICAL)
    ========================================================================== */
-@media (max-width: 750px) {
-    /* 1. Ascundem Newsletter DOAR pe telefon ca să îi preluăm spațiul */
+@media (max-width: 750px) and (orientation: portrait) {
+    /* Ascundem Newsletter pe telefon vertical */
     .ListaLinkuri > .ListaItem:nth-child(4) {
         display: none !important;
     }
-   /* 2. Banda YouTube = EXACT 2 poziții (8em), fără ca rândurile să se întindă peste linie */
+
+    /* Punem position: relative pe lista de linkuri ca să ancorăm ecranul video la lățimea liniilor albe */
+    .ListaLinkuri {
+        position: relative !important;
+    }
+
+    /* Banda YouTube = 2 etaje (8em) */
     .ListaLinkuri > .ListaItem:nth-child(5) {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
@@ -466,13 +470,11 @@ line-height: 1.5em;
         height: 8em !important;
         box-sizing: border-box !important;
         align-items: center !important;
-        padding: 0 8px !important;
+        padding: 0 !important; /* Eliminăm padding-ul lateral ca să nu decaleze textul LINK */
         gap: 0 !important;
-        overflow: hidden !important; /* Ține totul strict între liniile albe */
+        overflow: hidden !important;
     }
-  
 
-    /* 3. ETAJUL DE SUS (4em): Text în stânga + Casetă în dreapta */
     .Directie {
         grid-column: 1 / -1 !important;
         grid-row: 1 !important;
@@ -491,19 +493,27 @@ line-height: 1.5em;
         gap: 8px !important;
         width: 100% !important;
         height: 100% !important;
-        padding: 0 !important;
+        padding: 0 0.5em !important; /* Exact același padding (0.5em) ca la celelalte benzi! */
+        box-sizing: border-box !important;
         border-bottom: 1px dashed rgba(255, 255, 255, 0.35) !important;
     }
 
+    /* Cuvintele "You Tube" și "LINK" la aceeași dimensiune și aliniere cu restul listei */
     #zonaControlLista #textOriginalYoutube,
     #zonaControlLista #textOriginalYoutube.ascuns {
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
         flex: 0 0 auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
         white-space: nowrap !important;
-        font-size: 0.85em !important;
-        line-height: 1.2 !important;
+        font-size: 1em !important; /* 1em exact ca restul listei -> aliniere 100% identică */
+        line-height: 1.5em !important;
+    }
+
+    #statusMelodie {
+        margin-top: 0 !important;
     }
 
     #panouInputYoutube {
@@ -512,14 +522,10 @@ line-height: 1.5em;
         flex: 1 !important;
         max-width: 220px !important;
         gap: 4px !important;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-        transition: box-shadow 2.6s ease, color 0s ease !important;
-        opacity: 0.8;
     }
 
     #zonaControlLista #panouInputYoutube.ascuns {
         display: none !important;
-                border-bottom: 1px dashed rgba(255, 255, 255, 0.35)
     }
 
     #zonaControlLista #inputLinkNou {
@@ -535,26 +541,14 @@ line-height: 1.5em;
         padding: 4px 8px !important;
         font-size: 0.85rem !important;
     }
-   /* 1. Pregătim tranziția lină pe banda YouTube și pe div-ul interior */
-.ListaLinkuri > .ListaItem:nth-child(5),
-#zonaControlLista.zonaInfoYoutube {
-    transition: background-color 2.2s ease, color 2.6s ease !important;
-}
 
-/* 2. Când panoul de input este activ (nu mai are clasa .ascuns), fundalul devine transparent lin */
-.ListaLinkuri > .ListaItem:nth-child(5):has(#panouInputYoutube:not(.ascuns)),
-.ListaLinkuri > .ListaItem:nth-child(5):has(#panouInputYoutube:not(.ascuns)):hover,
-.ListaLinkuri > .ListaItem:nth-child(5):has(#panouInputYoutube:not(.ascuns)) #zonaControlLista.zonaInfoYoutube,
-.ListaLinkuri > .ListaItem:nth-child(5):has(#panouInputYoutube:not(.ascuns)):hover #zonaControlLista.zonaInfoYoutube {
-    background-color: transparent !important;
-    background: transparent !important;
-    color: antiquewhite !important; /* Păstrează textul "You Tube" vizibil pe fundalul întunecat */
-}
-    /* 4. ETAJUL DE JOS (4em): Butonul Bară + Sigla YouTube centrate în spațiul disponibil */
+    /* Etajul de jos (butoanele) */
     .PozonaVideo {
         grid-column: 1 / -1 !important;
         grid-row: 2 !important;
         position: static !important;
+        right: auto !important;
+        bottom: auto !important;
         display: flex !important;
         align-items: center !important;
         justify-content: space-around !important;
@@ -562,239 +556,6 @@ line-height: 1.5em;
         height: 100% !important;
         min-height: 0 !important;
         overflow: hidden !important;
-    }
-
-    #toggleYoutube {
-        position: static !important;
-        transform: scale(0.32) !important; /* 161px * 0.32 = ~51px (încape perfect în 4em) */
-        transform-origin: center center !important;
-        margin: 0 !important;
-        z-index: 50 !important;
-        flex-shrink: 0 !important;
-    }
-
-    /* 5. Sigla canalului YouTube COMPLETĂ (încadrată în înălțimea etajului de jos) */
-    .BtnCanal {
-        position: static !important;
-        transform: none !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        height: 100% !important;
-        z-index: 30 !important;
-        overflow: visible !important;
-    }
-
-    .AccesCanal {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 104px !important;
-        height: 52px !important; /* Redus de la 68px la 52px ca să stea deasupra liniei */
-        padding: 0 !important;
-        background-color: rgba(0, 0, 255, 0.5);
-        border-radius: 0.5rem !important;
-        overflow: visible !important;
-    }
-
-    .containers {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        flex-wrap: nowrap !important;
-        width: 84px !important;
-        height: 42px !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        overflow: hidden !important;
-        border-radius: 6px !important;
-        box-sizing: border-box;
-        background: radial-gradient(circle at top left, #2c2c2c, #000000 70%);
-        border: 1px solid #222222;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-        color: #ffffff;
-    }
-
-    .triunghi {
-        margin: 0 !important;
-        width: 0 !important;
-        height: 0 !important;
-        border-left: 11px solid #ffffff !important;
-        border-right: 11px solid transparent !important;
-        border-bottom: 22px solid red !important;
-        rotate: 45deg !important;
-        -webkit-mask-image: radial-gradient(circle at center, transparent 3px, black 4px) !important;
-        mask-image: radial-gradient(circle at center, transparent 3px, black 4px) !important;
-    }
-    /* 6. Fereastra video centrată matematic la milimetru pe axa OX */
-    #zonaVideoYoutube.activ {
-        position: fixed !important;
-        top: 140px !important;
-        left: 0 !important;
-        right: 0 !important;
-        margin: 0 auto !important; /* Centrează perfect pe axa OX indiferent de lățimea ecranului */
-        transform: none !important;
-        width: 90vw !important;
-        max-width: 360px !important;
-        height: 202px !important;
-        z-index: 99999 !important;
-        background-color: #000000 !important;
-        border: 2px solid #ffffff !important;
-        border-radius: 12px !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95) !important;
-    }
-}
-
-/* ==========================================================================
-   TELEFON LANDSCAPE (Ecran întors pe orizontală)
-   Coloana stângă: My Website (1 rând) + You Tube (2 rânduri, preia locul Tik Tok)
-   Coloana dreaptă: Facebook + Newsletter + LinkedIn (3 rânduri normale)
-   ========================================================================== */
-@media (max-height: 500px) and (orientation: landscape) {
-    html {
-        margin-top: 10px !important;
-    }
-
-    .container {
-        margin: 10px auto !important;
-        padding: 1rem 1.5rem !important;
-        border-radius: 1.2rem !important;
-    }
-
-    /* 1. Compactăm Header-ul ca să încapă lista pe ecran */
-    header {
-        display: flex !important;
-        align-items: center !important;
-        gap: 1rem !important;
-        padding: 0.5rem !important;
-        margin: 0 !important;
-    }
-
-    .Avatar {
-        width: 85px !important;
-        height: 85px !important;
-        margin: 0 !important;
-        float: none !important;
-    }
-
-    .TitlulPaginii {
-        font-size: 1.8rem !important;
-        line-height: 1.1 !important;
-    }
-
-    .DescrierePrincipala {
-        margin: 0.2em 0 0.5em !important;
-        font-size: 0.85rem !important;
-    }
-
-    /* 2. Grila pe 2 coloane și 3 rânduri egale (câte 4em fiecare) */
-    .ListaLinkuri {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        grid-auto-rows: 4em !important;
-    }
-
-    /* Ascundem Tik Tok (al 3-lea element) ca să îi preluăm spațiul din stânga */
-    .ListaLinkuri > .ListaItem:nth-child(3) {
-        display: none !important;
-    }
-
-    /* Așezăm explicit elementele ca să nu lase gol în stânga */
-    .ListaLinkuri > .ListaItem:nth-child(1) { grid-column: 1; grid-row: 1; } /* My Website */
-    .ListaLinkuri > .ListaItem:nth-child(2) { grid-column: 2; grid-row: 1; } /* Facebook */
-    .ListaLinkuri > .ListaItem:nth-child(4) { grid-column: 2; grid-row: 2; } /* Newsletter (revine în dreapta!) */
-    .ListaLinkuri > .ListaItem:nth-child(6) { grid-column: 2; grid-row: 3; } /* LinkedIn */
-
-    /* 3. Banda You Tube ocupă 2 etaje în stânga (rândurile 2 și 3 = 8em) */
-       /* 3. Banda You Tube: obligatoriu overflow: visible ca să nu taie ecranul din dreapta */
-    .ListaLinkuri > .ListaItem:nth-child(5) {
-        grid-column: 1 !important;
-        grid-row: 2 / 4 !important;
-        height: 8em !important;
-        position: relative !important;
-        overflow: visible !important; /* <-- CRITIC: lasă ecranul să se vadă în dreapta */
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) !important;
-        box-sizing: border-box !important;
-        align-items: center !important;
-        padding: 0 8px !important;
-        gap: 0 !important;
-    }
-
-    /* Etajul de sus din You Tube (Text + Input) */
-    .Directie {
-        grid-column: 1 / -1 !important;
-        grid-row: 1 !important;
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        width: 100% !important;
-        height: 100% !important;
-    }
-
-    #zonaControlLista.zonaInfoYoutube {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        gap: 6px !important;
-        width: 100% !important;
-        height: 100% !important;
-        padding: 0 !important;
-        border-bottom: 1px dashed rgba(255, 255, 255, 0.35) !important;
-    }
-
-    #zonaControlLista #textOriginalYoutube,
-    #zonaControlLista #textOriginalYoutube.ascuns {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        flex: 0 0 auto !important;
-        white-space: nowrap !important;
-        font-size: 0.85em !important;
-        line-height: 1.2 !important;
-    }
-
-    #panouInputYoutube {
-        display: flex !important;
-        align-items: center !important;
-        flex: 1 !important;
-        max-width: 210px !important;
-        gap: 4px !important;
-    }
-
-    #zonaControlLista #panouInputYoutube.ascuns {
-        display: none !important;
-    }
-
-    #zonaControlLista #inputLinkNou {
-        flex: 1 1 0% !important;
-        width: 0 !important;
-        min-width: 0 !important;
-        font-size: 14px !important;
-        padding: 4px 6px !important;
-    }
-
-    #zonaControlLista #btnInchideInput {
-        flex: 0 0 auto !important;
-        padding: 4px 8px !important;
-        font-size: 0.85rem !important;
-    }
-
-    /* Etajul de jos din You Tube (Buton Bară + Siglă) */
-       /* Și pe .PozonaVideo punem overflow: visible ca să nu blocheze copilul #zonaVideoYoutube */
-    .PozonaVideo {
-        grid-column: 1 / -1 !important;
-        grid-row: 2 !important;
-        position: static !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-around !important;
-        width: 100% !important;
-        height: 100% !important;
-        min-height: 0 !important;
-        overflow: visible !important; /* <-- CRITIC: nu mai taie ecranul video */
     }
 
     #toggleYoutube {
@@ -859,24 +620,124 @@ line-height: 1.5em;
         mask-image: radial-gradient(circle at center, transparent 3px, black 4px) !important;
     }
 
-    /* 4. Ecranul video: înalt cât 2 etaje (100% din consola YT), lipit în dreapta ei, fără radius */
-   /* 4. Ecranul video în Landscape: înalt cât 2 etaje (8em), proporție 16:9 exactă (14.22em), lipit în dreapta */
+    /* ECRANUL VIDEO PORTRET: exact cât lungimea liniilor albe (width: 100% din .ListaLinkuri) */
     #zonaVideoYoutube.activ {
         display: block !important;
         position: absolute !important;
-        top: 0 !important;
-        left: 100% !important;
-        bottom: auto !important;
-        right: auto !important;
+        bottom: 100% !important;      /* Stă exact deasupra listei de linkuri (nu acoperă inputul!) */
+        top: auto !important;
+        left: 0 !important;
+        right: 0 !important;
+        margin: 0 0 10px 0 !important;
         transform: none !important;
-        margin: 0 !important;
-        height: 8em !important;        /* Exact cât două etaje */
-        width: 14.22em !important;     /* Proporție 16:9 exactă pentru înălțimea de 8em */
-        border-radius: 0 !important;   /* Fără niciun radius */
+        width: 100% !important;       /* Exact aceeași lățime ca liniile albe */
+        aspect-ratio: 16 / 9 !important;
+        height: auto !important;
         z-index: 99999 !important;
         background-color: #000000 !important;
-        border: 1px solid #ffffff !important;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.9) !important;
+        border: 2px solid #ffffff !important;
+        border-radius: 12px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95) !important;
         box-sizing: border-box !important;
     }
 }
+
+/* ==========================================================================
+   2. LANDSCAPE (TELEFON ORIZONTAL)
+   ========================================================================== */
+@media (max-height: 550px) and (orientation: landscape) {
+    html {
+        margin-top: 10px !important;
+    }
+
+    .container {
+        margin: 10px auto !important;
+        padding: 1rem 1.5rem !important;
+        border-radius: 1.2rem !important;
+    }
+
+    header {
+        display: flex !important;
+        align-items: center !important;
+        gap: 1rem !important;
+        padding: 0.5rem !important;
+        margin: 0 !important;
+    }
+
+    .Avatar {
+        width: 85px !important;
+        height: 85px !important;
+        margin: 0 !important;
+        float: none !important;
+    }
+
+    .TitlulPaginii {
+        font-size: 1.8rem !important;
+        line-height: 1.1 !important;
+    }
+
+    .DescrierePrincipala {
+        margin: 0.2em 0 0.5em !important;
+        font-size: 0.85rem !important;
+    }
+
+    .ListaLinkuri {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-auto-rows: 4em !important;
+        position: relative !important;
+    }
+
+    /* Ascundem Tik Tok (al 3-lea element) */
+    .ListaLinkuri > .ListaItem:nth-child(3) {
+        display: none !important;
+    }
+
+    .ListaLinkuri > .ListaItem:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .ListaLinkuri > .ListaItem:nth-child(2) { grid-column: 2; grid-row: 1; }
+    .ListaLinkuri > .ListaItem:nth-child(4) { grid-column: 2; grid-row: 2; }
+    .ListaLinkuri > .ListaItem:nth-child(6) { grid-column: 2; grid-row: 3; }
+
+    /* Banda You Tube în stânga (2 etaje = 8em) */
+    .ListaLinkuri > .ListaItem:nth-child(5) {
+        grid-column: 1 !important;
+        grid-row: 2 / 4 !important;
+        height: 8em !important;
+        position: relative !important;   /* Ancoră pentru ecranul video */
+        overflow: visible !important;    /* Lasă ecranul să iasă în dreapta ei */
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) !important;
+        box-sizing: border-box !important;
+        align-items: center !important;
+        padding: 0 8px !important;
+        gap: 0 !important;
+    }
+
+    .Directie {
+        grid-column: 1 / -1 !important;
+        grid-row: 1 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    #zonaControlLista.zonaInfoYoutube {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 6px !important;
+        width: 100% !important;
+        height: 100% !important;
+        padding: 0 !important;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.35) !important;
+    }
+
+    #zonaControlLista #textOriginalYoutube,
+    #zonaControlLista #textOriginalYoutube.ascuns {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
