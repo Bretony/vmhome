@@ -579,11 +579,11 @@ line-height: 1.5em;
     #panouInputYoutube {
         position: absolute;
         display: flex;
-        width: 250px;
+        width: 200px;
         /* padding: 4px 6px; */
         gap: 4px;
         margin-left: 70px;
-        padding-top: -60px;
+        margin-top: -60px;
         opacity: 0.4;
     }
 
