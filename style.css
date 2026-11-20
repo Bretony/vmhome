@@ -454,24 +454,21 @@ line-height: 1.5em;
    2. Rândul de jos: Butonul Bară + Sigla YouTube vizibilă 100%
    ========================================================================== */
 @media (max-width: 750px) {
-    /* 1. Ascundem Newsletter DOAR pe telefon ca să îi preluăm spațiul */
+    /* 1. Ascundem Newsletter DOAR pe telefon */
     .ListaLinkuri > .ListaItem:nth-child(4) {
         display: none !important;
     }
 
-    /* 2. Banda YouTube pe două etaje */
+    /* 2. Banda YouTube - lăsăm înălțimea naturală/originală */
     .ListaLinkuri > .ListaItem:nth-child(5) {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
         grid-template-rows: auto auto !important;
         align-items: center !important;
-        padding: 12px 8px !important;
-        gap: 10px !important;
+        gap: 4px !important;
     }
 
-   
-
-    /* 3. ETAJUL DE SUS: Pe același rând (ROW) - Text stânga + Casetă dreapta */
+    /* 3. ETAJUL DE SUS: Text în stânga + Casetă în dreapta pe același rând */
     .Directie {
         grid-column: 1 / -1 !important;
         grid-row: 1 !important;
@@ -479,17 +476,16 @@ line-height: 1.5em;
         flex-direction: row !important;
         align-items: center !important;
         width: 100% !important;
-        position: relative !important;
     }
 
     #zonaControlLista.zonaInfoYoutube {
         display: flex !important;
+        flex-direction: row !important;
         justify-content: space-between !important;
         align-items: center !important;
         gap: 8px !important;
         width: 100% !important;
-        padding: 4px 0 10px 0 !important;
-        border-bottom: 1px dashed rgba(255, 255, 255, 0.35) !important;
+        padding: 2px 0 !important;
     }
 
     #zonaControlLista #textOriginalYoutube,
@@ -499,18 +495,15 @@ line-height: 1.5em;
         flex: 0 0 auto !important;
         white-space: nowrap !important;
         font-size: 0.85em !important;
-        line-height: 1.2 !important;
+        line-height: 1.1 !important;
     }
 
     #panouInputYoutube {
         display: flex !important;
         align-items: center !important;
         flex: 1 !important;
-        max-width: 230px !important;
+        max-width: 220px !important;
         gap: 4px !important;
-        background-color: rgba(0, 0, 255, 0.5) !important;
-        padding: 4px !important;
-        border-radius: 6px !important;
     }
 
     #zonaControlLista #panouInputYoutube.ascuns {
@@ -522,29 +515,27 @@ line-height: 1.5em;
         width: 0 !important;
         min-width: 0 !important;
         font-size: 16px !important;
-        padding: 6px 8px !important;
+        padding: 4px 6px !important;
     }
 
     #zonaControlLista #btnInchideInput {
         flex: 0 0 auto !important;
-        padding: 6px 9px !important;
+        padding: 4px 8px !important;
         font-size: 0.85rem !important;
     }
 
-    /* 4 & 5. ETAJUL DE JOS: Stânga (#toggleYoutube) + Dreapta (.BtnCanal) */
+    /* 4. ETAJUL DE JOS: Fără height forțat, exact pe dimensiunea elementelor */
     .PozonaVideo {
         grid-column: 1 / -1 !important;
         grid-row: 2 !important;
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
+        display: flex !important;
         align-items: center !important;
-        justify-items: center !important;
+        justify-content: space-around !important;
         width: 100% !important;
-        height: 95px !important;
+        height: auto !important;
     }
 
     #toggleYoutube {
-        grid-column: 1 !important;
         position: static !important;
         transform: scale(0.55) !important;
         transform-origin: center center !important;
@@ -553,21 +544,60 @@ line-height: 1.5em;
     }
 
     .BtnCanal {
-        grid-column: 2 !important;
         position: static !important;
         transform: none !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        width: 100% !important;
-        height: 95px !important;
+        height: auto !important;
         z-index: 30 !important;
         overflow: visible !important;
     }
 
-    /* 6. Fereastra video la dimensiunea perfectă, centrată și fixă sus */
+    .AccesCanal {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 136px !important;
+        height: 84px !important;
+        padding: 0 !important;
+        background-color: rgba(0, 0, 255, 0.5);
+        border-radius: 0.5rem !important;
+        overflow: visible !important;
+    }
+
+    .containers {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-wrap: nowrap !important;
+        width: 108px !important;
+        height: 64px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+        border-radius: 6px !important;
+        box-sizing: border-box;
+        background: radial-gradient(circle at top left, #2c2c2c, #000000 70%);
+        border: 1px solid #222222;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        color: #ffffff;
+    }
+
+    .triunghi {
+        margin: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        border-left: 16px solid #ffffff !important;
+        border-right: 16px solid transparent !important;
+        border-bottom: 32px solid red !important;
+        rotate: 45deg !important;
+        -webkit-mask-image: radial-gradient(circle at center, transparent 5px, black 6px) !important;
+        mask-image: radial-gradient(circle at center, transparent 5px, black 6px) !important;
+    }
+
+    /* 6. Fereastra video */
     #zonaVideoYoutube.activ {
-        
         position: fixed !important;
         top: 314px !important;
         left: 50% !important;
