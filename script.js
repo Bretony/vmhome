@@ -183,6 +183,33 @@ function inchideCasutaYoutube(mesajTemporar) {
         setTimeout(() => actualizeazaTextStatus('LINK'), 1800);
     }
 }
+// 1. Click oriunde pe banda YouTube (când e închisă -> deschide DOAR consola; pe desktop -> deschide inputul)
+function gestioneazaClickYoutube() {
+    const lista = document.querySelector('.ListaLinkuri');
+    const esteMobil = window.matchMedia('(max-width: 750px) and (orientation: portrait), (max-height: 550px) and (orientation: landscape)').matches;
+
+    if (esteMobil && lista && !lista.classList.contains('studio-extins')) {
+        // Prima apăsare pe mobil: deschide DOAR consola, FĂRĂ input
+        lista.classList.add('studio-extins');
+        return;
+    }
+
+    // Dacă e desktop sau consola e deja deschisă: deschide inputul
+    deschideCasutaYoutube();
+}
+
+// 2. Click în partea stângă (pe You Tube / LINK) -> dacă consola e închisă o deschide; dacă e deschisă activează inputul
+function deschideInputInConsola() {
+    const lista = document.querySelector('.ListaLinkuri');
+    const esteMobil = window.matchMedia('(max-width: 750px) and (orientation: portrait), (max-height: 550px) and (orientation: landscape)').matches;
+
+    if (esteMobil && lista && !lista.classList.contains('studio-extins')) {
+        lista.classList.add('studio-extins');
+        return;
+    }
+
+    deschideCasutaYoutube();
+}
 function inchideStudioYoutube() {
     document.querySelector('.ListaLinkuri')?.classList.remove('studio-extins');
     inchideCasutaYoutube();
