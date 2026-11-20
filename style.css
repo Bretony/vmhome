@@ -706,19 +706,20 @@ line-height: 1.5em;
     .ListaLinkuri > .ListaItem:nth-child(6) { grid-column: 2; grid-row: 3; } /* LinkedIn */
 
     /* 3. Banda You Tube ocupă 2 etaje în stânga (rândurile 2 și 3 = 8em) */
+       /* 3. Banda You Tube: obligatoriu overflow: visible ca să nu taie ecranul din dreapta */
     .ListaLinkuri > .ListaItem:nth-child(5) {
         grid-column: 1 !important;
-        grid-row: 2 / 4 !important; /* Întins pe 2 rânduri (exact 8em) */
+        grid-row: 2 / 4 !important;
         height: 8em !important;
+        position: relative !important;
+        overflow: visible !important; /* <-- CRITIC: lasă ecranul să se vadă în dreapta */
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
         grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) !important;
-        overflow: visible !important;
         box-sizing: border-box !important;
         align-items: center !important;
         padding: 0 8px !important;
         gap: 0 !important;
-        overflow: hidden !important;
     }
 
     /* Etajul de sus din You Tube (Text + Input) */
@@ -782,6 +783,7 @@ line-height: 1.5em;
     }
 
     /* Etajul de jos din You Tube (Buton Bară + Siglă) */
+       /* Și pe .PozonaVideo punem overflow: visible ca să nu blocheze copilul #zonaVideoYoutube */
     .PozonaVideo {
         grid-column: 1 / -1 !important;
         grid-row: 2 !important;
@@ -792,7 +794,7 @@ line-height: 1.5em;
         width: 100% !important;
         height: 100% !important;
         min-height: 0 !important;
-        overflow: hidden !important;
+        overflow: visible !important; /* <-- CRITIC: nu mai taie ecranul video */
     }
 
     #toggleYoutube {
@@ -858,21 +860,23 @@ line-height: 1.5em;
     }
 
     /* 4. Ecranul video: înalt cât 2 etaje (100% din consola YT), lipit în dreapta ei, fără radius */
+   /* 4. Ecranul video în Landscape: înalt cât 2 etaje (8em), proporție 16:9 exactă (14.22em), lipit în dreapta */
     #zonaVideoYoutube.activ {
+        display: block !important;
         position: absolute !important;
         top: 0 !important;
-        left: 100% !important;       /* Exact lipit de marginea dreaptă a consolei YouTube */
+        left: 100% !important;
         bottom: auto !important;
         right: auto !important;
         transform: none !important;
         margin: 0 !important;
-        height: 100% !important;     /* Exact cât două etaje (8em) */
-        width: auto !important;
-        aspect-ratio: 16 / 9 !important; /* Păstrează proporția corectă a videoclipului */
-        border-radius: 0 !important; /* Fără niciun radius */
+        height: 8em !important;        /* Exact cât două etaje */
+        width: 14.22em !important;     /* Proporție 16:9 exactă pentru înălțimea de 8em */
+        border-radius: 0 !important;   /* Fără niciun radius */
         z-index: 99999 !important;
         background-color: #000000 !important;
         border: 1px solid #ffffff !important;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.9) !important;
         box-sizing: border-box !important;
     }
 }
