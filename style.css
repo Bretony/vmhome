@@ -632,7 +632,7 @@ line-height: 1.5em;
         top: 305px !important;
         left: calc(50% - 10px) !important; /* Mută fereastra exact 4px spre stânga */
         right: auto !important;
-        transform: translateX(-50%) !important;
+        transform: translateX(-48%) !important;
         width: 92vw !important;
         max-width: 360px !important;
         height: 202px !important;
