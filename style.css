@@ -514,7 +514,7 @@ line-height: 1.5em;
         gap: 4px !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
         transition: box-shadow 2.6s ease, color 0s ease !important;
-        opacity: 0.4;
+        opacity: 0.2;
     }
 
     #zonaControlLista #panouInputYoutube.ascuns {
