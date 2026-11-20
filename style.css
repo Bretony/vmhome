@@ -529,6 +529,11 @@ line-height: 1.5em;
         margin: 0 !important;
         overflow: hidden !important;
         border-radius: 6px !important;
+        box-sizing: border-box;
+        background: radial-gradient(circle at top left, #2c2c2c, #000000 70%);
+        border: 1px solid #222222;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        color: #ffffff;
     }
 
     .triunghi {
@@ -568,7 +573,7 @@ line-height: 1.5em;
         line-height: 1.2 !important;
     }
 
-    #zonaControlLista #panouInputYoutube {
+    #panouInputYoutube {
         position: static !important;
         transform: none !important;
         display: flex !important;
