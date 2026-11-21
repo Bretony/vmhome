@@ -596,7 +596,6 @@ left: 50% !important;
 transform: translateX(-50%) !important;
 width: 200px !important;
 height: 112px !important;
-opacity: 0.01 !important;
 pointer-events: none !important;
 z-index: -1 !important;
 }
