@@ -390,13 +390,7 @@ main {
 }
 
 /* ==========================================================================
-   1. PORTRET (TELEFON VERTICAL)
-   ========================================================================== */
-/* ==========================================================================
-   1. MOBIL PORTRET (TELEFON VERTICAL) - UNIC ȘI CURAT
-   ========================================================================== */
-/* ==========================================================================
-   1. MOBIL PORTRET (TELEFON VERTICAL)
+   MOBIL UNIC (PORTRET + LANDSCAPE) - FĂRĂ CONFLICTE
    ========================================================================== */
 @media (max-width: 750px) and (orientation: portrait) {
 
@@ -404,7 +398,7 @@ main {
         position: relative !important;
     }
 
-    /* STAREA 1: CONSOLA ÎNCHISĂ (exact 4em ca restul etajelor) */
+    /* CONSOLA ÎNCHISĂ (4em ca restul etajelor) */
     .ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(4) {
         display: block !important;
     }
@@ -431,20 +425,7 @@ main {
         box-sizing: border-box !important;
     }
 
-    .ListaLinkuri:not(.studio-extins) #textOriginalYoutube {
-        font-size: 1em !important;
-        line-height: 1.5em !important;
-        padding-left: 0 !important;
-    }
-
-    .ListaLinkuri:not(.studio-extins) #statusMelodie {
-        font-size: inherit !important;
-        max-width: none !important;
-        padding-left: 0 !important;
-        opacity: 1 !important;
-    }
-
-    /* STAREA 2: CONSOLA EXTINSĂ (2 etaje egale de 4em = 8em) */
+    /* CONSOLA EXTINSĂ (2 etaje egale de câte 4em = 8em) */
     .ListaLinkuri.studio-extins > .ListaItem:nth-child(4) {
         display: none !important;
     }
@@ -455,369 +436,87 @@ main {
         grid-template-rows: 4em 4em !important;
         height: 8em !important;
         min-height: 8em !important;
+        padding: 0 !important;
+        gap: 0 !important;
+        overflow: hidden !important;
         box-sizing: border-box !important;
+    }
+
+    /* ETAJ 1 */
+    .Directie {
+        grid-column: 1 / -1 !important;
+        grid-row: 1 !important;
+        display: flex !important;
         align-items: center !important;
-padding: 0 !important;
-gap: 0 !important;
-overflow: hidden !important;
-}
-/* ETAJUL 1 */
-.Directie {
-grid-column: 1 / -1 !important;
-grid-row: 1 !important;
-display: flex !important;
-flex-direction: row !important;
-align-items: center !important;
-width: 100% !important;
-height: 4em !important;
-}
-#zonaControlLista {
-position: relative !important;
-display: flex !important;
-flex-direction: row !important;
-justify-content: space-between !important;
-align-items: center !important;
-gap: 6px !important;
-width: 100% !important;
-height: 4em !important;
-padding: 0 0.5em !important;
-box-sizing: border-box !important;
-border-bottom: 1px dashed rgba(255, 255, 255, 0.35) !important;
-}
-#zonaControlLista #textOriginalYoutube,
-#zonaControlLista #textOriginalYoutube.ascuns {
-display: flex !important;
-flex-direction: column !important;
-justify-content: center !important;
-align-items: flex-start !important;
-flex: 0 0 auto !important;
-padding: 0 !important;
-margin: 0 !important;
-font-size: 1em !important;
-line-height: 1.3em !important;
-text-align: left !important;
-}
-.ListaLinkuri.studio-extins #statusMelodie {
-display: block !important;
-padding-left: 8px !important;
-max-width: 110px !important;
-white-space: nowrap !important;
-overflow: hidden !important;
-text-overflow: ellipsis !important;
-font-size: 10px !important;
-line-height: 1.2 !important;
-opacity: 0.85 !important;
-margin-top: 2px !important;
-}
-#zonaControlLista #panouInputYoutube {
-position: static !important;
-display: flex !important;
-align-items: center !important;
-flex: 1 1 auto !important;
-width: auto !important;
-max-width: none !important;
-gap: 4px !important;
-margin: 0 !important;
-padding: 4px !important;
-}
-#zonaControlLista #panouInputYoutube.ascuns {
-display: none !important;
-}
-#zonaControlLista #inputLinkNou {
-display: block !important;
-flex: 1 1 auto !important;
-width: 100% !important;
-min-width: 120px !important;
-height: 34px !important;
-font-size: 16px !important;
-padding: 4px 8px !important;
-box-sizing: border-box !important;
-}
-#zonaControlLista #btnInchideInput {
-position: static !important;
-transform: none !important;
-flex: 0 0 auto !important;
-width: 24px !important;
-height: 24px !important;
-padding: 0 !important;
-font-size: 0.85rem !important;
-}
-#btnInchideStudio {
-position: static !important;
-flex: 0 0 auto !important;
-padding: 4px 6px !important;
-}
-/* ETAJUL 2: Butonul special (161px * 0.36 = ~58px) + Sigla YouTube (~58px) */
-.PozonaVideo {
-grid-column: 1 / -1 !important;
-grid-row: 2 !important;
-position: static !important;
-display: flex !important;
-align-items: center !important;
-justify-content: space-around !important;
-width: 100% !important;
-height: 4em !important;
-overflow: visible !important;
-box-sizing: border-box !important;
-}
-#toggleYoutube {
-position: static !important;
-top: auto !important;
-right: auto !important;
-display: flex !important;
-align-items: center !important;
-justify-content: center !important;
-width: 90px !important;
-height: 161px !important;
-flex: 0 0 auto !important;
-transform: scale(0.36) !important;
-transform-origin: center center !important;
-margin: 0 !important;
-z-index: 25 !important;
-}
-#youtubeLink,
-.BtnCanal {
-position: static !important;
-top: auto !important;
-right: auto !important;
-display: flex !important;
-align-items: center !important;
-justify-content: center !important;
-flex: 0 0 auto !important;
-transform: scale(0.75) !important;
-transform-origin: center center !important;
-margin: 0 !important;
-}
-.PlayerInBanda.activ {
-display: block !important;
-position: fixed !important;
-bottom: 10px !important;
-left: 50% !important;
-transform: translateX(-50%) !important;
-width: 200px !important;
-height: 112px !important;
-pointer-events: none !important;
-z-index: -1 !important;
-}
-}
-/* ==========================================================================
-   2. LANDSCAPE (TELEFON ORIZONTAL)
-   ========================================================================== */
-@media (max-height: 550px) and (orientation: landscape) {
-html {
-margin-top: 10px !important;
-}
-.container {
-margin: 10px auto !important;
-padding: 1rem 1.5rem !important;
-border-radius: 1.2rem !important;
-}
-header {
-display: flex !important;
-align-items: center !important;
-gap: 1rem !important;
-padding: 0.5rem !important;
-margin: 0 !important;
-}
-.Avatar {
-width: 85px !important;
-height: 85px !important;
-margin: 0 !important;
-float: none !important;
-}
-.TitlulPaginii {
-font-size: 1.8rem !important;
-line-height: 1.1 !important;
-}
-.DescrierePrincipala {
-margin: 0.2em 0 0.5em !important;
-font-size: 0.85rem !important;
-}
-.ListaLinkuri {
-display: grid !important;
-grid-template-columns: 1fr 1fr !important;
-grid-auto-rows: 4em !important;
-position: relative !important;
-}
-.ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(5) {
-display: block !important;
-height: 4em !important;
-}
-.ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(5) .PozonaVideo,
-.ListaLinkuri:not(.studio-extins) #btnInchideStudio {
-display: none !important;
-}
-.ListaLinkuri:not(.studio-extins) #zonaControlLista {
-border-bottom: none !important;
-padding: 0.5em !important;
-}
-.ListaLinkuri.studio-extins > .ListaItem:nth-child(3) {
-display: none !important;
-}
-.ListaLinkuri.studio-extins > .ListaItem:nth-child(1) { grid-column: 1; grid-row: 1; }
-.ListaLinkuri.studio-extins > .ListaItem:nth-child(2) { grid-column: 2; grid-row: 1; }
-.ListaLinkuri.studio-extins > .ListaItem:nth-child(4) { grid-column: 2; grid-row: 2; }
-.ListaLinkuri.studio-extins > .ListaItem:nth-child(6) { grid-column: 2; grid-row: 3; }
-.ListaLinkuri.studio-extins > .ListaItem:nth-child(5) {
-grid-column: 1 !important;
-grid-row: 2 / 4 !important;
-height: 8em !important;
-position: relative !important;
-overflow: hidden !important;
-display: grid !important;
-grid-template-columns: 1fr 1fr !important;
-grid-template-rows: 4em 4em !important;
-box-sizing: border-box !important;
-align-items: center !important;
-padding: 0 8px !important;
-gap: 0 !important;
-}
-.Directie {
-grid-column: 1 / -1 !important;
-grid-row: 1 !important;
-display: flex !important;
-flex-direction: row !important;
-align-items: center !important;
-width: 100% !important;
-height: 4em !important;
-}
-#zonaControlLista.zonaInfoYoutube {
-display: flex !important;
-flex-direction: row !important;
-justify-content: space-between !important;
-align-items: center !important;
-gap: 6px !important;
-width: 100% !important;
-height: 4em !important;
-padding: 0 !important;
-border-bottom: 1px dashed rgba(255, 255, 255, 0.35) !important;
-}
-#zonaControlLista #textOriginalYoutube,
-#zonaControlLista #textOriginalYoutube.ascuns {
-display: flex !important;
-flex-direction: column !important;
-justify-content: center !important;
-flex: 0 0 auto !important;
-white-space: nowrap !important;
-font-size: 0.85em !important;
-line-height: 1.2 !important;
-}
-.ListaLinkuri.studio-extins #statusMelodie {
-display: block !important;
-padding-left: 6px !important;
-max-width: 110px !important;
-white-space: nowrap !important;
-overflow: hidden !important;
-text-overflow: ellipsis !important;
-font-size: 10px !important;
-line-height: 1.2 !important;
-opacity: 0.85 !important;
-margin-top: 2px !important;
-}
-#panouInputYoutube {
-display: flex !important;
-align-items: center !important;
-flex: 1 1 auto !important;
-width: auto !important;
-max-width: none !important;
-gap: 4px !important;
-padding: 4px !important;
-}
-#zonaControlLista #panouInputYoutube.ascuns {
-display: none !important;
-}
-#zonaControlLista #inputLinkNou {
-flex: 1 1 auto !important;
-width: 100% !important;
-min-width: 100px !important;
-font-size: 14px !important;
-padding: 4px 6px !important;
-}
-#zonaControlLista #btnInchideInput {
-flex: 0 0 auto !important;
-padding: 4px 8px !important;
-font-size: 0.85rem !important;
-}
-/* ETAJUL 2 LANDSCAPE */
-.PozonaVideo {
-grid-column: 1 / -1 !important;
-grid-row: 2 !important;
-position: static !important;
-display: flex !important;
-align-items: center !important;
-justify-content: space-around !important;
-width: 100% !important;
-height: 4em !important;
-overflow: visible !important;
-box-sizing: border-box !important;
-}
-#toggleYoutube {
-position: static !important;
-top: auto !important;
-right: auto !important;
-display: flex !important;
-align-items: center !important;
-justify-content: center !important;
-width: 90px !important;
-height: 161px !important;
-flex: 0 0 auto !important;
-transform: scale(0.36) !important;
-transform-origin: center center !important;
-margin: 0 !important;
-z-index: 25 !important;
-}
-#youtubeLink,
-.BtnCanal {
-position: static !important;
-top: auto !important;
-right: auto !important;
-display: flex !important;
-align-items: center !important;
-justify-content: center !important;
-flex: 0 0 auto !important;
-transform: scale(0.75) !important;
-transform-origin: center center !important;
-margin: 0 !important;
-}
-.PlayerInBanda.activ {
-display: block !important;
-position: fixed !important;
-bottom: 10px !important;
-left: 50% !important;
-right: auto !important;
-transform: translateX(-50%) !important;
-margin: 0 !important;
-height: 8em !important;
-width: 14.22em !important;
-border-radius: 0 !important;
-z-index: 99999 !important;
-background-color: #000000 !important;
-border: 1px solid #ffffff !important;
-box-sizing: border-box !important;
-}
+        width: 100% !important;
+        height: 4em !important;
+    }
+
+    #zonaControlLista {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 6px !important;
+        width: 100% !important;
+        height: 4em !important;
+        padding: 0 0.5em !important;
+        box-sizing: border-box !important;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.35) !important;
+    }
+
+    #zonaControlLista #textOriginalYoutube,
+    #zonaControlLista #textOriginalYoutube.ascuns {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+        flex: 0 0 auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 1em !important;
+        line-height: 1.3em !important;
+    }
+
+    .ListaLinkuri.studio-extins #statusMelodie {
+        display: block !important;
+        padding-left: 8px !important;
+        max-width: 110px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+        opacity: 0.85 !important;
+        margin-top: 2px !important;
+    }
+
+    #zonaControlLista #panouInputYoutube {
+        display: flex !important;
+        align-items: center !important;
+        flex: 1 1 auto !important;
+        width: auto !important;
+        max-width: none !important;
+        gap: 4px !important;
+        padding: 4px !important;
+    }
+
+    #zonaControlLista #panouInputYoutube.ascuns {
+        display: none !important;
+    }
+
+    #zonaControlLista #inputLinkNou {
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        min-width: 120px !important;
+        height: 34px !important;
+        font-size: 16px !important;
+        padding: 4px 8px !important;
+        box-sizing: border-box !important;
+    }
 }
 
-/* ECRANUL VIDEO LANDSCAPE: înalt cât 2 etaje (8em), proporție 16:9 (14.22em), lipit în dreapta consolei YT, fără radius */
-/* #zonaVideoYoutube.activ {
-display: block !important;
-position: absolute !important;
-top: 0 !important;
-left: 100% !important;        
-bottom: auto !important;
-right: auto !important;
-transform: none !important;
-margin: 0 !important;
-height: 8em !important;        
-width: 14.22em !important;     
-border-radius: 0 !important;   
-z-index: 99999 !important;
-background-color: #000000 !important;
-border: 1px solid #ffffff !important;
-box-sizing: border-box !important;
-} */
-/* ==========================================================================
-   SIGLA YOUTUBE & BUTONUL BARĂ - RESTAURARE COMPLETĂ PE MOBIL
-   ========================================================================== */
+/* BUTOANELE DIN ETAJUL 2 + LANDSCAPE */
 @media (max-width: 750px), (max-height: 550px) and (orientation: landscape) {
 
     .PozonaVideo {
@@ -832,7 +531,7 @@ box-sizing: border-box !important;
         overflow: visible !important;
     }
 
-    /* 1. Butonul Bară (#toggleYoutube.containerb) - păstrăm display: flex original și îi blocăm cutia la 110x161px */
+    /* Butonul Bară intact, la exact jumătatea consolei (58px) */
     #toggleYoutube.containerb {
         display: flex !important;
         justify-content: center !important;
@@ -842,13 +541,13 @@ box-sizing: border-box !important;
         right: auto !important;
         width: 110px !important;
         height: 161px !important;
-        transform: scale(0.36) !important; /* 161px * 0.36 = 58px -> exact jumătatea consolei! */
+        transform: scale(0.36) !important;
         transform-origin: center center !important;
         margin: 0 !important;
         flex: 0 0 auto !important;
     }
 
-    /* 2. Sigla YouTube (#youtubeLink.BtnCanal) - restaurată complet */
+    /* Sigla YouTube intactă și vizibilă */
     #youtubeLink.BtnCanal {
         display: flex !important;
         align-items: center !important;
@@ -856,8 +555,6 @@ box-sizing: border-box !important;
         position: relative !important;
         top: auto !important;
         right: auto !important;
-        width: auto !important;
-        height: auto !important;
         transform: scale(0.75) !important;
         transform-origin: center center !important;
         margin: 0 !important;
@@ -893,5 +590,17 @@ box-sizing: border-box !important;
         border-bottom: 12px solid transparent !important;
         border-left: 22px solid #ffffff !important;
         border-right: none !important;
+    }
+
+    .PlayerInBanda.activ {
+        display: block !important;
+        position: fixed !important;
+        bottom: 10px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 200px !important;
+        height: 112px !important;
+        pointer-events: none !important;
+        z-index: -1 !important;
     }
 }
