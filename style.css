@@ -634,6 +634,7 @@ line-height: 1.5em;
     }
 
     /* ETAJUL 2: Cele două butoane proporționate ca să încapă curat în cei 4em de jos */
+  /* ETAJUL 2: Butonul special (#toggleYoutube) + Sigla YouTube (#youtubeLink) */
     .PozonaVideo {
         grid-column: 1 / -1 !important;
         grid-row: 2 !important;
@@ -643,29 +644,38 @@ line-height: 1.5em;
         justify-content: space-around !important;
         width: 100% !important;
         height: 4em !important;
-        overflow: hidden !important;
+        overflow: visible !important;
         box-sizing: border-box !important;
     }
 
-    /* Butonul special de YouTube (triunghi + bară) readus la proporția corectă în etajul 2 */
     #toggleYoutube {
         position: static !important;
-        transform: scale(0.55) !important; /* Mărime clară, vizibilă și intactă, exact ca pe landscape */
+        top: auto !important;
+        right: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 0 0 auto !important;
+        flex-shrink: 0 !important;
+        transform: scale(0.65) !important; /* Îl aduce exact la înălțimea de 4em fără să-l turtească! */
         transform-origin: center center !important;
         margin: 0 !important;
-        flex: 0 0 auto !important;
-        overflow: visible !important;
+        z-index: 25 !important;
     }
 
-    /* Sigla canalului YouTube din dreapta (micșorată proporțional cu scale ca să nu depășească 4em) */
-    .BtnCanal,
-    #youtubeLink {
+    #youtubeLink,
+    .BtnCanal {
         position: static !important;
+        top: auto !important;
         right: auto !important;
-        transform: scale(0.55) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 0 0 auto !important;
+        flex-shrink: 0 !important;
+        transform: scale(0.65) !important; /* Aceeași scară ca butonul special, exact cât jumătatea consolei */
         transform-origin: center center !important;
         margin: 0 !important;
-        flex: 0 0 auto !important;
     }
 
     /* Ecranul video YouTube (când e activ, invizibil dar activ pentru redare continuă pe mobil) */
@@ -839,42 +849,49 @@ padding: 4px 8px !important;
 font-size: 0.85rem !important;
 }
 /* Resetăm poziția de desktop de pe .PozonaVideo ca să nu arunce ecranul video în afara paginii! */
-.PozonaVideo {
-grid-column: 1 / -1 !important;
-grid-row: 2 !important;
-position: static !important;
-right: auto !important;
-bottom: auto !important;
-top: auto !important;
-left: auto !important;
-display: flex !important;
-align-items: center !important;
-justify-content: space-around !important;
-width: 100% !important;
-height: 100% !important;
-min-height: 0 !important;
-overflow: visible !important;
-}
-#toggleYoutube {
-position: static !important;
-right: auto !important;
-top: auto !important;
-transform: scale(0.32) !important;
-transform-origin: center center !important;
-margin: 0 !important;
-z-index: 50 !important;
-flex-shrink: 0 !important;
-}
-.BtnCanal {
-position: static !important;
-transform: none !important;
-display: flex !important;
-align-items: center !important;
-justify-content: center !important;
-height: 100% !important;
-z-index: 30 !important;
-overflow: visible !important;
-}
+/* ETAJUL 2: Butonul special (#toggleYoutube) + Sigla YouTube (#youtubeLink) */
+    .PozonaVideo {
+        grid-column: 1 / -1 !important;
+        grid-row: 2 !important;
+        position: static !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+        width: 100% !important;
+        height: 4em !important;
+        overflow: visible !important;
+        box-sizing: border-box !important;
+    }
+
+    #toggleYoutube {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 0 0 auto !important;
+        flex-shrink: 0 !important;
+        transform: scale(0.65) !important; /* Îl aduce exact la înălțimea de 4em fără să-l turtească! */
+        transform-origin: center center !important;
+        margin: 0 !important;
+        z-index: 25 !important;
+    }
+
+    #youtubeLink,
+    .BtnCanal {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 0 0 auto !important;
+        flex-shrink: 0 !important;
+        transform: scale(0.65) !important; /* Aceeași scară ca butonul special, exact cât jumătatea consolei */
+        transform-origin: center center !important;
+        margin: 0 !important;
+    }
 .AccesCanal {
 display: flex !important;
 align-items: center !important;
