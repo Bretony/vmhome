@@ -599,6 +599,46 @@ line-height: 1.5em;
         margin-top: 0px !important;
        
     }
+    /* Titlul melodiei (foarte mic, pe un singur rând, fără să strice alinierea) */
+#statusMelodie {
+    font-size: 10px;
+    line-height: 1.2;
+    max-width: 160px; /* Ajustează după lățimea butonului tău */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.85;
+    margin-top: 2px;
+}
+
+/* Când consola este închisă pe mobil, cuvântul LINK revine la dimensiunea normală */
+.ListaLinkuri:not(.studio-extins) #statusMelodie {
+    font-size: inherit;
+    max-width: none;
+    opacity: 1;
+}
+
+/* Caseta de input mare și ușor de accesat când se deschide */
+#panouInputYoutube {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#panouInputYoutube.ascuns {
+    display: none !important;
+}
+
+#inputLinkNou {
+    width: 100%;
+    min-width: 180px;
+    height: 36px;
+    font-size: 14px; /* Minim 14-16px ca să nu facă iPhone-ul zoom automat */
+    padding: 6px 10px;
+    box-sizing: border-box;
+}
 
     #panouInputYoutube {
         display: flex !important;
