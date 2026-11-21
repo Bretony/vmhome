@@ -666,24 +666,29 @@ line-height: 1.5em;
         color: antiquewhite !important;
     }
 }
-    keyframes sunriseMobil {
+    /* Animație dedicată mobilului (trebuie să fie în afara @media) */
+@keyframes sunriseMobil {
     from {
-        transform: translateX(30px);
+        transform: translateX(18px);
     }
     to {
-        transform: translateX(-30px);
+        transform: translateX(-18px);
     }
 }
 
 @media (max-width: 750px) {
-    /* 1. Distanța exactă între triunghi și bară (ca pe desktop) */
-    #toggleYoutube .bara {
-        margin-left: 42px !important;
+    /* Centrăm triunghiul pe mijlocul barei (compensând rotate: 180deg) */
+    #toggleYoutube .triunghi_unu_stanga {
+        top: 28% !important;
     }
 
-    /* 2. Cursa triunghiului adaptată la lungimea barei, fără să iasă jos */
+    /* Îi limităm cursa strict în interiorul înălțimii barei */
     #toggleYoutube .miscare_verticala_triunghi {
-        animation: 4s linear infinite alternate sunriseMobil !important;
+        animation-name: sunriseMobil !important;
+        animation-duration: 4s !important;
+        animation-timing-function: linear !important;
+        animation-iteration-count: infinite !important;
+        animation-direction: alternate !important;
     }
 }
 }
