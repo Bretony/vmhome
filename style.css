@@ -594,7 +594,7 @@ line-height: 1.5em;
         position: static !important;
         display: flex !important;
         align-items: left!important;
-        flex: 1 1 auto !important; /* Ocupă tot spațiul mare dintre pătratul textului și săgeata ↙ */
+        /* flex: 1 1 auto !important; /* Ocupă tot spațiul mare dintre pătratul textului și săgeata ↙ */ 
         width: 100px !important;
         gap: 4px !important;
         margin: 0 !important;
@@ -605,7 +605,7 @@ line-height: 1.5em;
     }
  #zonaControlLista #inputLinkNou {
         display: block !important;
-        flex: 1 1 100% !important;
+        /* flex: 1 1 100% !important; */
         /* width: 100% !important; */
         width: 190px !important; /* Forțează o lățime minimă generoasă pentru input */
         height: 38px !important;
