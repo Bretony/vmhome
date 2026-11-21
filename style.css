@@ -582,17 +582,16 @@ line-height: 1.5em;
         margin-top: 2px !important;
     }
 
-    /* CASETA DE INPUT: Apare PESTE scris la mărime mare, fără flex */
+     /* CASETA DE INPUT: Strict în pătratul imaginar peste "You Tube" și "LINK" */
     #zonaControlLista #panouInputYoutube {
         position: absolute !important;
         left: 0.5em !important;
-        right: 38px !important; /* Lasă loc fix în dreapta pentru săgeata ↙ */
+        right: auto !important;
+        width: 155px !important; /* Se oprește exact la marginea pătratului cu textul */
         top: 50% !important;
         transform: translateY(-50%) !important;
         z-index: 10 !important;
         display: block !important;
-        width: auto !important;
-        max-width: none !important;
     }
 
     #zonaControlLista #panouInputYoutube.ascuns {
@@ -601,10 +600,10 @@ line-height: 1.5em;
 
     #zonaControlLista #inputLinkNou {
         display: block !important;
-        width: calc(100% - 32px) !important;
-        height: 36px !important;
+        width: calc(100% - 28px) !important;
+        height: 34px !important;
         font-size: 16px !important;
-        padding: 4px 8px !important;
+        padding: 4px 6px !important;
         box-sizing: border-box !important;
     }
 
@@ -613,14 +612,16 @@ line-height: 1.5em;
         right: 0 !important;
         top: 50% !important;
         transform: translateY(-50%) !important;
-        width: 26px !important;
-        height: 26px !important;
+        width: 24px !important;
+        height: 24px !important;
         padding: 0 !important;
-        font-size: 0.85rem !important;
+        font-size: 0.8rem !important;
     }
 
+ 
+
     /* ETAJUL 2: Cele două butoane limitate strict la jumătatea etajului (4em) */
-    .PozonaVideo {
+   .PozonaVideo {
         grid-column: 1 / -1 !important;
         grid-row: 2 !important;
         position: static !important;
@@ -628,19 +629,13 @@ line-height: 1.5em;
         align-items: center !important;
         justify-content: space-around !important;
         width: 100% !important;
-        height: 4em !important; /* Exact jumătate din cei 8em ai consolei extinse */
-        max-height: 4em !important;
+        height: 4em !important;
         overflow: hidden !important;
         box-sizing: border-box !important;
     }
 
-    #toggleYoutube,
-    #youtubeLink {
-        max-height: 3.5em !important; /* Nu depășesc niciodată limita etajului 2 */
-        align-self: center !important;
-    }
-
-  #toggleYoutube {
+    /* NU punem max-height pe #toggleYoutube ca să nu-i spargem geometria triunghiului! */
+    #toggleYoutube {
         position: static !important;
         transform: scale(0.32) !important;
         transform-origin: center center !important;
@@ -653,12 +648,9 @@ line-height: 1.5em;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        height: 3.2em !important;
-        max-height: 3.2em !important;
         margin: 0 !important;
         flex: 0 0 auto !important;
     }
-
     #btnInchideStudio {
         position: relative !important;
         z-index: 20 !important;
