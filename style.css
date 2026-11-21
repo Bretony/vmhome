@@ -487,16 +487,21 @@ line-height: 1.5em;
         border-bottom: 1px dashed rgba(255, 255, 255, 0.35) !important;
     }
 
-    #textOriginalYoutube {
+     /* Păstrăm "You Tube" vizibil în stânga chiar și când se deschide inputul */
+    #textOriginalYoutube,
+    #textOriginalYoutube.ascuns {
         display: flex !important;
         flex-direction: column !important;
         flex-shrink: 0 !important;
+        width: auto !important;
     }
 
-    #textOriginalYoutube.ascuns {
+    /* Ascundem doar cuvântul LINK cât timp scrii în căsuță, ca să stea totul pe un rând */
+    .zonaInfoYoutube:has(#panouInputYoutube:not(.ascuns)) #statusMelodie {
         display: none !important;
     }
 
+    /* Căsuța de input începe imediat după "You Tube" și ocupă doar restul rândului */
     #panouInputYoutube {
         position: static !important;
         transform: none !important;
@@ -504,10 +509,11 @@ line-height: 1.5em;
         flex-direction: row !important;
         align-items: center !important;
         flex: 1 !important;
+        max-width: 64% !important; /* Începe după "You Tube" și nu depășește marginea */
         min-width: 0 !important;
-        padding: 3px 6px !important;
+        padding: 3px 5px !important;
         gap: 4px !important;
-        margin: 0 !important;
+        margin-left: auto !important;
     }
 
     #panouInputYoutube.ascuns {
@@ -518,8 +524,8 @@ line-height: 1.5em;
         flex: 1 !important;
         width: 100% !important;
         min-width: 0 !important;
-        font-size: 16px !important;
-        padding: 5px 8px !important;
+        font-size: 15px !important;
+        padding: 4px 6px !important;
     }
 
     #btnInchideInput {
@@ -528,6 +534,7 @@ line-height: 1.5em;
     }
 
     /* Etajul 2: Butonul Bară în stânga-centru, Butonul YouTube în dreapta-centru */
+     /* Etajul 2: Lăsăm overflow: visible ca să nu taie niciodată triunghiul sau bara */
     .PozonaVideo {
         position: static !important;
         display: flex !important;
@@ -535,23 +542,32 @@ line-height: 1.5em;
         align-items: center !important;
         justify-content: space-around !important;
         width: 100% !important;
-        height: 68px !important; /* Înălțime compactă, cât un rând normal */
-        overflow: hidden !important;
+        height: 72px !important;
+        overflow: visible !important;
     }
 
-    /* Butonul Bară (#toggleYoutube) - micșorat fără să ocupe spațiu gol */
+    /* Butonul Bară (#toggleYoutube) - întreg, neînghesuit și centrat */
     #toggleYoutube {
-        position: static !important;
-        transform: scale(0.42) !important;
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        transform: scale(0.40) !important;
         transform-origin: center center !important;
-        width: 80px !important;
+        width: 110px !important;
         height: 161px !important;
         margin: 0 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        overflow: visible !important;
         z-index: 50 !important;
     }
+
+    /* Ajustăm marginea stângă a barei doar pe telefon ca să stea centrata în buton */
+    #toggleYoutube .bara {
+        margin-left: 15px !important;
+    }
+
 
     /* Sigla canalului YouTube (.BtnCanal) - echilibrată în dreapta */
     .BtnCanal {
