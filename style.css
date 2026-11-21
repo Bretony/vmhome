@@ -470,11 +470,6 @@ line-height: 1.5em;
         gap: 6px !important;
     }
 
-    /* Etajul 1: Textul You Tube / LINK + Caseta de input */
-    .Directie {
-        width: 100% !important;
-    }
-
     .zonaInfoYoutube {
         display: flex !important;
         flex-direction: row !important;
@@ -534,17 +529,6 @@ line-height: 1.5em;
     }
 
     /* Etajul 2: Butonul Bară în stânga-centru, Butonul YouTube în dreapta-centru */
-     /* Etajul 2: Lăsăm overflow: visible ca să nu taie niciodată triunghiul sau bara */
-    .PozonaVideo {
-        position: static !important;
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-around !important;
-        width: 100% !important;
-        height: 72px !important;
-        overflow: visible !important;
-    }
 
     /* Butonul Bară (#toggleYoutube) - întreg, neînghesuit și centrat */
     #toggleYoutube {
@@ -616,30 +600,51 @@ line-height: 1.5em;
         mask-image: radial-gradient(circle at center, transparent 4px, black 5px) !important;
     }
 
-    /* Fereastra video: încadrată curat sub marginea de sus a ecranului */
-    #zonaVideoYoutube.activ {
-        display: block !important;
-        position: fixed !important;
-        top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
-        bottom: auto !important;
-        left: 50% !important;
-        right: auto !important;
-        transform: translateX(-50%) !important;
-        width: 92vw !important;
-        max-width: 360px !important;
-        height: 185px !important;
-        margin: 0 !important;
-        z-index: 99999 !important;
-        background-color: #000000 !important;
-        border: 2px solid rgba(255, 255, 255, 0.85) !important;
-        border-radius: 12px !important;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.95) !important;
+    /* 1. Banda YouTube aranjează elementele pe verticală */
+    .ListaLinkuri > .ListaItem:nth-child(5) {
+        display: flex !important;
+        flex-direction: column !important;
     }
 
-    /* Împinge pagina în jos exact cât înălțimea ferestrei video când pornește */
-    body.video-sus-activ {
-        padding-top: 205px !important;
-        transition: padding-top 0.25s ease;
+    /* 2. Fereastra video apare CHIAR DEASUPRA consolei (nu sus la marginea telefonului) */
+    #zonaVideoYoutube.activ {
+        display: block !important;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        height: 170px !important;
+        margin: 0 auto 10px auto !important;
+        z-index: 50 !important;
+        background-color: #000000 !important;
+        border: 2px solid rgba(255, 255, 255, 0.85) !important;
+        border-radius: 10px !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8) !important;
+    }
+
+    /* 3. Etajul cu "You Tube" + input stă imediat sub video */
+    .Directie {
+        order: 2 !important;
+        width: 100% !important;
+    }
+
+    /* 4. Etajul cu Butonul Bară + Sigla YouTube stă jos */
+    .PozonaVideo {
+        order: 3 !important;
+        position: static !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+        width: 100% !important;
+        height: 76px !important;
+        overflow: visible !important;
     }
 }
+
+    
 
