@@ -649,23 +649,55 @@ line-height: 1.5em;
     box-sizing: border-box;
 }
 
-    #zonaControlLista #panouInputYoutube.ascuns {
-        display: none !important;
-    }
+/* 1. Titlul melodiei cu puncte de suspensie (...) până la limita fixă */
+#statusMelodie {
+    display: block;
+    max-width: 150px; /* Lățimea maximă până unde se taie cu ... pe telefon */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 11px;
+    line-height: 1.2;
+    margin-top: 2px;
+}
 
-    #zonaControlLista #inputLinkNou {
-        flex: 1 1 0% !important;
-        width: 0 !important;
-        min-width: 0 !important;
-        font-size: 16px !important;
-        padding: 4px 6px !important;
+@media (min-width: 768px) {
+    #statusMelodie {
+        max-width: 240px;
     }
+}
 
-    #zonaControlLista #btnInchideInput {
-        flex: 0 0 auto !important;
-        padding: 4px 8px !important;
-        font-size: 0.85rem !important;
-    }
+/* 2. Panoul de input mare, fără flex și fără width: 0 */
+#zonaControlLista #panouInputYoutube {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    max-width: none !important;
+}
+
+#zonaControlLista #panouInputYoutube.ascuns {
+    display: none !important;
+}
+
+#zonaControlLista #inputLinkNou {
+    display: block !important;
+    width: calc(100% - 34px) !important; /* Întins pe toată lățimea până la butonul ✕ */
+    height: 36px !important;
+    font-size: 16px !important;
+    padding: 4px 8px !important;
+    box-sizing: border-box !important;
+}
+
+#zonaControlLista #btnInchideInput {
+    position: absolute !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 28px !important;
+    height: 28px !important;
+    padding: 0 !important;
+    font-size: 0.85rem !important;
+}
 
     /* Etajul de jos (butoanele) */
     .PozonaVideo {
