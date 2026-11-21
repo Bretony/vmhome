@@ -543,12 +543,14 @@ line-height: 1.5em;
         height: 4em !important;
     }
 
+     /* ETAJUL 1: Pătratul cu textul în stânga + Caseta de input în continuarea lui (în dreapta) + Săgeata ↙ */
     #zonaControlLista {
         position: relative !important;
         display: flex !important;
         flex-direction: row !important;
         justify-content: space-between !important;
         align-items: center !important;
+        gap: 8px !important;
         width: 100% !important;
         height: 4em !important;
         padding: 0 0.5em !important;
@@ -556,11 +558,15 @@ line-height: 1.5em;
         border-bottom: 1px dashed rgba(255, 255, 255, 0.35) !important;
     }
 
-    #zonaControlLista #textOriginalYoutube {
+    /* Pătratul imaginar din stânga rămâne vizibil și fix (nu mai este acoperit) */
+    #zonaControlLista #textOriginalYoutube,
+    #zonaControlLista #textOriginalYoutube.ascuns {
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
         align-items: flex-start !important;
+        flex: 0 0 auto !important;
+        width: 115px !important; /* Lățimea pătratului imaginar din stânga */
         padding: 0 !important;
         margin: 0 !important;
         font-size: 1em !important;
@@ -568,11 +574,12 @@ line-height: 1.5em;
         text-align: left !important;
     }
 
-    /* Titlul melodiei mic sub "You Tube", cu puncte ... și padding-left în consolă */
+    /* Titlul melodiei mic sub "You Tube", tăiat cu ... la marginea pătratului de 115px */
     .ListaLinkuri.studio-extins #statusMelodie {
         display: block !important;
-        padding-left: 8px !important; /* Ajustează aici dacă vrei LINK mai la dreapta */
-        max-width: 165px !important; /* Se oprește în puncte ... înainte de săgeata din dreapta */
+        padding-left: 8px !important;
+        width: 105px !important;
+        max-width: 105px !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
@@ -582,16 +589,16 @@ line-height: 1.5em;
         margin-top: 2px !important;
     }
 
-     /* CASETA DE INPUT: Strict în pătratul imaginar peste "You Tube" și "LINK" */
+    /* CASETA DE INPUT: Apare strict în continuarea pătratului (în dreapta) și ocupă tot spațiul rămas! */
     #zonaControlLista #panouInputYoutube {
-        position: absolute !important;
-        left: 0.5em !important;
-        right: auto !important;
-        width: 155px !important; /* Se oprește exact la marginea pătratului cu textul */
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        z-index: 10 !important;
-        display: block !important;
+        position: static !important;
+        display: flex !important;
+        align-items: center !important;
+        flex: 1 1 auto !important; /* Ocupă tot spațiul mare dintre pătratul textului și săgeata ↙ */
+        width: auto !important;
+        max-width: none !important;
+        gap: 4px !important;
+        margin: 0 !important;
     }
 
     #zonaControlLista #panouInputYoutube.ascuns {
@@ -600,25 +607,24 @@ line-height: 1.5em;
 
     #zonaControlLista #inputLinkNou {
         display: block !important;
-        width: calc(100% - 28px) !important;
-        height: 34px !important;
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        height: 36px !important;
         font-size: 16px !important;
-        padding: 4px 6px !important;
+        padding: 4px 8px !important;
         box-sizing: border-box !important;
     }
 
     #zonaControlLista #btnInchideInput {
-        position: absolute !important;
-        right: 0 !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        width: 24px !important;
-        height: 24px !important;
+        position: static !important;
+        transform: none !important;
+        flex: 0 0 auto !important;
+        width: 26px !important;
+        height: 26px !important;
         padding: 0 !important;
-        font-size: 0.8rem !important;
+        font-size: 0.85rem !important;
     }
-
- 
 
     /* ETAJUL 2: Cele două butoane limitate strict la jumătatea etajului (4em) */
    .PozonaVideo {
