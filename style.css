@@ -593,7 +593,7 @@ line-height: 1.5em;
     #zonaControlLista #panouInputYoutube {
         position: static !important;
         display: flex !important;
-        align-items: center !important;
+        align-items: left!important;
         flex: 1 1 auto !important; /* Ocupă tot spațiul mare dintre pătratul textului și săgeata ↙ */
         width: 100px !important;
         gap: 4px !important;
@@ -607,7 +607,7 @@ line-height: 1.5em;
         display: block !important;
         flex: 1 1 100% !important;
         width: 100% !important;
-        min-width: 165px !important; /* Forțează o lățime minimă generoasă pentru input */
+        min-width: 190px !important; /* Forțează o lățime minimă generoasă pentru input */
         height: 38px !important;
         font-size: 16px !important;
         padding: 4px 8px !important;
