@@ -1,12 +1,12 @@
 
-
+// Dezactivează și șterge vechiul cache PWA ca să vezi modificările live
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("sw.js")
-    .then(() => console.log("Aplicația SPARKY este gata de utilizare mobilă!"))
-    .catch((err) => console.error("Eroare înregistrare aplicație:", err))
+  navigator.serviceWorker.getRegistrations().then(registrations => {
+    for (let registration of registrations) {
+      registration.unregister();
+    }
+  });
 }
-
 
 
 // ==========================================================
