@@ -405,3 +405,6 @@ function creeazaInstantaPlayer(listaIdUri, containerId) {
         }
     });
 }
+@media (max-width: 750px) {
+    .container { border: 4px solid lime !important; }
+}
