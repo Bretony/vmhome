@@ -627,26 +627,27 @@ line-height: 1.5em;
     gap: 6px;
 }
 
+#panouInputYoutube {
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: none !important; /* Eliminăm limita de 220px care micșora caseta */
+    gap: 6px !important;
+    box-sizing: border-box !important;
+}
+
 #panouInputYoutube.ascuns {
     display: none !important;
 }
 
 #inputLinkNou {
-    width: 100%;
-    min-width: 180px;
-    height: 36px;
-    font-size: 14px; /* Minim 14-16px ca să nu facă iPhone-ul zoom automat */
+    width: 100% !important;
+    flex: 1 !important; /* Împinge caseta să ocupe tot spațiul rămas până la butonul ✕ */
+    height: 38px;
+    font-size: 16px; /* 16px oprește zoom-ul automat pe iPhone/Android la atingere */
     padding: 6px 10px;
     box-sizing: border-box;
 }
-
-    #panouInputYoutube {
-        display: flex !important;
-        align-items: center !important;
-        flex: 1 !important;
-        max-width: 220px !important;
-        gap: 4px !important;
-    }
 
     #zonaControlLista #panouInputYoutube.ascuns {
         display: none !important;
