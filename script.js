@@ -148,18 +148,40 @@ function actualizeazaTextStatus(text) {
 // 6. Ascultăm tasta Enter în fereastra de introducere
 // 6. Comutare la click (dispare textul -> apare căsuța) + salvare la Enter
 // 6. Funcții directe pentru căsuța de introducere melodii
-function deschideCasutaYoutube() {
+// ==========================================================
+// 6. CONTROL CONSOLĂ ȘI CASETĂ INTRODUCERE MELODII
+// ==========================================================
+
+// Când dai click pe banda YouTube
+function gestioneazaClickYoutube() {
+    const banda = document.getElementById('zonaControlLista');
+    if (!banda) return;
+
+    // Dacă consola nu e deschisă, o deschidem (arătăm butoanele și săgeata de închidere)
+    if (!banda.classList.contains('consola-deschisa')) {
+        banda.classList.add('consola-deschisa');
+    } else {
+        // Dacă e deja deschisă, deschidem direct caseta de input
+        deschideInputInConsola();
+    }
+}
+
+// Deschide caseta de lipit link-ul YouTube
+function deschideInputInConsola() {
+    const banda = document.getElementById('zonaControlLista');
     const textOriginal = document.getElementById('textOriginalYoutube');
     const panouInput = document.getElementById('panouInputYoutube');
     const inputLink = document.getElementById('inputLinkNou');
 
     if (!textOriginal || !panouInput || !inputLink) return;
 
+    if (banda) banda.classList.add('consola-deschisa');
     textOriginal.classList.add('ascuns');
     panouInput.classList.remove('ascuns');
     inputLink.focus();
 }
 
+// Închide doar caseta de input (revine la textul You Tube / LINK)
 function inchideCasutaYoutube(mesajTemporar) {
     const textOriginal = document.getElementById('textOriginalYoutube');
     const panouInput = document.getElementById('panouInputYoutube');
@@ -171,10 +193,25 @@ function inchideCasutaYoutube(mesajTemporar) {
 
     if (mesajTemporar) {
         actualizeazaTextStatus(mesajTemporar);
-        setTimeout(() => actualizeazaTextStatus('LINK'), 1800);
+        setTimeout(() => {
+            const textRevenire = (casetaPornita && casetaYoutube[indexPiesa]) 
+                ? casetaYoutube[indexPiesa].titlu 
+                : 'LINK';
+            actualizeazaTextStatus(textRevenire);
+        }, 2000);
     }
 }
 
+// Restrânge complet consola (butonul ↙)
+function inchideStudioYoutube() {
+    const banda = document.getElementById('zonaControlLista');
+    inchideCasutaYoutube();
+    if (banda) {
+        banda.classList.remove('consola-deschisa');
+    }
+}
+
+// Salvează melodia nouă la apăsarea tastei Enter
 async function verificaEnterLink(e) {
     const inputLink = e.target;
 
@@ -200,19 +237,19 @@ async function verificaEnterLink(e) {
         await obtinePlaylist();
 
         const existaDeja = casetaYoutube.some(p => p.id === idExtras);
-        let mesaj = 'Există deja!';
+        let mesaj = 'Există deja în listă!';
 
         if (!existaDeja) {
             const titluReal = await aflaTitluYoutube(idExtras);
             const piesaNoua = { id: idExtras, titlu: titluReal };
             casetaYoutube.push(piesaNoua);
 
+            // Salvare permanentă în memoria telefonului/browserului
             const listaLocala = JSON.parse(localStorage.getItem('sparky_playlist_extra') || '[]');
             listaLocala.push(piesaNoua);
             localStorage.setItem('sparky_playlist_extra', JSON.stringify(listaLocala));
 
-            console.log('Adaugă în playlist.json:\n' + JSON.stringify(piesaNoua) + ',');
-            mesaj = 'Salvat!';
+            mesaj = 'Salvat: ' + titluReal;
         }
 
         inputLink.value = '';
@@ -222,7 +259,7 @@ async function verificaEnterLink(e) {
     }
 }
 
-// Închide căsuța dacă dai click oriunde în afara benzii
+// Închide caseta de input dacă atingi în afara benzii
 document.addEventListener('click', (e) => {
     const zonaControl = document.getElementById('zonaControlLista');
     const panouInput = document.getElementById('panouInputYoutube');
@@ -230,7 +267,10 @@ document.addEventListener('click', (e) => {
         inchideCasutaYoutube();
     }
 });
-// 7. Butonul tău de Pornire / Oprire
+
+// ==========================================================
+// 7. BUTONUL DE PORNIRE / OPRIRE PLAYLIST
+// ==========================================================
 async function comutaPlaylistInBanda() {
     const zonaVideo = document.getElementById('zonaVideoYoutube');
     const buton = document.getElementById('toggleYoutube');
@@ -238,16 +278,19 @@ async function comutaPlaylistInBanda() {
     if (!zonaVideo || !buton) return;
 
     if (!casetaPornita) {
-       if (window.innerWidth <= 750) {
+        if (window.innerWidth <= 750) {
             document.body.appendChild(zonaVideo);
+            document.body.classList.add('video-sus-activ'); // Face loc playerului sus pe mobil
         }
-        zonaVideo.classList.add('activ');
         zonaVideo.classList.add('activ');
         buton.classList.add('pornit');
         casetaPornita = true;
 
         await obtinePlaylist();
-        if (casetaYoutube.length === 0) return;
+        if (casetaYoutube.length === 0) {
+            actualizeazaTextStatus('Playlist gol!');
+            return;
+        }
 
         indexPiesa = Math.floor(Math.random() * casetaYoutube.length);
         pornestePiesaCuAPI(indexPiesa);
@@ -259,18 +302,21 @@ async function comutaPlaylistInBanda() {
         zonaVideo.innerHTML = '';
         zonaVideo.classList.remove('activ');
         buton.classList.remove('pornit');
+        document.body.classList.remove('video-sus-activ');
         casetaPornita = false;
         actualizeazaTextStatus('LINK');
     }
 }
 
-// 8. Motorul oficial YT.Player (cu Auto-Next și Auto-Skip la erori)
+// ==========================================================
+// 8. MOTORUL OFICIAL YT.PLAYER
+// ==========================================================
 function pornestePiesaCuAPI(index) {
     const zonaVideo = document.getElementById('zonaVideoYoutube');
     const piesa = casetaYoutube[index];
     if (!zonaVideo || !piesa || !casetaPornita) return;
 
-    // actualizeazaTextStatus(piesa.titlu);
+    actualizeazaTextStatus(piesa.titlu);
 
     if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
         ytPlayer.loadVideoById(piesa.id);
@@ -322,3 +368,4 @@ function sariLaUrmatoarea() {
     indexPiesa = (indexPiesa + 1) % casetaYoutube.length;
     pornestePiesaCuAPI(indexPiesa);
 }
+
