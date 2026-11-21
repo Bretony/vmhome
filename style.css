@@ -666,6 +666,26 @@ line-height: 1.5em;
         color: antiquewhite !important;
     }
 }
+    keyframes sunriseMobil {
+    from {
+        transform: translateX(30px);
+    }
+    to {
+        transform: translateX(-30px);
+    }
+}
+
+@media (max-width: 750px) {
+    /* 1. Distanța exactă între triunghi și bară (ca pe desktop) */
+    #toggleYoutube .bara {
+        margin-left: 42px !important;
+    }
+
+    /* 2. Cursa triunghiului adaptată la lungimea barei, fără să iasă jos */
+    #toggleYoutube .miscare_verticala_triunghi {
+        animation: 4s linear infinite alternate sunriseMobil !important;
+    }
+}
 }
 
     
