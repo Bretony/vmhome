@@ -1,12 +1,12 @@
 
-// Dezactivează și șterge vechiul cache PWA ca să vezi modificările live
+
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.getRegistrations().then(registrations => {
-    for (let registration of registrations) {
-      registration.unregister();
-    }
-  });
+  navigator.serviceWorker
+    .register("sw.js")
+    .then(() => console.log("Aplicația SPARKY este gata de utilizare mobilă!"))
+    .catch((err) => console.error("Eroare înregistrare aplicație:", err))
 }
+
 
 
 // ==========================================================
@@ -148,93 +148,33 @@ function actualizeazaTextStatus(text) {
 // 6. Ascultăm tasta Enter în fereastra de introducere
 // 6. Comutare la click (dispare textul -> apare căsuța) + salvare la Enter
 // 6. Funcții directe pentru căsuța de introducere melodii
-// 1. La click pe banda You Tube: deschide caseta + extinde consola pe mobil
 function deschideCasutaYoutube() {
     const textOriginal = document.getElementById('textOriginalYoutube');
     const panouInput = document.getElementById('panouInputYoutube');
     const inputLink = document.getElementById('inputLinkNou');
-    const zonaControl = document.getElementById('zonaControlLista');
-    const lista = document.querySelector('.ListaLinkuri');
-  document.querySelector('.ListaLinkuri')?.classList.add('studio-extins');
 
     if (!textOriginal || !panouInput || !inputLink) return;
 
-    if (lista) lista.classList.add('studio-extins'); // <-- Extinde consola pe 2 etaje
-
     textOriginal.classList.add('ascuns');
     panouInput.classList.remove('ascuns');
-    if (zonaControl) zonaControl.classList.add('input-activ');
     inputLink.focus();
 }
-
 
 function inchideCasutaYoutube(mesajTemporar) {
     const textOriginal = document.getElementById('textOriginalYoutube');
     const panouInput = document.getElementById('panouInputYoutube');
-    const zonaControl = document.getElementById('zonaControlLista');
 
     if (!textOriginal || !panouInput) return;
 
     panouInput.classList.add('ascuns');
     textOriginal.classList.remove('ascuns');
-    if (zonaControl) zonaControl.classList.remove('input-activ');
+
     if (mesajTemporar) {
         actualizeazaTextStatus(mesajTemporar);
         setTimeout(() => actualizeazaTextStatus('LINK'), 1800);
     }
 }
-// 1. Click oriunde pe banda YouTube (când e închisă -> deschide DOAR consola; pe desktop -> deschide inputul)
-function inchideStudioYoutube() {
-    document.querySelector('.ListaLinkuri')?.classList.remove('studio-extins');
-    inchideCasutaYoutube();
-    // Readuce cuvântul "LINK" când consola este închisă, chiar dacă muzica merge în fundal
-    actualizeazaTextStatus('LINK');
-}
 
-function gestioneazaClickYoutube() {
-    const lista = document.querySelector('.ListaLinkuri');
-    const esteMobil = window.matchMedia('(max-width: 750px) and (orientation: portrait), (max-height: 550px) and (orientation: landscape)').matches;
-
-    if (esteMobil && lista && !lista.classList.contains('studio-extins')) {
-        lista.classList.add('studio-extins');
-        // Dacă muzica cântă deja, afișăm titlul piesei curente când redeschidem consola
-        afiseazaTitluCurentDacaCanta();
-        return;
-    }
-
-    deschideCasutaYoutube();
-}
-
-function deschideInputInConsola() {
-    const lista = document.querySelector('.ListaLinkuri');
-    const esteMobil = window.matchMedia('(max-width: 750px) and (orientation: portrait), (max-height: 550px) and (orientation: landscape)').matches;
-
-    if (esteMobil && lista && !lista.classList.contains('studio-extins')) {
-        lista.classList.add('studio-extins');
-        afiseazaTitluCurentDacaCanta();
-        return;
-    }
-
-    deschideCasutaYoutube();
-}
-
-// Funcție ajutătoare care arată titlul doar când consola e deschisă
-function afiseazaTitluCurentDacaCanta() {
-    if (!casetaPornita) {
-        actualizeazaTextStatus('LINK');
-        return;
-    }
-    if (ytPlayer && typeof ytPlayer.getPlaylistIndex === 'function' && window._playlistActiv) {
-        const idx = ytPlayer.getPlaylistIndex();
-        if (window._playlistActiv[idx]) {
-            actualizeazaTextStatus(window._playlistActiv[idx].titlu);
-            return;
-        }
-    }
-    if (casetaYoutube[indexPiesa]) {
-        actualizeazaTextStatus(casetaYoutube[indexPiesa].titlu);
-    }
-}
 async function verificaEnterLink(e) {
     const inputLink = e.target;
 
@@ -298,8 +238,10 @@ async function comutaPlaylistInBanda() {
     if (!zonaVideo || !buton) return;
 
     if (!casetaPornita) {
-        // Am eliminat document.body.appendChild(zonaVideo) ca să NU îi mai schimbe poziția!
-        zonaVideo.style.display = 'block';
+       if (window.innerWidth <= 750) {
+            document.body.appendChild(zonaVideo);
+        }
+        zonaVideo.classList.add('activ');
         zonaVideo.classList.add('activ');
         buton.classList.add('pornit');
         casetaPornita = true;
@@ -310,101 +252,73 @@ async function comutaPlaylistInBanda() {
         indexPiesa = Math.floor(Math.random() * casetaYoutube.length);
         pornestePiesaCuAPI(indexPiesa);
     } else {
-        casetaPornita = false;
         if (ytPlayer && typeof ytPlayer.destroy === 'function') {
-            try {
-                ytPlayer.destroy();
-            } catch (e) {}
+            ytPlayer.destroy();
             ytPlayer = null;
         }
         zonaVideo.innerHTML = '';
         zonaVideo.classList.remove('activ');
-        zonaVideo.style.display = '';
         buton.classList.remove('pornit');
+        casetaPornita = false;
         actualizeazaTextStatus('LINK');
     }
 }
 
-// 8. Motorul oficial YT.Player (cu ID unic la fiecare pornire ca să meargă de 100 de ori la rând)
+// 8. Motorul oficial YT.Player (cu Auto-Next și Auto-Skip la erori)
 function pornestePiesaCuAPI(index) {
     const zonaVideo = document.getElementById('zonaVideoYoutube');
-    if (!zonaVideo || casetaYoutube.length === 0 || !casetaPornita) return;
+    const piesa = casetaYoutube[index];
+    if (!zonaVideo || !piesa || !casetaPornita) return;
 
-    // Construim lista completă de ID-uri începând cu piesa aleasă aleatoriu
-    const listaRearanjata = [
-        ...casetaYoutube.slice(index),
-        ...casetaYoutube.slice(0, index)
-    ];
-    const listaIdUri = listaRearanjata.map(p => p.id);
+    // actualizeazaTextStatus(piesa.titlu);
 
-    actualizeazaTextStatus(listaRearanjata[0].titlu);
-
-    // Salvăm lista ordonată ca să știm exact ce titlu afișăm la fiecare schimbare
-    window._playlistActiv = listaRearanjata;
-
-    if (ytPlayer && typeof ytPlayer.loadPlaylist === 'function') {
-        ytPlayer.loadPlaylist(listaIdUri);
+    if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+        ytPlayer.loadVideoById(piesa.id);
         return;
     }
 
-    const idUnicBox = 'ytPlayerBox_' + Date.now();
-    zonaVideo.innerHTML = '<div id="' + idUnicBox + '"></div>';
+    zonaVideo.innerHTML = '<div id="ytPlayerBox"></div>';
 
     if (window.YT && window.YT.Player) {
-        creeazaInstantaPlayer(listaIdUri, idUnicBox);
+        creeazaInstantaPlayer(piesa.id);
     } else {
         window.onYouTubeIframeAPIReady = () => {
-            if (casetaPornita) creeazaInstantaPlayer(listaIdUri, idUnicBox);
+            if (casetaPornita) creeazaInstantaPlayer(piesa.id);
         };
     }
 }
 
-function creeazaInstantaPlayer(listaIdUri, containerId) {
-    ytPlayer = new YT.Player(containerId, {
+function creeazaInstantaPlayer(videoId) {
+    ytPlayer = new YT.Player('ytPlayerBox', {
         height: '100%',
         width: '100%',
-        videoId: listaIdUri[0],
+        videoId: videoId,
         playerVars: {
             autoplay: 1,
             playsinline: 1,
             controls: 1,
             rel: 0,
-            loop: 1,
-            playlist: listaIdUri.join(','), // Îi dăm tot playlistul nativ YouTube!
             modestbranding: 1,
             origin: window.location.origin
         },
         events: {
             onReady: (event) => {
-                if (casetaPornita) {
-                    event.target.playVideo();
+                event.target.playVideo();
+            },
+            onStateChange: (event) => {
+                if (event.data === 0) {
+                    sariLaUrmatoarea();
                 }
             },
-          onStateChange: (event) => {
-    if (event.data === 1 && casetaPornita && typeof ytPlayer.getPlaylistIndex === 'function') {
-        const lista = document.querySelector('.ListaLinkuri');
-        const esteMobil = window.matchMedia('(max-width: 750px) and (orientation: portrait), (max-height: 550px) and (orientation: landscape)').matches;
-        
-        // Pe mobil schimbăm textul doar dacă consola e deschisă; dacă e închisă, rămâne "LINK"
-        if (esteMobil && lista && !lista.classList.contains('studio-extins')) {
-            actualizeazaTextStatus('LINK');
-            return;
-        }
-
-        const idxPlaylist = ytPlayer.getPlaylistIndex();
-        if (window._playlistActiv && window._playlistActiv[idxPlaylist]) {
-            actualizeazaTextStatus(window._playlistActiv[idxPlaylist].titlu);
-        }
-    }
-},
             onError: () => {
-                if (ytPlayer && typeof ytPlayer.nextVideo === 'function') {
-                    ytPlayer.nextVideo();
-                }
+                sariLaUrmatoarea();
             }
         }
     });
 }
-@media (max-width: 750px) {
-    .container { border: 4px solid lime !important; }
+
+function sariLaUrmatoarea() {
+    if (!casetaPornita || casetaYoutube.length === 0) return;
+    indexPiesa = (indexPiesa + 1) % casetaYoutube.length;
+    pornestePiesaCuAPI(indexPiesa);
 }
