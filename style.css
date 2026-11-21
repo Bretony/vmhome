@@ -378,7 +378,7 @@ main {
     }
 }
 
-/* ==========================================================================
+ /* ==========================================================================
    MOBIL UNIC (PORTRET + LANDSCAPE) - REPARAT COMPLET
    ========================================================================== */
 @media (max-width: 750px), (max-height: 550px) and (orientation: landscape) {
@@ -615,4 +615,142 @@ pointer-events: none !important;
 opacity: 0.4 !important;
 z-index: 1 !important;
 }
+} 
+
+/* ==========================================================================
+   MOBIL - CONSOLA YOUTUBE VIZIBILĂ ȘI FUNCȚIONALĂ
+   ========================================================================== */
+@media (max-width: 750px), (max-height: 550px) and (orientation: landscape) {
+
+    /* Eliminăm complet fundalul alb de hover pe mobil */
+    .ListaLinkuri > .ListaItem:nth-child(5),
+    .ListaLinkuri > .ListaItem:nth-child(5):hover,
+    .ListaLinkuri > .ListaItem:nth-child(5):active,
+    .ListaLinkuri > .ListaItem:nth-child(5):focus-within,
+    #zonaControlLista,
+    #zonaControlLista:hover,
+    .zonaInfoYoutube,
+    .zonaInfoYoutube:hover {
+        background: transparent !important;
+        background-color: transparent !important;
+        color: antiquewhite !important;
+        transition: none !important;
+    }
+
+    /* Când consola este ÎNCHISĂ */
+    .ListaLinkuri:not(.studio-extins) .PozonaVideo,
+    .ListaLinkuri:not(.studio-extins) #btnInchideStudio {
+        display: none !important;
+    }
+
+    /* Când consola este DESCHISĂ (studio-extins) */
+    .ListaLinkuri.studio-extins > .ListaItem:nth-child(5) {
+        display: block !important;
+        height: auto !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        background-color: rgba(15, 20, 45, 0.75) !important;
+    }
+
+    /* Etajul 1: Titlu + Input + Buton închidere */
+    .ListaLinkuri.studio-extins #zonaControlLista {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 10px 12px !important;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.4) !important;
+    }
+
+    .ListaLinkuri.studio-extins #btnInchideStudio {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.2);
+        color: antiquewhite;
+        border: 1px solid white;
+        border-radius: 6px;
+        font-size: 18px;
+    }
+
+    /* Etajul 2: Containerul butoanelor (adus în flux normal, nu absolute) */
+    .ListaLinkuri.studio-extins .PozonaVideo {
+        position: static !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+        width: 100% !important;
+        height: 80px !important;
+        padding: 8px 0 !important;
+        overflow: visible !important;
+    }
+
+    /* Butonul 1: Bara cu triunghi */
+    .ListaLinkuri.studio-extins #toggleYoutube {
+        position: static !important;
+        transform: none !important;
+        rotate: 0deg !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 70px !important;
+        height: 60px !important;
+    }
+
+    .ListaLinkuri.studio-extins #toggleYoutube .miscare_verticala_triunghi {
+        position: static !important;
+        animation: none !important;
+        transform: none !important;
+        rotate: 0deg !important;
+    }
+
+    .ListaLinkuri.studio-extins #toggleYoutube .triunghi_unu_stanga {
+        position: static !important;
+        rotate: 90deg !important;
+        margin-right: 8px !important;
+        border-left: 10px solid transparent !important;
+        border-right: 10px solid transparent !important;
+        border-bottom: 18px solid antiquewhite !important;
+    }
+
+    .ListaLinkuri.studio-extins #toggleYoutube .bara {
+        margin-left: 0 !important;
+        width: 16px !important;
+        height: 54px !important;
+    }
+
+    .ListaLinkuri.studio-extins #toggleYoutube .bara_mijloc {
+        margin-left: 6px !important;
+        width: 3px !important;
+        height: 54px !important;
+    }
+
+    /* Butonul 2: Sigla roșie YouTube */
+    .ListaLinkuri.studio-extins #youtubeLink.BtnCanal {
+        position: static !important;
+        transform: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 85px !important;
+        height: 60px !important;
+    }
+
+    /* Playerul video discret jos când pornește muzica */
+    .PlayerInBanda.activ {
+        display: block !important;
+        position: fixed !important;
+        bottom: 10px !important;
+        right: 10px !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 150px !important;
+        height: 84px !important;
+        z-index: 999 !important;
+    }
 }
