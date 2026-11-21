@@ -609,7 +609,7 @@ line-height: 1.5em;
         /* width: 100% !important; */
         width: 190px !important; /* Forțează o lățime minimă generoasă pentru input */
         height: 38px !important;
-     margin-left: -50px;
+        padding-left: -50px;
         font-size: 16px !important;
         padding: 4px 8px !important;
         box-sizing: border-box !important;
