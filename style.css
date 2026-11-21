@@ -390,25 +390,42 @@ main {
 }
 
 /* ==========================================================================
-   MOBIL UNIC (PORTRET + LANDSCAPE) - FĂRĂ CONFLICTE
+   MOBIL UNIC (PORTRET + LANDSCAPE) - REPARAT & CURAT
    ========================================================================== */
-@media (max-width: 750px) and (orientation: portrait) {
+@media (max-width: 750px), (max-height: 550px) and (orientation: landscape) {
+
+    html {
+        margin-top: 0;
+    }
+
+    .container {
+        margin: 12px;
+        padding: 1.2rem;
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .Avatar {
+        float: none;
+        width: 140px;
+        margin: 0 0 1rem 0;
+    }
 
     .ListaLinkuri {
-        position: relative !important;
+        position: relative;
     }
 
-    /* CONSOLA ÎNCHISĂ (4em ca restul etajelor) */
-    .ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(4) {
-        display: block !important;
-    }
-
+    /* ---------------- CONSOLA ÎNCHISĂ ---------------- */
     .ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(5) {
-        display: block !important;
-        height: 4em !important;
-        min-height: 4em !important;
-        padding: 0 !important;
-        box-sizing: border-box !important;
+        display: block;
+        min-height: 4em;
+        padding: 0;
     }
 
     .ListaLinkuri:not(.studio-extins) > .ListaItem:nth-child(5) .PozonaVideo,
@@ -417,39 +434,36 @@ main {
     }
 
     .ListaLinkuri:not(.studio-extins) #zonaControlLista {
-        display: flex !important;
-        align-items: center !important;
-        height: 4em !important;
-        padding: 0.5em !important;
-        border-bottom: none !important;
-        box-sizing: border-box !important;
+        display: flex;
+        align-items: center;
+        min-height: 4em;
+        padding: 0.5em;
     }
 
-    /* CONSOLA EXTINSĂ (2 etaje egale de câte 4em = 8em) */
-    .ListaLinkuri.studio-extins > .ListaItem:nth-child(4) {
-        display: none !important;
+    /* ---------------- CONSOLA EXTINSĂ (2 ETAJE) ---------------- */
+    /* Ascundem Newsletter doar pe portret ca să facă loc etajului 2 */
+    @media (orientation: portrait) {
+        .ListaLinkuri.studio-extins > .ListaItem:nth-child(4) {
+            display: none;
+        }
     }
 
     .ListaLinkuri.studio-extins > .ListaItem:nth-child(5) {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        grid-template-rows: 4em 4em !important;
-        height: 8em !important;
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
         min-height: 8em !important;
         padding: 0 !important;
-        gap: 0 !important;
-        overflow: hidden !important;
-        box-sizing: border-box !important;
+        overflow: visible !important;
+        background-color: rgba(15, 20, 45, 0.75);
     }
 
-    /* ETAJ 1 */
+    /* ETAJ 1: Titlu + Input + Buton Închidere */
     .Directie {
-        grid-column: 1 / -1 !important;
-        grid-row: 1 !important;
-        display: flex !important;
-        align-items: center !important;
-        width: 100% !important;
-        height: 4em !important;
+        width: 100%;
+        min-height: 4em;
+        display: flex;
+        align-items: center;
     }
 
     #zonaControlLista {
@@ -457,150 +471,170 @@ main {
         flex-direction: row !important;
         justify-content: space-between !important;
         align-items: center !important;
-        gap: 6px !important;
-        width: 100% !important;
-        height: 4em !important;
-        padding: 0 0.5em !important;
-        box-sizing: border-box !important;
-        border-bottom: 1px dashed rgba(255, 255, 255, 0.35) !important;
+        gap: 8px;
+        width: 100%;
+        min-height: 4em;
+        padding: 0.4em 0.6em !important;
+        box-sizing: border-box;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.35);
     }
 
-    #zonaControlLista #textOriginalYoutube,
-    #zonaControlLista #textOriginalYoutube.ascuns {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: flex-start !important;
-        flex: 0 0 auto !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        font-size: 1em !important;
-        line-height: 1.3em !important;
+    #textOriginalYoutube {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1 1 auto;
+        min-width: 0;
     }
 
-    .ListaLinkuri.studio-extins #statusMelodie {
-        display: block !important;
-        padding-left: 8px !important;
-        max-width: 110px !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        font-size: 10px !important;
-        line-height: 1.2 !important;
-        opacity: 0.85 !important;
-        margin-top: 2px !important;
-    }
-
-    #zonaControlLista #panouInputYoutube {
-        display: flex !important;
-        align-items: center !important;
-        flex: 1 1 auto !important;
-        width: auto !important;
-        max-width: none !important;
-        gap: 4px !important;
-        padding: 4px !important;
-    }
-
-    #zonaControlLista #panouInputYoutube.ascuns {
+    #textOriginalYoutube.ascuns {
         display: none !important;
     }
 
-    #zonaControlLista #inputLinkNou {
-        flex: 1 1 auto !important;
-        width: 100% !important;
-        min-width: 120px !important;
-        height: 34px !important;
-        font-size: 16px !important;
-        padding: 4px 8px !important;
-        box-sizing: border-box !important;
+    .ListaLinkuri.studio-extins #statusMelodie {
+        display: block;
+        max-width: 160px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.75rem;
+        opacity: 0.85;
     }
-}
 
-/* BUTOANELE DIN ETAJUL 2 + LANDSCAPE */
-@media (max-width: 750px), (max-height: 550px) and (orientation: landscape) {
+    #panouInputYoutube {
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+        gap: 6px;
+        padding: 4px;
+        width: 100%;
+    }
 
+    #panouInputYoutube.ascuns {
+        display: none !important;
+    }
+
+    #inputLinkNou {
+        flex: 1 1 auto;
+        width: 100%;
+        min-width: 0;
+        height: 36px;
+        font-size: 16px; /* Previne zoom-ul automat pe iPhone */
+        padding: 4px 8px;
+    }
+
+    /* Butonul săgeată de restrângere consolă */
+    #btnInchideStudio {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 38px;
+        width: 38px;
+        height: 38px;
+        background: rgba(255, 255, 255, 0.15);
+        color: antiquewhite;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 8px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        z-index: 40;
+    }
+
+    /* ETAJ 2: Butonul Bară + Sigla YouTube */
     .PozonaVideo {
-        grid-column: 1 / -1 !important;
-        grid-row: 2 !important;
         position: relative !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
         display: flex !important;
         align-items: center !important;
-        justify-content: space-around !important;
+        justify-content: space-evenly !important;
         width: 100% !important;
-        height: 4em !important;
-        overflow: visible !important;
+        height: 4.5em !important;
+        padding: 4px 0 !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
     }
 
-    /* Butonul Bară intact, la exact jumătatea consolei (58px) */
-    #toggleYoutube.containerb {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
+    /* Butonul special cu bară și triunghi - centrat și clicabil */
+    #toggleYoutube {
         position: relative !important;
         top: auto !important;
         right: auto !important;
-        width: 110px !important;
-        height: 161px !important;
-        transform: scale(0.36) !important;
-        transform-origin: center center !important;
-        margin: 0 !important;
+        transform: none !important;
+        width: 80px !important;
+        height: 64px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        z-index: 35 !important;
         flex: 0 0 auto !important;
     }
 
-    /* Sigla YouTube intactă și vizibilă */
+    #toggleYoutube .bara {
+        margin-left: 0 !important;
+        width: 14px !important;
+        height: 54px !important;
+    }
+
+    #toggleYoutube .bara_mijloc {
+        margin-left: 6px !important;
+        width: 2px !important;
+        height: 54px !important;
+    }
+
+    #toggleYoutube .triunghi_unu_stanga {
+        border-left: 10px solid transparent !important;
+        border-right: 10px solid transparent !important;
+        border-bottom: 20px solid antiquewhite !important;
+    }
+
+    /* Sigla YouTube - vizibilă și clicabilă */
     #youtubeLink.BtnCanal {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
         position: relative !important;
         top: auto !important;
         right: auto !important;
-        transform: scale(0.75) !important;
-        transform-origin: center center !important;
-        margin: 0 !important;
+        transform: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 80px !important;
+        height: 64px !important;
+        z-index: 35 !important;
         flex: 0 0 auto !important;
-        visibility: visible !important;
-        opacity: 1 !important;
     }
 
     .AccesCanal {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 110px !important;
-        height: 75px !important;
+        width: 76px !important;
+        height: 52px !important;
     }
 
     .containers {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 85px !important;
-        height: 55px !important;
-        background-color: #ff0000 !important;
-        border-radius: 14px !important;
+        width: 68px !important;
+        height: 46px !important;
+        border-radius: 12px !important;
     }
 
     .triunghi {
-        display: block !important;
-        width: 0 !important;
-        height: 0 !important;
-        margin: 0 !important;
-        border-top: 12px solid transparent !important;
-        border-bottom: 12px solid transparent !important;
-        border-left: 22px solid #ffffff !important;
-        border-right: none !important;
+        border-top: 9px solid transparent !important;
+        border-bottom: 9px solid transparent !important;
+        border-left: 16px solid #ffffff !important;
     }
 
+    /* Player video discret în fundal pe mobil (ca să nu blocheze ecranul) */
     .PlayerInBanda.activ {
         display: block !important;
         position: fixed !important;
-        bottom: 10px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 200px !important;
-        height: 112px !important;
+        bottom: 8px !important;
+        right: 8px !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+        width: 140px !important;
+        height: 79px !important;
         pointer-events: none !important;
-        z-index: -1 !important;
+        opacity: 0.35 !important;
+        z-index: 1 !important;
     }
 }
