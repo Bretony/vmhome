@@ -628,7 +628,7 @@ line-height: 1.5em;
 }
 
 #panouInputYoutube {
-    display: flex !important;
+    /* display: flex !important; */
     align-items: center !important;
     width: 100% !important;
     max-width: none !important; /* Eliminăm limita de 220px care micșora caseta */
