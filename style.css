@@ -644,6 +644,19 @@ line-height: 1.5em;
         height: 76px !important;
         overflow: visible !important;
     }
+    @media (max-width: 750px) {
+    /* 2. Oprește blocarea pe fundal ALB când atingi ecranul sau butoanele pe telefon */
+    .ListaLinkuri > .ListaItem:nth-child(5):hover {
+        background-color: transparent !important;
+        color: antiquewhite !important;
+    }
+
+    .ListaLinkuri > .ListaItem:nth-child(5):hover .ListaTitlu,
+    .ListaLinkuri > .ListaItem:nth-child(5):hover #statusMelodie,
+    .ListaLinkuri > .ListaItem:nth-child(5):hover .ListaLink {
+        color: antiquewhite !important;
+    }
+}
 }
 
     
