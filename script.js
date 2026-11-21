@@ -279,8 +279,8 @@ async function comutaPlaylistInBanda() {
 
     if (!casetaPornita) {
         if (window.innerWidth <= 750) {
-            document.body.appendChild(zonaVideo);
-            document.body.classList.add('video-sus-activ'); // Face loc playerului sus pe mobil
+            
+           
         }
         zonaVideo.classList.add('activ');
         buton.classList.add('pornit');
