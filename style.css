@@ -603,18 +603,16 @@ line-height: 1.5em;
     #zonaControlLista #panouInputYoutube.ascuns {
         display: none !important;
     }
-
-    #zonaControlLista #inputLinkNou {
+ #zonaControlLista #inputLinkNou {
         display: block !important;
-        flex: 1 1 auto !important;
+        flex: 1 1 100% !important;
         width: 100% !important;
-        min-width: 0 !important;
-        height: 36px !important;
+        min-width: 165px !important; /* Forțează o lățime minimă generoasă pentru input */
+        height: 38px !important;
         font-size: 16px !important;
         padding: 4px 8px !important;
         box-sizing: border-box !important;
     }
-
     #zonaControlLista #btnInchideInput {
         position: static !important;
         transform: none !important;
