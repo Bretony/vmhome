@@ -530,27 +530,36 @@ line-height: 1.5em;
 
     /* Etajul 2: Butonul Bară în stânga-centru, Butonul YouTube în dreapta-centru */
 
-    /* Butonul Bară (#toggleYoutube) - întreg, neînghesuit și centrat */
+   @media (max-width: 750px) {
+    /* Lăsăm butonul Bară să își păstreze exact desenul original de pe desktop, doar micșorat */
     #toggleYoutube {
         position: relative !important;
         top: auto !important;
         right: auto !important;
-        transform: scale(0.40) !important;
-        transform-origin: center center !important;
-        width: 110px !important;
+        left: auto !important;
+        bottom: auto !important;
+        display: inline-block !important;
+        width: 85px !important;
         height: 161px !important;
-        margin: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+        transform: scale(0.45) !important;
+        transform-origin: center center !important;
+        margin: -42px 0 !important; /* Compensează înălțimea rămasă după scale(0.45) */
         overflow: visible !important;
-        z-index: 50 !important;
     }
 
-    /* Ajustăm marginea stângă a barei doar pe telefon ca să stea centrata în buton */
-    #toggleYoutube .bara {
-        margin-left: 15px !important;
+    /* Resetăm orice regulă flex pusă anterior pe interiorul butonului */
+    #toggleYoutube .containerb {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important;
     }
+
+    #toggleYoutube .bara {
+        margin-left: 35px !important;
+    }
+}
+
 
 
     /* Sigla canalului YouTube (.BtnCanal) - echilibrată în dreapta */
