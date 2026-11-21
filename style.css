@@ -647,13 +647,14 @@ line-height: 1.5em;
         box-sizing: border-box !important;
     }
 
-    /* Butonul Play/Stop cu triunghi (micșorat proporțional fără a-i sparge forma) */
+    /* Butonul special de YouTube (triunghi + bară) readus la proporția corectă în etajul 2 */
     #toggleYoutube {
         position: static !important;
-        transform: scale(0.32) !important;
+        transform: scale(0.55) !important; /* Mărime clară, vizibilă și intactă, exact ca pe landscape */
         transform-origin: center center !important;
         margin: 0 !important;
         flex: 0 0 auto !important;
+        overflow: visible !important;
     }
 
     /* Sigla canalului YouTube din dreapta (micșorată proporțional cu scale ca să nu depășească 4em) */
