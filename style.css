@@ -905,6 +905,21 @@ white-space: nowrap !important;
 font-size: 0.85em !important;
 line-height: 1.2 !important;
 }
+        #statusMelodie {
+        margin-top: 0px !important;
+       
+    }
+    /* Titlul melodiei (foarte mic, pe un singur rând, fără să strice alinierea) */
+#statusMelodie {
+    font-size: 5px;
+    line-height: 1.2;
+    max-width: 160px; /* Ajustează după lățimea butonului tău */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.85;
+    margin-top: 2px;
+}
 #panouInputYoutube {
 display: flex !important;
 align-items: center !important;
