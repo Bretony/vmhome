@@ -310,8 +310,15 @@ function pornestePiesaCuAPI(index) {
     const piesa = casetaYoutube[index];
     if (!zonaVideo || !piesa || !casetaPornita) return;
 
+    actualizeazaTextStatus(piesa.titlu);
+
     if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
         ytPlayer.loadVideoById(piesa.id);
+        setTimeout(() => {
+            if (casetaPornita && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+                ytPlayer.playVideo();
+            }
+        }, 400);
         return;
     }
 
