@@ -619,3 +619,32 @@ line-height: 1.5em;
         border-radius: 0 0 14px 14px !important;
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.95) !important;
     }
+    /* Butonul de restrângere consolă (↙) */
+#btnInchideStudio {
+    display: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: antiquewhite;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+#zonaControlLista.consola-deschisa #btnInchideStudio {
+    display: inline-block;
+}
+
+/* Când videoclipul rulează sus pe telefon, împinge conținutul în jos ca să nu îl acopere */
+@media (max-width: 750px) {
+    body.video-sus-activ {
+        padding-top: 220px !important;
+        transition: padding-top 0.25s ease;
+    }
+
+    /* Pe telefon, când se deschide caseta de input, ascundem textul "You Tube" ca să aibă loc inputul */
+    #textOriginalYoutube.ascuns {
+        display: none !important;
+    }
+}
