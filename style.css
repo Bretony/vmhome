@@ -591,25 +591,25 @@ line-height: 1.5em;
 
     /* CASETA DE INPUT: Apare strict în continuarea pătratului (în dreapta) și ocupă tot spațiul rămas! */
     #zonaControlLista #panouInputYoutube {
-        position: static !important;
         display: flex !important;
-        align-items: left!important;
-        /* flex: 1 1 auto !important; /* Ocupă tot spațiul mare dintre pătratul textului și săgeata ↙ */ 
-        width: 100px !important;
+        align-items: center !important;
+        flex: 1 1 auto !important;
+        margin-left: -25px !important; /* <-- ACEASTA o mută spre stânga! (ajustează -25px la -15px sau -35px) */
+        width: auto !important;
+        max-width: none !important;
         gap: 4px !important;
-        margin: 0 !important;
+        z-index: 15 !important;
     }
 
     #zonaControlLista #panouInputYoutube.ascuns {
         display: none !important;
     }
- #zonaControlLista #inputLinkNou {
+
+    #zonaControlLista #inputLinkNou {
         display: block !important;
-        /* flex: 1 1 100% !important; */
-        /* width: 100% !important; */
-        width: 190px !important; /* Forțează o lățime minimă generoasă pentru input */
+        flex: 1 1 auto !important;
+        width: 190px !important; /* Acum are loc să se întindă la 190px! */
         height: 38px !important;
-        padding-left: -50px;
         font-size: 16px !important;
         padding: 4px 8px !important;
         box-sizing: border-box !important;
