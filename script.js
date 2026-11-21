@@ -184,35 +184,56 @@ function inchideCasutaYoutube(mesajTemporar) {
     }
 }
 // 1. Click oriunde pe banda YouTube (când e închisă -> deschide DOAR consola; pe desktop -> deschide inputul)
+function inchideStudioYoutube() {
+    document.querySelector('.ListaLinkuri')?.classList.remove('studio-extins');
+    inchideCasutaYoutube();
+    // Readuce cuvântul "LINK" când consola este închisă, chiar dacă muzica merge în fundal
+    actualizeazaTextStatus('LINK');
+}
+
 function gestioneazaClickYoutube() {
     const lista = document.querySelector('.ListaLinkuri');
     const esteMobil = window.matchMedia('(max-width: 750px) and (orientation: portrait), (max-height: 550px) and (orientation: landscape)').matches;
 
     if (esteMobil && lista && !lista.classList.contains('studio-extins')) {
-        // Prima apăsare pe mobil: deschide DOAR consola, FĂRĂ input
         lista.classList.add('studio-extins');
+        // Dacă muzica cântă deja, afișăm titlul piesei curente când redeschidem consola
+        afiseazaTitluCurentDacaCanta();
         return;
     }
 
-    // Dacă e desktop sau consola e deja deschisă: deschide inputul
     deschideCasutaYoutube();
 }
 
-// 2. Click în partea stângă (pe You Tube / LINK) -> dacă consola e închisă o deschide; dacă e deschisă activează inputul
 function deschideInputInConsola() {
     const lista = document.querySelector('.ListaLinkuri');
     const esteMobil = window.matchMedia('(max-width: 750px) and (orientation: portrait), (max-height: 550px) and (orientation: landscape)').matches;
 
     if (esteMobil && lista && !lista.classList.contains('studio-extins')) {
         lista.classList.add('studio-extins');
+        afiseazaTitluCurentDacaCanta();
         return;
     }
 
     deschideCasutaYoutube();
 }
-function inchideStudioYoutube() {
-    document.querySelector('.ListaLinkuri')?.classList.remove('studio-extins');
-    inchideCasutaYoutube();
+
+// Funcție ajutătoare care arată titlul doar când consola e deschisă
+function afiseazaTitluCurentDacaCanta() {
+    if (!casetaPornita) {
+        actualizeazaTextStatus('LINK');
+        return;
+    }
+    if (ytPlayer && typeof ytPlayer.getPlaylistIndex === 'function' && window._playlistActiv) {
+        const idx = ytPlayer.getPlaylistIndex();
+        if (window._playlistActiv[idx]) {
+            actualizeazaTextStatus(window._playlistActiv[idx].titlu);
+            return;
+        }
+    }
+    if (casetaYoutube[indexPiesa]) {
+        actualizeazaTextStatus(casetaYoutube[indexPiesa].titlu);
+    }
 }
 async function verificaEnterLink(e) {
     const inputLink = e.target;
@@ -359,15 +380,23 @@ function creeazaInstantaPlayer(listaIdUri, containerId) {
                     event.target.playVideo();
                 }
             },
-            onStateChange: (event) => {
-                // Când începe o piesă nouă din playlist (starea 1 = PLAYING), actualizăm titlul automat!
-                if (event.data === 1 && casetaPornita && typeof ytPlayer.getPlaylistIndex === 'function') {
-                    const idxPlaylist = ytPlayer.getPlaylistIndex();
-                    if (window._playlistActiv && window._playlistActiv[idxPlaylist]) {
-                        actualizeazaTextStatus(window._playlistActiv[idxPlaylist].titlu);
-                    }
-                }
-            },
+          onStateChange: (event) => {
+    if (event.data === 1 && casetaPornita && typeof ytPlayer.getPlaylistIndex === 'function') {
+        const lista = document.querySelector('.ListaLinkuri');
+        const esteMobil = window.matchMedia('(max-width: 750px) and (orientation: portrait), (max-height: 550px) and (orientation: landscape)').matches;
+        
+        // Pe mobil schimbăm textul doar dacă consola e deschisă; dacă e închisă, rămâne "LINK"
+        if (esteMobil && lista && !lista.classList.contains('studio-extins')) {
+            actualizeazaTextStatus('LINK');
+            return;
+        }
+
+        const idxPlaylist = ytPlayer.getPlaylistIndex();
+        if (window._playlistActiv && window._playlistActiv[idxPlaylist]) {
+            actualizeazaTextStatus(window._playlistActiv[idxPlaylist].titlu);
+        }
+    }
+},
             onError: () => {
                 if (ytPlayer && typeof ytPlayer.nextVideo === 'function') {
                     ytPlayer.nextVideo();
