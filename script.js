@@ -307,44 +307,49 @@ async function comutaPlaylistInBanda() {
 // 8. Motorul oficial YT.Player (cu ID unic la fiecare pornire ca să meargă de 100 de ori la rând)
 function pornestePiesaCuAPI(index) {
     const zonaVideo = document.getElementById('zonaVideoYoutube');
-    const piesa = casetaYoutube[index];
-    if (!zonaVideo || !piesa || !casetaPornita) return;
+    if (!zonaVideo || casetaYoutube.length === 0 || !casetaPornita) return;
 
-    actualizeazaTextStatus(piesa.titlu);
+    // Construim lista completă de ID-uri începând cu piesa aleasă aleatoriu
+    const listaRearanjata = [
+        ...casetaYoutube.slice(index),
+        ...casetaYoutube.slice(0, index)
+    ];
+    const listaIdUri = listaRearanjata.map(p => p.id);
 
-    if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
-        ytPlayer.loadVideoById(piesa.id);
-        setTimeout(() => {
-            if (casetaPornita && ytPlayer && typeof ytPlayer.playVideo === 'function') {
-                ytPlayer.playVideo();
-            }
-        }, 400);
+    actualizeazaTextStatus(listaRearanjata[0].titlu);
+
+    // Salvăm lista ordonată ca să știm exact ce titlu afișăm la fiecare schimbare
+    window._playlistActiv = listaRearanjata;
+
+    if (ytPlayer && typeof ytPlayer.loadPlaylist === 'function') {
+        ytPlayer.loadPlaylist(listaIdUri);
         return;
     }
 
-    // Generăm un ID unic de fiecare dată ca YT.Player să nu se blocheze după destroy()
     const idUnicBox = 'ytPlayerBox_' + Date.now();
     zonaVideo.innerHTML = '<div id="' + idUnicBox + '"></div>';
 
     if (window.YT && window.YT.Player) {
-        creeazaInstantaPlayer(piesa.id, idUnicBox);
+        creeazaInstantaPlayer(listaIdUri, idUnicBox);
     } else {
         window.onYouTubeIframeAPIReady = () => {
-            if (casetaPornita) creeazaInstantaPlayer(piesa.id, idUnicBox);
+            if (casetaPornita) creeazaInstantaPlayer(listaIdUri, idUnicBox);
         };
     }
 }
 
-function creeazaInstantaPlayer(videoId, containerId) {
+function creeazaInstantaPlayer(listaIdUri, containerId) {
     ytPlayer = new YT.Player(containerId, {
         height: '100%',
         width: '100%',
-        videoId: videoId,
+        videoId: listaIdUri[0],
         playerVars: {
             autoplay: 1,
             playsinline: 1,
             controls: 1,
             rel: 0,
+            loop: 1,
+            playlist: listaIdUri.join(','), // Îi dăm tot playlistul nativ YouTube!
             modestbranding: 1,
             origin: window.location.origin
         },
@@ -355,12 +360,18 @@ function creeazaInstantaPlayer(videoId, containerId) {
                 }
             },
             onStateChange: (event) => {
-                if (event.data === 0) {
-                    sariLaUrmatoarea();
+                // Când începe o piesă nouă din playlist (starea 1 = PLAYING), actualizăm titlul automat!
+                if (event.data === 1 && casetaPornita && typeof ytPlayer.getPlaylistIndex === 'function') {
+                    const idxPlaylist = ytPlayer.getPlaylistIndex();
+                    if (window._playlistActiv && window._playlistActiv[idxPlaylist]) {
+                        actualizeazaTextStatus(window._playlistActiv[idxPlaylist].titlu);
+                    }
                 }
             },
             onError: () => {
-                sariLaUrmatoarea();
+                if (ytPlayer && typeof ytPlayer.nextVideo === 'function') {
+                    ytPlayer.nextVideo();
+                }
             }
         }
     });
