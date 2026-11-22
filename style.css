@@ -868,17 +868,18 @@ line-height: 1.5em;
     }
 
     /* Containerul triunghiului: dimensiune compactă ca să nu creeze spațiu gol când se rotește 90deg */
+        /* Containerul triunghiului: tras aproape de bară */
     .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube .miscare_verticala_triunghi {
-        position: absolute !important;
+        position: relative !important;
+        left: 6px !important; /* Îl apropie exact lângă bară! (poți regla 5px, 6px, 7px) */
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        width: 16px !important;
-        height: 16px !important; /* Compact, nu mai împinge bara la o parte! */
+        width: 14px !important;
+        height: 14px !important;
         rotate: 90deg !important;
         animation: 4s linear infinite alternate sunriseMobil !important;
     }
-
 
     .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube .triunghi_unu_stanga {
         position: static !important;
@@ -889,6 +890,7 @@ line-height: 1.5em;
         border-bottom: 14px solid antiquewhite !important;
         rotate: 63deg !important;
     }
+
 
 
     /* 2. Sigla YouTube: se întinde automat la 100% din înălțimea jumătății de jos */
