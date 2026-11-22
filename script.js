@@ -385,9 +385,9 @@ let blocareClickDupaCulis = false;
     let aTrecutDeHop = false;
     let aAtinsCapatul = false;
 
-    const PRAG_HOP = -18;    // Jumătatea drumului („hop” tactil scurt)
-    const PRAG_IESIRE = -38; // Capătul șinei (ieșire completă)
-    const MAX_CULIS = -55;   // Limita maximă a șinei spre stânga
+    const PRAG_HOP = -12;    // Jumătatea drumului („hop” tactil scurt)
+    const PRAG_IESIRE = -24; // Capătul șinei (ieșire completă)
+    const MAX_CULIS = -36;   // Limita maximă a șinei spre stânga
 
     function impulsMecanic(ms) {
         if ('vibrate' in navigator) {
@@ -416,16 +416,16 @@ let blocareClickDupaCulis = false;
             // Hop tactil la jumătatea drumului (-18px)
             if (deplasareX <= PRAG_HOP && !aTrecutDeHop) {
                 aTrecutDeHop = true;
-                impulsMecanic(12);
+                impulsMecanic(25);
             } else if (deplasareX > PRAG_HOP && aTrecutDeHop) {
                 aTrecutDeHop = false;
-                impulsMecanic(10);
+                impulsMecanic(20);
             }
 
             // Clic scurt la capăt (-38px)
             if (deplasareX <= PRAG_IESIRE && !aAtinsCapatul) {
                 aAtinsCapatul = true;
-                impulsMecanic(18);
+                impulsMecanic(40);
             } else if (deplasareX > PRAG_IESIRE && aAtinsCapatul) {
                 aAtinsCapatul = false;
             }
