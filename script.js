@@ -272,6 +272,7 @@ document.addEventListener('click', (e) => {
 // 7. BUTONUL DE PORNIRE / OPRIRE PLAYLIST
 // ==========================================================
 async function comutaPlaylistInBanda() {
+    if (blocareClickDupaCulis) return;
     const zonaVideo = document.getElementById('zonaVideoYoutube');
     const buton = document.getElementById('toggleYoutube');
 
@@ -368,4 +369,125 @@ function sariLaUrmatoarea() {
     indexPiesa = (indexPiesa + 1) % casetaYoutube.length;
     pornestePiesaCuAPI(indexPiesa);
 }
+
+// ==========================================================
+// 9. A 3-A FUNCȚIE A BUTONULUI BARĂ: CULISARE LINIARĂ + HOP LA JUMĂTATE
+// ==========================================================
+let blocareClickDupaCulis = false;
+
+(function initializeazaCulisButonBara() {
+    const buton = document.getElementById('toggleYoutube');
+    if (!buton) return;
+
+    let startX = 0;
+    let deplasareX = 0;
+    let inTragere = false;
+    let aTrecutDeHop = false;
+    let aAtinsCapatul = false;
+
+    const PRAG_HOP = -18;    // Jumătatea drumului („hop” tactil scurt)
+    const PRAG_IESIRE = -38; // Capătul șinei (ieșire completă)
+    const MAX_CULIS = -55;   // Limita maximă a șinei spre stânga
+
+    function impulsMecanic(ms) {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(ms);
+        }
+    }
+
+    buton.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0 && e.pointerType === 'mouse') return;
+        startX = e.clientX;
+        deplasareX = 0;
+        inTragere = true;
+        aTrecutDeHop = false;
+        aAtinsCapatul = false;
+        buton.classList.remove('revenire-elastica');
+        buton.setPointerCapture(e.pointerId);
+    });
+
+    buton.addEventListener('pointermove', (e) => {
+        if (!inTragere) return;
+        const delta = e.clientX - startX;
+
+        if (delta < 0) {
+            deplasareX = Math.max(delta, MAX_CULIS);
+
+            // Hop tactil la jumătatea drumului (-18px)
+            if (deplasareX <= PRAG_HOP && !aTrecutDeHop) {
+                aTrecutDeHop = true;
+                impulsMecanic(12);
+            } else if (deplasareX > PRAG_HOP && aTrecutDeHop) {
+                aTrecutDeHop = false;
+                impulsMecanic(10);
+            }
+
+            // Clic scurt la capăt (-38px)
+            if (deplasareX <= PRAG_IESIRE && !aAtinsCapatul) {
+                aAtinsCapatul = true;
+                impulsMecanic(18);
+            } else if (deplasareX > PRAG_IESIRE && aAtinsCapatul) {
+                aAtinsCapatul = false;
+            }
+
+            // Mișcare strict liniară după deget
+            buton.style.translate = `${deplasareX}px 0px`;
+            buton.style.opacity = String(1 - Math.abs(deplasareX) / 95);
+        } else {
+            deplasareX = 0;
+            buton.style.translate = '0px 0px';
+            buton.style.opacity = '1';
+        }
+    });
+
+    const finalizeazaCulis = (e) => {
+        if (!inTragere) return;
+        inTragere = false;
+
+        if (buton.hasPointerCapture && buton.hasPointerCapture(e.pointerId)) {
+            buton.releasePointerCapture(e.pointerId);
+        }
+
+        if (deplasareX < -10) {
+            blocareClickDupaCulis = true;
+            setTimeout(() => { blocareClickDupaCulis = false; }, 250);
+        }
+
+        if (deplasareX <= PRAG_IESIRE) {
+            iesireCompletaLaLocatiaClasica();
+        }
+
+        buton.classList.add('revenire-elastica');
+        buton.style.translate = '0px 0px';
+        buton.style.opacity = '1';
+        deplasareX = 0;
+    };
+
+    buton.addEventListener('pointerup', finalizeazaCulis);
+    buton.addEventListener('pointercancel', finalizeazaCulis);
+})();
+
+function iesireCompletaLaLocatiaClasica() {
+    const zonaVideo = document.getElementById('zonaVideoYoutube');
+    const buton = document.getElementById('toggleYoutube');
+
+    if (ytPlayer && typeof ytPlayer.destroy === 'function') {
+        ytPlayer.destroy();
+        ytPlayer = null;
+    }
+    if (zonaVideo) {
+        zonaVideo.innerHTML = '';
+        zonaVideo.classList.remove('activ');
+    }
+    if (buton) {
+        buton.classList.remove('pornit');
+    }
+
+    document.body.classList.remove('video-sus-activ');
+    casetaPornita = false;
+    actualizeazaTextStatus('LINK');
+
+    inchideStudioYoutube();
+}
+
 
