@@ -848,16 +848,6 @@ line-height: 1.5em;
         overflow: visible !important;
     }
 
-    /* Bara albă (antiquewhite) umple 100% din înălțimea butonului */
-    .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube .bara {
-        position: relative !important;
-        margin-left: 14px !important;
-        width: 14px !important;
-        height: 100% !important;
-        background-color: antiquewhite !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
 
     /* Linia mov din mijlocul barei */
     .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube .bara_mijloc {
@@ -866,17 +856,29 @@ line-height: 1.5em;
         height: 100% !important;
         background-color: blueviolet !important;
     }
+        /* Bara albă (antiquewhite) umple 100% din înălțimea butonului, lipită aproape de triunghi */
+    .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube .bara {
+        position: relative !important;
+        margin-left: 4px !important; /* Redus de la 14px la 4px ca să fie aproape de triunghi! */
+        width: 14px !important;
+        height: 100% !important;
+        background-color: antiquewhite !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
 
-    /* Triunghiul animat din stânga barei */
+    /* Containerul triunghiului: dimensiune compactă ca să nu creeze spațiu gol când se rotește 90deg */
     .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube .miscare_verticala_triunghi {
         position: relative !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        height: 100% !important;
+        width: 16px !important;
+        height: 16px !important; /* Compact, nu mai împinge bara la o parte! */
         rotate: 90deg !important;
         animation: 4s linear infinite alternate sunriseMobil !important;
     }
+
 
     .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube .triunghi_unu_stanga {
         position: static !important;
