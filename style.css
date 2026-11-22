@@ -720,10 +720,22 @@ line-height: 1.5em;
     }
 
     /* Linkurile normale pe lung/orizontală (2 coloane lipite, fără gaură în linie) */
+     /* Împărțire matematică exactă la jumătate (50% stânga / 50% dreapta) */
     .ListaLinkuri {
         display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
         gap: 0 !important;
+    }
+
+    /* Previne orice element <li> să forțeze coloana să se lțească */
+    .ListaLinkuri > .ListaItem {
+        min-width: 0 !important;
+    }
+
+    /* Tik Tok (#3) se întinde pe toată lățimea rândului 2 (pentru că Newsletter #4 e ascuns) */
+    .ListaLinkuri > .ListaItem:nth-child(3) {
+        grid-column: 1 / -1 !important;
+        border-right: none !important;
     }
 
     /* Linie verticală fină între cele 2 coloane de linkuri */
