@@ -787,29 +787,33 @@ line-height: 1.5em;
     }
 
     /* ETAJUL 3: ZONA YOUTUBE (exact aceeași înălțime ca Etajul 1 și 2!) */
+      /* ETAJUL 3: ZONA YOUTUBE (exact aceeași înălțime ca Etajul 1 și 2!) */
     .ListaLinkuri > .ListaItem:nth-child(5) {
         grid-column: 1 / -1 !important;
         grid-row: 3 !important;
         display: grid !important;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; /* 50% stânga / 50% dreapta */
-        grid-template-rows: auto 1fr !important; /* Sus: YouTube+Input | Jos: Butoanele */
+        grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) !important;    /* 50% sus (YouTube+Titlu) / 50% jos (Butoane) */
         gap: 0 !important;
         padding: 0 !important;
         align-items: stretch !important;
         overflow: hidden !important;
     }
 
-    /* Partea de sus a consolei (stânga): You Tube + Input */
+    /* Partea de sus a consolei (stânga 50%): You Tube + Titlu melodie / Input */
     .ListaLinkuri > .ListaItem:nth-child(5) .Directie {
         grid-column: 1 !important;
         grid-row: 1 !important;
-        padding: 2px 10px !important;
+        height: 100% !important;
+        padding: 0 10px !important;
         border-right: 1px solid rgba(255, 255, 255, 0.35) !important;
         display: flex !important;
         align-items: center !important;
     }
 
+
     /* Partea de jos a consolei (stânga): Buton Bară + Sigla YouTube */
+      /* Partea de jos a consolei (stânga 50%): Buton Bară + Sigla YouTube */
     .ListaLinkuri > .ListaItem:nth-child(5) .PozonaVideo {
         grid-column: 1 !important;
         grid-row: 2 !important;
@@ -818,30 +822,51 @@ line-height: 1.5em;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: space-around !important;
-        height: auto !important;
-        padding: 2px 10px !important;
+        height: 100% !important; /* Umple exact 100% din jumătatea de jos */
+        padding: 3px 10px !important;
+        box-sizing: border-box !important;
         border-right: 1px solid rgba(255, 255, 255, 0.35) !important;
-        overflow: visible !important;
+        overflow: hidden !important;
     }
 
+    /* 1. Butonul Bară: scalat să aibă exact înălțimea jumătății de jos (161px * 0.30 ≈ 48px) */
     .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube {
         position: relative !important;
         top: auto !important;
         right: auto !important;
         left: auto !important;
         bottom: auto !important;
-        transform: scale(0.38) !important;
-        margin: -50px 0 !important;
+        height: 161px !important;
+        transform: scale(0.30) !important;
+        transform-origin: center center !important;
+        margin: -56px 0 !important;
     }
 
+    /* 2. Sigla YouTube: se întinde automat la 100% din înălțimea jumătății de jos */
     .ListaLinkuri > .ListaItem:nth-child(5) .BtnCanal {
         position: static !important;
         top: auto !important;
         right: auto !important;
         left: auto !important;
         bottom: auto !important;
-        transform: scale(0.85) !important;
+        height: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        transform: none !important;
     }
+
+    .ListaLinkuri > .ListaItem:nth-child(5) .AccesCanal {
+        height: 100% !important;
+        width: 96px !important;
+        padding: 2px !important;
+        box-sizing: border-box !important;
+    }
+
+    .ListaLinkuri > .ListaItem:nth-child(5) .containers {
+        height: 100% !important;
+        width: 100% !important;
+    }
+
 
     /* Ecranul video (dreapta 50%): lipit de consolă, fără radius, exact cât Etajul 3 */
     #zonaVideoYoutube.activ {
