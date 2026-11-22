@@ -814,6 +814,7 @@ line-height: 1.5em;
 
     /* Partea de jos a consolei (stânga): Buton Bară + Sigla YouTube */
       /* Partea de jos a consolei (stânga 50%): Buton Bară + Sigla YouTube */
+       /* Partea de jos a consolei (stânga 50%): Buton Bară + Sigla YouTube */
     .ListaLinkuri > .ListaItem:nth-child(5) .PozonaVideo {
         grid-column: 1 !important;
         grid-row: 2 !important;
@@ -822,25 +823,71 @@ line-height: 1.5em;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: space-around !important;
-        height: 100% !important; /* Umple exact 100% din jumătatea de jos */
+        height: 100% !important;
         padding: 3px 10px !important;
         box-sizing: border-box !important;
         border-right: 1px solid rgba(255, 255, 255, 0.35) !important;
-        overflow: hidden !important;
+        overflow: visible !important; /* Nu mai taie butonul! */
     }
 
-    /* 1. Butonul Bară: scalat să aibă exact înălțimea jumătății de jos (161px * 0.30 ≈ 48px) */
+    /* BUTONUL BARĂ: Construit curat la 100% din înălțimea jumătății de rând */
     .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube {
         position: relative !important;
         top: auto !important;
         right: auto !important;
         left: auto !important;
         bottom: auto !important;
-        height: 161px !important;
-        transform: scale(0.30) !important;
-        transform-origin: center center !important;
-        margin: -56px 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 54px !important;
+        height: 100% !important;
+        transform: none !important;
+        margin: 0 !important;
+        rotate: 180deg !important;
+        overflow: visible !important;
     }
+
+    /* Bara albă (antiquewhite) umple 100% din înălțimea butonului */
+    .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube .bara {
+        position: relative !important;
+        margin-left: 14px !important;
+        width: 14px !important;
+        height: 100% !important;
+        background-color: antiquewhite !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    /* Linia mov din mijlocul barei */
+    .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube .bara_mijloc {
+        margin-left: 0 !important;
+        width: 2px !important;
+        height: 100% !important;
+        background-color: blueviolet !important;
+    }
+
+    /* Triunghiul animat din stânga barei */
+    .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube .miscare_verticala_triunghi {
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 100% !important;
+        rotate: 90deg !important;
+        animation: 4s linear infinite alternate sunriseMobil !important;
+    }
+
+    .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube .triunghi_unu_stanga {
+        position: static !important;
+        width: 0 !important;
+        height: 0 !important;
+        border-left: 7px solid transparent !important;
+        border-right: 7px solid transparent !important;
+        border-bottom: 14px solid antiquewhite !important;
+        rotate: 63deg !important;
+    }
+
 
     /* 2. Sigla YouTube: se întinde automat la 100% din înălțimea jumătății de jos */
     .ListaLinkuri > .ListaItem:nth-child(5) .BtnCanal {
