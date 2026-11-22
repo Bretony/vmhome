@@ -792,6 +792,25 @@ padding: 4px 10px !important;
 border-right: 1px solid rgba(255, 255, 255, 0.35) !important;
 overflow: visible !important;
 }
+      /* Forțăm butoanele să rămână în interiorul consolei din stânga, nu aruncate în dreapta */
+    .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+        bottom: auto !important;
+        transform: scale(0.45) !important;
+        margin: -42px 0 !important;
+    }
+
+    .ListaLinkuri > .ListaItem:nth-child(5) .BtnCanal {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+    }
 /* Ecranul video în dreapta: ocupă ambele etaje, lipit de consolă, FĂRĂ radius */
 #zonaVideoYoutube.activ {
 grid-column: 2 !important;
