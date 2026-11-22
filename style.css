@@ -869,7 +869,7 @@ line-height: 1.5em;
 
     /* Containerul triunghiului: dimensiune compactă ca să nu creeze spațiu gol când se rotește 90deg */
     .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube .miscare_verticala_triunghi {
-        position: relative !important;
+        position: absolute !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
