@@ -87,6 +87,7 @@ async function obtinePlaylist() {
         const listaBaza = await raspuns.json();
         const listaSalvataLocal = JSON.parse(localStorage.getItem('sparky_playlist_extra') || '[]');
         casetaYoutube = [...listaBaza, ...listaSalvataLocal];
+      alert(JSON.stringify(listaSalvataLocal));
         return casetaYoutube;
     } catch (eroare) {
         console.error("Eroare la încărcarea playlist.json:", eroare);
