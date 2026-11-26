@@ -448,15 +448,6 @@ line-height: 1.5em;
     width: 210px;
 }
 
-/* Animație dedicată mobilului (la nivel global, în afara @media) */
-@keyframes sunriseMobil {
-    from {
-        transform: translateX(18px);
-    }
-    to {
-        transform: translateX(-18px);
-    }
-}
 
 /* Animație dedicată mobilului (la nivel global, în afara @media) */
 @keyframes sunriseMobil {
@@ -464,7 +455,7 @@ line-height: 1.5em;
         transform: translateX(18px);
     }
     to {
-        transform: translateX(-18px);
+        transform: translateX(-140px);
     }
 }
 
