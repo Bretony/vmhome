@@ -198,7 +198,7 @@ function inchideCasutaYoutube(mesajTemporar) {
                 ? casetaYoutube[indexPiesa].titlu 
                 : 'LINK';
             actualizeazaTextStatus(textRevenire);
-        }, 2000);
+        }, 2500);
     }
 }
 
