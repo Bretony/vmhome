@@ -478,10 +478,10 @@ line-height: 1.5em;
     }
  @keyframes sunrisePortret {
     from {
-        transform: translateX(-18px);     /* Punctul de start (sus pe bară) */
+        transform: translateX(-9px);     /* Punctul de start (sus pe bară) */
     }
     to {
-        transform: translateX(-105px);   /* Coboară doar până la jumătatea barei, nu până la bază */
+        transform: translateX(-120px);   /* Coboară doar până la jumătatea barei, nu până la bază */
     }
 }
 
