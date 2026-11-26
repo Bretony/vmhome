@@ -566,7 +566,12 @@ line-height: 1.5em;
     .zonaInfoYoutube:has(#panouInputYoutube:not(.ascuns)) #statusMelodie {
         display: none !important;
     }
-
+#textOriginalYoutube:not(.ascuns) #statusMelodie {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: #90ee90 !important; /* Verde discret pentru confirmare vizuală sau lasă antiquewhite */
+    }
     #panouInputYoutube {
         position: static !important;
         transform: none !important;
