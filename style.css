@@ -450,7 +450,7 @@ line-height: 1.5em;
 
 
 /* Animație dedicată mobilului (la nivel global, în afara @media) */
-@keyframes sunriseMobil {
+@keyframes sunrisePortret {
     from {
         transform: translateX(18px);
     }
