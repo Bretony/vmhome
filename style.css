@@ -477,16 +477,7 @@ line-height: 1.5em;
         display: none !important;
     }
 
-      .containerb {
-        position: relative;
-    }
 
-    .miscare_verticala_triunghi {
-        position: absolute;
-        top: 35px;  /* Ridică triunghiul mai sus pe bară în portret */
-        left: 20px; /* Ajustează alinierea laterală pe bară */
-    }
-}
     /* Banda YouTube aranjată pe verticală (Video sus, Input mijloc, Butoane jos) */
     .ListaLinkuri > .ListaItem:nth-child(5) {
         display: flex !important;
@@ -613,6 +604,7 @@ line-height: 1.5em;
 
     #toggleYoutube .containerb {
         display: flex !important;
+        pozsition: relative;
         justify-content: center !important;
         width: 100% !important;
         height: 100% !important;
@@ -623,7 +615,9 @@ line-height: 1.5em;
     }
 
     #toggleYoutube .triunghi_unu_stanga {
-        top: 28% !important;
+        position: absolute;
+        top: 35px !important;  /* Ridică triunghiul mai sus pe bară în portret */
+        left: 20px !important; /* Ajustează alinierea laterală pe bară */
     }
 
     #toggleYoutube .miscare_verticala_triunghi {
