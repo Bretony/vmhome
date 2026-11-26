@@ -476,19 +476,19 @@ line-height: 1.5em;
     .ListaLinkuri > .ListaItem:nth-child(4) {
         display: none !important;
     }
+ 
   #toggleYoutube .miscare_verticala_triunghi {
         position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-    }
-   #toggleYoutube .triunghi_unu_stanga {
         top: 35px !important;
-        left: 28px !important; /* Îl aducem înapoi unde era (la 10px în dreapta barei) */
-        transform: translateX(-33px) !important; /* Îl mutăm exact 10px spre bară (dacă merge în partea opusă, pune -10px) */
+        left: 40px !important; /* Îl mută exact în dreapta barei (ajustează între 38px și 45px) */
     }
 
+    #toggleYoutube .triunghi_unu_stanga {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+    }
     /* Banda YouTube aranjată pe verticală (Video sus, Input mijloc, Butoane jos) */
     .ListaLinkuri > .ListaItem:nth-child(5) {
         display: flex !important;
