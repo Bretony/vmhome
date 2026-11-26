@@ -477,6 +477,16 @@ line-height: 1.5em;
         display: none !important;
     }
 
+      .containerb {
+        position: relative;
+    }
+
+    .miscare_verticala_triunghi {
+        position: absolute;
+        top: 35px;  /* Ridică triunghiul mai sus pe bară în portret */
+        left: 20px; /* Ajustează alinierea laterală pe bară */
+    }
+}
     /* Banda YouTube aranjată pe verticală (Video sus, Input mijloc, Butoane jos) */
     .ListaLinkuri > .ListaItem:nth-child(5) {
         display: flex !important;
