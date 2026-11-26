@@ -476,10 +476,17 @@ line-height: 1.5em;
     .ListaLinkuri > .ListaItem:nth-child(4) {
         display: none !important;
     }
- .miscare_verticala_triunghi {
-        position: absolute;
-        top: 35px;
-        left: 5px; /* Trage triunghiul cu 10px spre bară (sau 10px dacă direcția e inversă) */
+  #toggleYoutube .miscare_verticala_triunghi {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    #toggleYoutube .triunghi_unu_stanga {
+        top: 35px !important;   /* Înălțimea pe bară în portret */
+        left: 18px !important;  /* Ajustează aici (ex: 18px sau 38px) pentru cei 10px */
     }
 
     /* Banda YouTube aranjată pe verticală (Video sus, Input mijloc, Butoane jos) */
@@ -608,7 +615,7 @@ line-height: 1.5em;
 
     #toggleYoutube .containerb {
         display: flex !important;
-        pozsition: relative;
+        position: relative;
         justify-content: center !important;
         width: 100% !important;
         height: 100% !important;
