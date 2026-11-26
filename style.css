@@ -449,10 +449,10 @@ line-height: 1.5em;
 }
 @keyframes sunriseMobil {
     from {
-        transform: translateX(18px);
+        transform: translateX(28px);
     }
     to {
-        transform: translateX(-80px);
+        transform: translateX(-10px);
     }
 }
 
