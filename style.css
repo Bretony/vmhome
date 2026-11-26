@@ -479,7 +479,7 @@ line-height: 1.5em;
  .miscare_verticala_triunghi {
         position: absolute;
         top: 35px;
-        left: 35px; /* Trage triunghiul cu 10px spre bară (sau 10px dacă direcția e inversă) */
+        left: 5px; /* Trage triunghiul cu 10px spre bară (sau 10px dacă direcția e inversă) */
     }
 
     /* Banda YouTube aranjată pe verticală (Video sus, Input mijloc, Butoane jos) */
