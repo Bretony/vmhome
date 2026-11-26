@@ -476,20 +476,12 @@ line-height: 1.5em;
     .ListaLinkuri > .ListaItem:nth-child(4) {
         display: none !important;
     }
- @keyframes sunrisePortret {
-    from {
-        transform: translateX(-9px);     /* Punctul de start (sus pe bară) */
-    }
-    to {
-        transform: translateX(-120px);   /* Coboară doar până la jumătatea barei, nu până la bază */
-    }
-}
 
-    #toggleYoutube .miscare_verticala_triunghi {
+  #toggleYoutube .miscare_verticala_triunghi {
         position: absolute !important;
         top: 35px !important;
-        left: 40px !important; /* Păstrează poziția exactă în dreapta barei */
-        animation: 4s linear infinite alternate sunrisePortret !important;
+        left: 40px !important;
+        animation: 2.5s linear infinite alternate sunrisePortret !important; /* Viteză mai mare (2.5s în loc de 4s) */
     }
 
     #toggleYoutube .triunghi_unu_stanga {
