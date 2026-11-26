@@ -476,7 +476,32 @@ line-height: 1.5em;
     .ListaLinkuri > .ListaItem:nth-child(4) {
         display: none !important;
     }
- 
+ @keyframes sunrisePortret {
+    from {
+        transform: translateX(-18px);     /* Punctul de start (sus pe bară) */
+    }
+    to {
+        transform: translateX(-105px);   /* Coboară doar până la jumătatea barei, nu până la bază */
+    }
+}
+
+@media (max-width: 750px) and (orientation: portrait) {
+    /* ... restul codului tău de portret ... */
+
+    #toggleYoutube .miscare_verticala_triunghi {
+        position: absolute !important;
+        top: 35px !important;
+        left: 40px !important; /* Păstrează poziția exactă în dreapta barei */
+        animation: 4s linear infinite alternate sunrisePortret !important;
+    }
+
+    #toggleYoutube .triunghi_unu_stanga {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+    }
+}
   #toggleYoutube .miscare_verticala_triunghi {
         position: absolute !important;
         top: 18px !important;
@@ -625,18 +650,15 @@ line-height: 1.5em;
         margin-left: 35px !important;
     }
 
-   #toggleYoutube .miscare_verticala_triunghi {
-        position: absolute !important;
-        top: 60px !important;  /* Într-un container rotit 180deg, o valoare MAI MARE la top (ex: 60px, 75px) îl ridică MAI SUS vizual! */
-        left: 48px !important; /* Păstrează valoarea care l-a pus perfect în dreapta barei */
-    }
-    #toggleYoutube .triunghi_unu_stanga {
-        position: relative !important;
-        top: 0 !important;
-        left: 0 !important;
-        transform: none !important; /* Scoatem translateX-ul diagonal */
+   #toggleYoutube .triunghi_unu_stanga {
+        position: absolute;
+        top: 35px !important;  /* Ridică triunghiul mai sus pe bară în portret */
+        left: 28px !important; /* Ajustează alinierea laterală pe bară */
     }
 
+    #toggleYoutube .miscare_verticala_triunghi {
+        animation: 4s linear infinite alternate sunriseMobil !important;
+    }
     /* Sigla canalului YouTube */
     .BtnCanal {
         position: static !important;
