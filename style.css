@@ -483,10 +483,10 @@ line-height: 1.5em;
         width: 100% !important;
         height: 100% !important;
     }
-
-    #toggleYoutube .triunghi_unu_stanga {
-        top: 35px !important;   /* Înălțimea pe bară în portret */
-        left: 38px !important;  /* Ajustează aici (ex: 18px sau 38px) pentru cei 10px */
+   #toggleYoutube .triunghi_unu_stanga {
+        top: 35px !important;
+        left: 28px !important; /* Îl aducem înapoi unde era (la 10px în dreapta barei) */
+        transform: translateX(10px) !important; /* Îl mutăm exact 10px spre bară (dacă merge în partea opusă, pune -10px) */
     }
 
     /* Banda YouTube aranjată pe verticală (Video sus, Input mijloc, Butoane jos) */
