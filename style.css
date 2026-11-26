@@ -625,14 +625,17 @@ line-height: 1.5em;
         margin-left: 35px !important;
     }
 
-    #toggleYoutube .triunghi_unu_stanga {
-        position: absolute;
-        top: 35px !important;  /* Ridică triunghiul mai sus pe bară în portret */
-        left: 28px !important; /* Ajustează alinierea laterală pe bară */
+#toggleYoutube .miscare_verticala_triunghi {
+        position: absolute !important;
+        top: 35px !important;   /* Înălțimea pe bară */
+        left: 2px !important;   /* În containerul rotit 180deg, left mic (0px - 8px) îl pune exact în DREAPTA barei! */
     }
 
-    #toggleYoutube .miscare_verticala_triunghi {
-        animation: 4s linear infinite alternate sunriseMobil !important;
+    #toggleYoutube .triunghi_unu_stanga {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important; /* Scoatem translateX-ul diagonal */
     }
 
     /* Sigla canalului YouTube */
