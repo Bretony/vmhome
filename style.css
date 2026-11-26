@@ -617,7 +617,7 @@ line-height: 1.5em;
     #toggleYoutube .triunghi_unu_stanga {
         position: absolute;
         top: 35px !important;  /* Ridică triunghiul mai sus pe bară în portret */
-        left: 20px !important; /* Ajustează alinierea laterală pe bară */
+        left: 28px !important; /* Ajustează alinierea laterală pe bară */
     }
 
     #toggleYoutube .miscare_verticala_triunghi {
