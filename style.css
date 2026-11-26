@@ -447,7 +447,14 @@ line-height: 1.5em;
 #inputLinkNou {
     width: 210px;
 }
-
+@keyframes sunriseMobil {
+    from {
+        transform: translateX(18px);
+    }
+    to {
+        transform: translateX(-140px);
+    }
+}
 
 /* Animație dedicată mobilului (la nivel global, în afara @media) */
 @keyframes sunrisePortret {
@@ -886,7 +893,7 @@ line-height: 1.5em;
         width: 14px !important;
         height: 14px !important;
         rotate: 90deg !important;
-        animation: 4s linear infinite alternate sunrise !important;
+        animation: 4s linear infinite alternate sunriseMobil !important;
     }
 
     .ListaLinkuri > .ListaItem:nth-child(5) #toggleYoutube .triunghi_unu_stanga {
