@@ -625,12 +625,11 @@ line-height: 1.5em;
         margin-left: 35px !important;
     }
 
-#toggleYoutube .miscare_verticala_triunghi {
+   #toggleYoutube .miscare_verticala_triunghi {
         position: absolute !important;
-        top: 35px !important;   /* Înălțimea pe bară */
-        left: 2px !important;   /* În containerul rotit 180deg, left mic (0px - 8px) îl pune exact în DREAPTA barei! */
+        top: 60px !important;  /* Într-un container rotit 180deg, o valoare MAI MARE la top (ex: 60px, 75px) îl ridică MAI SUS vizual! */
+        left: 48px !important; /* Păstrează valoarea care l-a pus perfect în dreapta barei */
     }
-
     #toggleYoutube .triunghi_unu_stanga {
         position: relative !important;
         top: 0 !important;
