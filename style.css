@@ -479,7 +479,7 @@ line-height: 1.5em;
  
   #toggleYoutube .miscare_verticala_triunghi {
         position: absolute !important;
-        top: 35px !important;
+        top: 28px !important;
         left: 40px !important; /* Îl mută exact în dreapta barei (ajustează între 38px și 45px) */
     }
 
