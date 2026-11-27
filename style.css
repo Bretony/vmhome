@@ -707,7 +707,7 @@ line-height: 1.5em;
    - Consola în stânga pe 2 etaje
    - Ecranul video în dreapta, lipit de consolă, FĂRĂ border-radius
    ========================================================================== */
-@media (max-height: 550px) and (orientation: landscape) {
+@media (max-height: 550px) and (orientation: landscape) and (pointer: coarse) {
     html {
         margin-top: 8px !important;
     }
