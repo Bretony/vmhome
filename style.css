@@ -817,7 +817,8 @@ line-height: 1.5em;
         grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) !important;    /* 50% sus (YouTube+Titlu) / 50% jos (Butoane) */
         gap: 0 !important;
         padding: 0 !important;
-        align-items: stretch !important;
+        /* align-items: stretch !important; */
+        align-items: center !important;
         overflow: hidden !important;
     }
 
