@@ -569,6 +569,7 @@ line-height: 1.5em;
 #textOriginalYoutube:not(.ascuns) #statusMelodie {
         display: block !important;
         visibility: visible !important;
+        padding: 0 30px!important;
         opacity: 1 !important;
         color: #90ee90 !important; /* Verde discret pentru confirmare vizuală sau lasă antiquewhite */
     }
