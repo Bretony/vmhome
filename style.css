@@ -559,7 +559,7 @@ line-height: 1.5em;
     #textOriginalYoutube.ascuns {
         display: flex !important;
         flex-direction: column !important;
-        flex-shrink: 0 !important;
+        /* flex-shrink: 0 !important; */
         width: auto !important;
     }
 
