@@ -491,4 +491,51 @@ function iesireCompletaLaLocatiaClasica() {
     inchideStudioYoutube();
 }
 
+/* ==========================================================================
+   ACOPERIRE TAPET ANTIQUEWHITE PENTRU FACEBOOK & TIK TOK (FĂRĂ 404)
+   ========================================================================== */
+const mesajeSocial = {
+    'Facebook': {
+        badge: 'FACEBOOK • ÎN CURÂND',
+        titlu: 'Spațiul Facebook este în amenajare',
+        mesaj: 'Pregătim o comunitate dedicată proiectului Sparky. Până atunci, poți explora portofoliul nostru sau playlist-ul video direct din pagină!'
+    },
+    'Tik Tok': {
+        badge: 'TIK TOK • BACKSTAGE',
+        titlu: 'Cadrele scurte se montează acum',
+        mesaj: 'În curând postăm clipuri din culise și momente creative pe Tik Tok. Rămâi aproape de Sparky!'
+    }
+};
+
+function deschideTapet(numePlatforma) {
+    const overlay = document.getElementById('tapetOverlay');
+    const info = mesajeSocial[numePlatforma] || {
+        badge: numePlatforma.toUpperCase(),
+        titlu: 'Secțiune în curs de actualizare',
+        mesaj: 'Această destinație va fi disponibilă foarte curând.'
+    };
+
+    document.getElementById('tapetPlatforma').textContent = info.badge;
+    document.getElementById('tapetTitlu').textContent = info.titlu;
+    document.getElementById('tapetMesaj').textContent = info.mesaj;
+
+    overlay.classList.remove('tapet-ascuns');
+}
+
+function inchideTapet() {
+    document.getElementById('tapetOverlay').classList.add('tapet-ascuns');
+}
+
+// Atașăm automat evenimentul pe linkurile din listă care au href="url"
+document.querySelectorAll('.ListaLinkuri a.ListaLink').forEach(link => {
+    if (link.getAttribute('href') === 'url') {
+        link.addEventListener('click', (e) => {
+            e.preventDefault(); // Oprește navigarea către pagina 404
+            const titluElement = link.querySelector('.ListaTitlu');
+            const nume = titluElement ? titluElement.textContent.trim() : 'Sparky';
+            deschideTapet(nume);
+        });
+    }
+});
+
 
