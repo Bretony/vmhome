@@ -981,6 +981,7 @@ line-height: 1.5em;
     }
 
     /* 2. SIGLA YOUTUBE (Canal) */
+        /* 2. SIGLA YOUTUBE (Canal) - Mărită punctual */
     .ListaLinkuri > .ListaItem:nth-child(5) .BtnCanal {
         position: static !important;
         top: auto !important;
@@ -997,12 +998,18 @@ line-height: 1.5em;
 
     .ListaLinkuri > .ListaItem:nth-child(5) .BtnCanal .AccesCanal {
         position: static !important;
-        height: 46px !important;
-        width: 68px !important;
+        height: 60px !important; /* Mărit de la 46px la 60px */
+        width: 88px !important;  /* Mărit de la 68px la 88px */
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
     }
+
+    /* Mărim proporțional și triunghiul Play din interior */
+    .ListaLinkuri > .ListaItem:nth-child(5) .BtnCanal .triunghi {
+        transform: scale(1.25) !important;
+    }
+
 
     /* 3. ECRANUL VIDEO PE FOND GRENA (Dreapta 50%, DUBLAT la 170px, lipit, FĂRĂ radius) */
     .ListaLinkuri > .ListaItem:nth-child(5) #zonaVideoYoutube,
